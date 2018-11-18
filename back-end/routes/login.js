@@ -24,6 +24,10 @@ router.post('/', function(req, res) {
     return;
   }
 
+  // TODO check the user exist in MongoDB
+  // TODO if not exist, show warning
+  
+  // TODO get user from MongoDB
   var user = {
     id: Math.round(Math.random() * 100),
     email: req.body.email,
@@ -32,7 +36,8 @@ router.post('/', function(req, res) {
 
   // Save user in session
   req.session.user = user;
-  res.send("Login successfully!");
+  
+  res.redirect('back');
 
 });
 
