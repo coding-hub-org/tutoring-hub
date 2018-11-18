@@ -1,20 +1,80 @@
 #login-box{
-    background: lightgray;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    position: fixed;
-    width: 90vw;
-    height: 50vh;
-    top: 25vh;
-    left:5vw;
     
+    display: grid;
+    grid-template-columns: 1fr minmax(250px,300px) minmax(300px,400px) 1fr;
+    position: fixed;
+    width: 100vw;
+    height: 60vh;
+    top: 20vh;
 }
 #login-box #login-picture{
-    background:black
+    background: url("./LoginPicture.jpg") center;
+    background-size: cover;
+    grid-column:2/3;
 }
-@media (min-width:500px){
-    #login-box{
-        width:60vw;
-        left:20vw;
-    }
+#login-box #login-form{
+    background:white;
+    
+    grid-column: 3/4;
+    align-self: center;
+    position: absolute;
+    height:90%;
+    width:100%;
+    display: grid;
+    grid-template-rows: 0px repeat(4, 18%) 0px;
+    grid-row-gap: 4%;
+    align-items: center;
+    justify-items: center;
+}
+
+#login-box #login-form #login-form-title{
+    grid-row:2/3;  
+    font-size: 20px;
+    opacity: 0.6;
+    
+}
+
+#login-box #login-form #login-form-username{
+    grid-row:3/4;
+    height:100%;
+    width:60%;
+    
+}
+#login-box #login-form #login-form-username input{
+    height:90%;
+    border:solid 2px pink;
+    border-radius: 0.3rem;
+    width:100%;
+    padding-left:10px;
+    
+}
+#login-box #login-form #login-form-password{
+    grid-row:4/5;
+    height:100%;
+    width:60%;
+}
+#login-box #login-form #login-form-password input{
+    height:90%;
+    border:solid 2px pink;
+    border-radius: 0.3rem;
+    width:100%;
+    padding-left:10px;
+}
+#login-box #login-form #login-form-button{
+    grid-row:5/6;
+    width:60%;
+    height:90%;
+}
+#login-box #login-form #login-form-button button{
+    width:100%;
+    height:100%;
+    border:solid 2px pink;
+    border-radius: 0.3rem;
+    background:white;
+}
+#login-box #login-form #login-form-button button:hover{
+    border: 3px;
+    background-color:rgb(240,0,120);
+    cursor: pointer;
+    color:white;
 }
