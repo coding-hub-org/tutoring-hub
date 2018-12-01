@@ -4,9 +4,7 @@ class LoginBox extends Component{
     render(){
         return (
             <div id='login-box'>
-                
-                <div id='login-picture'> 
-                    1
+                <div id='login-picture'>
                 </div>     
                 <form id='login-form' action="" method="post">
                     <div id='login-form-title'>
@@ -19,7 +17,9 @@ class LoginBox extends Component{
                         <input type='password' placeholder="Password" name="password" required></input>
                     </div>
                     <div id='login-form-button'>
-                        <button type="submit"><strong>LOGIN</strong></button>
+                        <button type="submit">
+                            <strong>LOGIN</strong>
+                        </button>
                     </div>
                 </form>
                 
