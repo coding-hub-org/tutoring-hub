@@ -14,6 +14,9 @@ var signupRouter = require('./routes/signup');
 var logoutRouter = require('./routes/logout');
 var settingRouter = require('./routes/setting');
 
+// Connect to mongoDB
+const mongoose = require('mongoose');
+
 var app = express();
 
 // view engine setup
@@ -25,7 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: "It's a secret!" }));
+app.use(session({ secret: "It's a new secret!" }));
+
+// Connect to database
+mongoose.connect('mongodb://codinghub:Plattsburgh#1@ds135577.mlab.com:35577/tutoringhub', { useNewUrlParser: true });
+mongoose.Promise = global.Promise;
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
