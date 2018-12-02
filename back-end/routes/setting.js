@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   if (!req.session.user) {
     // Need to login first
-    res.redirect(403, '/login');
+    res.redirect(302, '/login');
   }
 
   res.send('This is setting page\nYour email is ' + req.session.user.email);

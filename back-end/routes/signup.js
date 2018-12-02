@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
   // TODO Handle insert into database error
 
   // Everything works fine, redirect to login page.
-  res.redirect('login');
+  res.redirect(201, '/login');
 
 });
 
