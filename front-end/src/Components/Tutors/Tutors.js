@@ -11,9 +11,8 @@ class Tutors extends React.Component{
                 <TutorCard tutor={'Hung Nguyen'}/>
                 <TutorCard tutor={'Hung Nguyen'}/>
                 <TutorCard tutor={'Hung Nguyen'}/>
-                <TutorCard tutor={'Hung Nguyen'}/>
-                <TutorCard tutor={'Hung Nguyen'}/>
-
+                {/* <TutorCard tutor={'Hung Nguyen'}/>
+                <TutorCard tutor={'Hung Nguyen'}/> */}
             </div>
         );
     }
