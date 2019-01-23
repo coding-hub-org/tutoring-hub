@@ -15,10 +15,12 @@ const TutorSchema = new Schema({
         type: String
     }],
 	rating: {
-		type: Numbers
+        type: Number,
+        default: 0
     },
     totalReviews: {
-        type: Numbers
+        type: Number,
+        default: 0
     }
 });
 
