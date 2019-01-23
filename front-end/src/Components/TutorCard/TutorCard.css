@@ -39,3 +39,10 @@
     font-size: 0.8em;
     cursor: pointer;
 }
+
+.tutorcard-component--wrapper {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    justify-content: stretch;
+}

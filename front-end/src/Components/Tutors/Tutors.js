@@ -3,16 +3,32 @@ import './Tutors.css';
 import TutorCard from '../TutorCard/TutorCard';
 
 class Tutors extends React.Component{
+    state = {
+        tutors: [],
+        isLoading: true
+      };
+    
+    componentDidMount() {
+        fetch('http://localhost:3001/')
+        .then(response => response.json())
+        .then(data => {
+            this.setState({
+                tutors: [...this.state.tutors, ...data],
+                isLoading: false
+            });
+        }); 
+    }
+      
     render() {
-        return (
+        const {isLoading, tutors} = this.state;
+        if (isLoading) {
+            return(
+                <h1>LOADING</h1>
+            ) 
+        }
+        return(
             <div className={"tutors-component"}>
-                <TutorCard tutor={'Gaurav Jayasawal'}/>
-                <TutorCard tutor={'Gonzalo Reyes'}/>
-                <TutorCard tutor={'Hung Nguyen'}/>
-                <TutorCard tutor={'Hung Nguyen'}/>
-                <TutorCard tutor={'Hung Nguyen'}/>
-                {/* <TutorCard tutor={'Hung Nguyen'}/>
-                <TutorCard tutor={'Hung Nguyen'}/> */}
+                <TutorCard tutors={tutors}/>
             </div>
         );
     }

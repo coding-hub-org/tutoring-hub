@@ -1,6 +1,3 @@
 .tutors-component {
-    flex-wrap: wrap;
-    flex-direction: row;
-    display: flex;
-    justify-content: stretch;
+    width: 100%;
 }
