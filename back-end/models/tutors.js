@@ -3,17 +3,15 @@ const Schema = mongoose.Schema;
 
 // Create friend schema and model
 const TutorSchema = new Schema({
-    fname: {
+    firstName: {
 		type: String,
 		required: [true, 'Name field is required']
 	},
-	lname: {
+	lastName: {
 		type: String,
 		required: [true, 'Name field is required']
     },
-    courses: [{
-        type: String
-    }],
+    courses: [String],
 	rating: {
         type: Number,
         default: 0
@@ -24,6 +22,6 @@ const TutorSchema = new Schema({
     }
 });
 
-const Tutor = mongoose.model('friend', TutorSchema);
+const Tutor = mongoose.model('tutor', TutorSchema);
 
 module.exports = Tutor;
