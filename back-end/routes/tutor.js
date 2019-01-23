@@ -2,9 +2,15 @@ var express = require('express');
 const mongoose = require('mongoose');
 var router = express.Router();
 const Tutor = require('../models/tutors');
+
+
+// DELETE
+////////////////////////////////////////////////////////////////////////////////////////
 /* GET home page. */
 router.get('/test', function(req, res, next) {
-    res.send("HI THERE");
+    Tutor.find({}).then((tutors) => {
+        res.send(tutors);
+    });
 });
   
 /* GET home page. */
@@ -18,6 +24,7 @@ router.post('/test', function(req, res, next) {
         }
     );
 });
+////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/:id', (req, res, next) => {
     res.send("USER WITH ID " + req.params.id);

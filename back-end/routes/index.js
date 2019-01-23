@@ -1,10 +1,13 @@
 var express = require('express');
-const Tutors = require('../models/tutors');
+const Tutor = require('../models/tutors');
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'TUTORS' });
+  Tutor.find({}).then((tutors) => {
+      res.json(tutors);
+  });
+  // res.render('index', { title: 'TUTORS' });
 });
 
 module.exports = router;
