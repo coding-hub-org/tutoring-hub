@@ -1,0 +1,39 @@
+.tutorcard-component {
+    -webkit-box-shadow: 0px 6px 6px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 6px 6px 0px rgba(0,0,0,0.16);
+    box-shadow: 0px 6px 6px 0px rgba(0,0,0,0.16);
+    width: 25%;
+    border-radius: 7px;
+    overflow-x: hidden;
+}
+
+.tutorcard-component img {
+    width: 100%;
+    border-radius: 7px 7px 0 0;
+}
+
+.tutorcard-component .tutorcard-component--wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.tutorcard-component .tutorcard-component--wrapper p {
+    color: #06255D;
+    font-size: 1.2em;
+}
+
+.tutorcard-component .tutorcard-component--wrapper .tutorcard-component--wrapper__description {
+    color: #777777;
+    font-size: 1em;
+}
+
+.tutorcard-component .tutorcard-component--wrapper button {
+    border-radius: 4px;
+    background-color: #FF5E84;
+    color: white;
+    border: 1px solid #FF5E84;
+    box-sizing: border-box;
+    padding: 6px 20px;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+}
