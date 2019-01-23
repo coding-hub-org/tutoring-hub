@@ -4,8 +4,7 @@ import './App.css';
 // Import components
 import NavBar from './Components/NavBar/NavBar';
 import Title from './Components/Title/Title';
-import TutorCard from './Components/TutorCard/TutorCard';
-
+import Tutors from './Components/Tutors/Tutors';
 
 class App extends Component {
   render() {
@@ -14,8 +13,7 @@ class App extends Component {
         <NavBar/>  
         <div className="App-wrapper">
           <Title title = {'ALL TUTORS'}/>
-          <TutorCard tutor={'Gaurav Jayasawal'}/>
-          <TutorCard tutor={'Gonzalo Reyes'}/>
+          <Tutors />
         </div>
       </div>
     );

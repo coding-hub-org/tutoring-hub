@@ -3,10 +3,17 @@
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.16);
     -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.16);
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.16);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(10vw,1fr) minmax(0,var(--content-max-width)) minmax(10vw,1fr);
     box-sizing: border-box;
     padding: 15px 0;
 }
 
+.navbar-component .navbar-component--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-component .navbar-component--wrapper{
+    grid-column: 2;
+}

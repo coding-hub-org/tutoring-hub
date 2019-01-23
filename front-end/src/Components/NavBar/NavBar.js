@@ -7,8 +7,10 @@ import Contact from '../Contact/Contact';
 const NavBar = () => {
     return(
         <nav className={"navbar-component"}>
-            <img src={tutoringHubLogo} alt="tutoring hub logo"/>
-            <Contact/>
+            <div className={"navbar-component--wrapper"}>        
+                <img src={tutoringHubLogo} alt="tutoring hub logo"/>
+                <Contact/>
+            </div>
         </nav>
     );
 }

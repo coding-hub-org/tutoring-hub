@@ -1,0 +1,5 @@
+.tutors-component {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+}
