@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 // Import components
-import NavBar from './Components/NavBar/NavBar';
-import Title from './Components/Title/Title';
-import Tutors from './Components/Tutors/Tutors';
+import Home from './Sections/Home/Home';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavBar/>  
-        <div className="App-wrapper">
-          <Title title = {'ALL TUTORS'}/>
-          <Tutors />
+      <BrowserRouter>
+        <div className="App">
+          <Route exact path="/" component={Home}/>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,0 +1,13 @@
+.home-section {
+    display: grid;
+    align-items: start;
+    grid-template-columns: minmax(10vw,1fr) minmax(0,var(--content-max-width)) minmax(10vw,1fr);
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr;
+}
+
+.home-section .home-section--wrapper {
+    grid-column: 2;
+}
