@@ -6,13 +6,7 @@ const Tutor = require('../models/tutors');
 
 // DELETE
 ////////////////////////////////////////////////////////////////////////////////////////
-/* GET home page. */
-router.get('/test', function(req, res, next) {
-    Tutor.find({}).then((tutors) => {
-        res.send(tutors);
-    });
-});
-  
+
 /* GET home page. */
 router.post('/test', function(req, res, next) {
     // const tutor = new Tutor(req.body);
@@ -27,7 +21,9 @@ router.post('/test', function(req, res, next) {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/:id', (req, res, next) => {
-    res.send("USER WITH ID " + req.params.id);
+    Tutor.findById(req.params.id).then((tutors) => {
+        res.json(tutors);
+    });
 });
 
 router.get('/:id/reviews', (req, res, next) => {
