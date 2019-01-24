@@ -10,4 +10,43 @@
 
 .profile-section .profile-section--wrapper {
     grid-column: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__upper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__reviews {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__reviews a{
+    text-decoration: none;
+    color: white;
+    box-sizing: border-box;
+    background-color: #FF5E84;
+    border-radius: 50px;
+    padding: 10px 25px;
+}
+
+
+.profile-section--wrapper .profile-section--wrapper__loading {
+    -webkit-animation: mymove 2s infinite; /* Safari 4.0 - 8.0 */
+    animation: mymove 2s infinite;
+    align-self: center;
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }

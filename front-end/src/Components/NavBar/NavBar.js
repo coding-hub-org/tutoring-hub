@@ -8,7 +8,7 @@ const NavBar = () => {
     return(
         <nav className={"navbar-component"}>
             <div className={"navbar-component--wrapper"}>        
-                <img src={tutoringHubLogo} alt="tutoring hub logo"/>
+                <a href="/"><img src={tutoringHubLogo} alt="tutoring hub logo"/></a>
                 <Contact/>
             </div>
         </nav>
