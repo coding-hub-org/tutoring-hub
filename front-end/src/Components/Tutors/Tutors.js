@@ -1,6 +1,7 @@
 import React from 'react';
 import './Tutors.css';
 import TutorCard from '../TutorCard/TutorCard';
+import loadingIcon from '../../Assets/loading-icon.png';
 
 class Tutors extends React.Component{
     state = {
@@ -16,6 +17,9 @@ class Tutors extends React.Component{
                 tutors: [...this.state.tutors, ...data],
                 isLoading: false
             });
+        })
+        .catch((error) => {
+            console.log(error);
         }); 
     }
       
@@ -23,7 +27,10 @@ class Tutors extends React.Component{
         const {isLoading, tutors} = this.state;
         if (isLoading) {
             return(
-                <h1>LOADING</h1>
+                <div className={"tutors-component--loading"}>
+                    <img src={loadingIcon} alt=""/>
+                </div>
+                
             ) 
         }
         return(

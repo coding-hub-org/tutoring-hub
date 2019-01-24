@@ -1,3 +1,23 @@
 .tutors-component {
     width: 100%;
 }
+
+.tutors-component--loading img {
+    -webkit-animation: mymove 2s infinite; /* Safari 4.0 - 8.0 */
+    animation: mymove 2s infinite;
+}
+
+.tutors-component--loading {
+    display: flex;
+    justify-content: center;
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
