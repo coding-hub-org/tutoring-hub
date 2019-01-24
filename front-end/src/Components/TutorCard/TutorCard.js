@@ -15,7 +15,7 @@ class TutorCard extends React.Component{
                         <p className={"tutorcard-component--wrapper__description"}>
                             Jane is a chemistry tutor majoring in Medical Technologies with a minor in Math  and Biology. 
                         </p>
-                        <button>MORE</button>
+                        <a href={"/tutor/" + tutor._id}>MORE</a>
                     </div>
                 </div>
             )

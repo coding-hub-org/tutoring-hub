@@ -1,0 +1,26 @@
+.stats-component .stats-component--feature {
+    display: flex;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.stats-component h2{
+    color: #777777;
+}
+
+
+.stats-component .stats-component--feature p {
+    margin: 0;
+    width: 10%;
+}
+
+.stats-component .stats-component--feature .stats-component--feature__wrapper {
+    background-color: #F0F2F8;
+    width: 90%;
+}
+
+.stats-component .stats-component--feature .stats-component--feature__progress {
+    background-color: #FF5E84;
+    width: 20%;
+    height: 100%;
+}

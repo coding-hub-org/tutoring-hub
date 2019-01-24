@@ -28,16 +28,16 @@
     font-size: 1em;
 }
 
-.tutorcard-component .tutorcard-component--wrapper button {
+.tutorcard-component .tutorcard-component--wrapper a {
+    text-decoration: none;
+    color: white;
     border-radius: 4px;
     background-color: #FF5E84;
-    color: white;
     border: 1px solid #FF5E84;
-    box-sizing: border-box;
     padding: 6px 20px;
     margin-bottom: 1em;
     font-size: 0.8em;
-    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .tutorcard-component--wrapper {
