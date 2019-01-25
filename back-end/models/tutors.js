@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Review = require('./reviews');
 
-// Create friend schema and model
+// Create tutor schema and model
 const TutorSchema = new Schema({
     firstName: {
 		type: String,
@@ -19,7 +20,8 @@ const TutorSchema = new Schema({
     totalReviews: {
         type: Number,
         default: 0
-    }
+    },
+    reviews: [Review.schema]
 });
 
 const Tutor = mongoose.model('tutor', TutorSchema);

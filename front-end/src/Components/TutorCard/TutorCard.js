@@ -7,6 +7,7 @@ class TutorCard extends React.Component{
         const {tutors} = this.props;
 
         const tutorList = tutors.map(tutor => {
+            console.log(tutor);
             return(
                 <div className={"tutorcard-component"}  key={tutor._id}>
                     <img src={testImage} alt=""/>
