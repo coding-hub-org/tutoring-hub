@@ -8,6 +8,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 import Title from '../../Components/Title/Title';
 import Stats from '../../Components/Stats/Stats';
 import Course from '../../Components/Course/Course';
+import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
 
 class Profile extends Component {
@@ -44,8 +45,20 @@ class Profile extends Component {
                     <div className="profile-section--wrapper">
                         <Title title = {this.state.name}/>
                         <div className="profile-section--wrapper__upper">
-                            <img src={testImage} alt="test img"/>
-                            <Course courses={this.state.courses}/>
+                            <div className={"profile-section--wrapper__upper--left"}>
+                            </div>
+                            <div className={"profile-section--wrapper__upper--center"}>
+                                <Subheading title={"Overview:"}/>
+                                <p><span>MAJOR: </span>Computer Science</p>
+                                <p><span>TUTOR SINCE: </span>Computer Science</p>
+                                <p><span>REVIEWS: </span>Computer Science</p>
+                                <p><span>WOULD BOOK AGAIN? : </span>Computer Science</p>
+                                <Subheading title={"Courses:"}/>
+                                <Course courses={this.state.courses}/>
+                            </div>
+                            <div className={"profile-section--wrapper__upper--right"}>
+                                <RatingCard/>
+                            </div>
                         </div>
                         <Subheading title={'Stats:'}/>
                         <Stats/>

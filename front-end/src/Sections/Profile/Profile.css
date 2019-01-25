@@ -17,6 +17,21 @@
 .profile-section .profile-section--wrapper .profile-section--wrapper__upper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__upper--left {
+    border-radius: 200px;
+    height: 300px;
+    width: 300px;
+    background: url("../../Assets/gaurav-img-test.png") no-repeat center;
+    background-size: cover;
+    align-self: center;
+}
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center p span {
+    color: #FF5E84;
+    font-weight: 600;
 }
 
 .profile-section .profile-section--wrapper .profile-section--wrapper__reviews {
