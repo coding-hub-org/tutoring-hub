@@ -11,20 +11,33 @@
     color: #777777;
 }
 
-.reviewcard-component--wrapper {
+.reviewcard-component .reviewcard-component--wrapper {
     display: flex;
 }
 
 .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
+    font-weight: 500;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3{
+    margin: 0;
+    font-weight: 500;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description {
+    width: 85%;
+}
 .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating {  
     display: flex;
     justify-content: center;
     flex-direction: column;  
-    width: 30%;
+    width: 15%;
 }
 
 .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p {

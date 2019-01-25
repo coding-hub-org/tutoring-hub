@@ -1,7 +1,7 @@
 import React from 'react';
 import './RatingCard.css';
 
-const RatingCard = () => {
+const RatingCard = ({reviews}) => {
     return(
         <div className={'ratingcard-component'}>
             <h1>4.8</h1>

@@ -15,7 +15,8 @@ class Profile extends Component {
     state = {
         name: "",
         courses: [],
-        isLoading: true
+        isLoading: true,
+        reviews: []
     }
 
     componentDidMount() {
@@ -25,6 +26,7 @@ class Profile extends Component {
             this.setState({
                 name: `${data.firstName} ${data.lastName}`,
                 courses: [...this.state.courses, ...data.courses],
+                reviews: [...this.state.reviews, ...data.reviews],
                 isLoading: false
             });
         })
@@ -52,12 +54,20 @@ class Profile extends Component {
                                 <p><span>MAJOR: </span>Computer Science</p>
                                 <p><span>TUTOR SINCE: </span>Computer Science</p>
                                 <p><span>REVIEWS: </span>Computer Science</p>
-                                <p><span>WOULD BOOK AGAIN? : </span>Computer Science</p>
+                                <p><span>WOULD BOOK AGAIN? :</span></p>
+                                <div className={'profile-section--wrapper__book-again'}>
+                                    <div>
+                                        <p><span>YES</span> 94%</p>
+                                    </div>  
+                                    <div>
+                                        <p><span>NO</span> 6%</p>
+                                    </div>
+                                </div>
                                 <Subheading title={"Courses:"}/>
                                 <Course courses={this.state.courses}/>
                             </div>
                             <div className={"profile-section--wrapper__upper--right"}>
-                                <RatingCard/>
+                                <RatingCard reviews={this.state.reviews}/>
                             </div>
                         </div>
                         <Subheading title={'Stats:'}/>
@@ -66,7 +76,7 @@ class Profile extends Component {
                             <Subheading title={'Reviews:'}/>
                             <a href="#">REVIEW {this.state.name.toUpperCase()}</a>
                         </div>
-                        <ReviewCard />
+                        <ReviewCard reviews={this.state.reviews} />
                     </div>
                 }                
             </div>
