@@ -1,0 +1,40 @@
+.reviewcard-component {
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
+    box-sizing: border-box;
+    padding: 20px 50px;
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    color: #777777;
+}
+
+.reviewcard-component--wrapper {
+    display: flex;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating {  
+    display: flex;
+    justify-content: center;
+    flex-direction: column;  
+    width: 30%;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p {
+    color: #FF5E84;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating h1 {
+    font-size: 3.5em;
+    margin: 0;
+    font-weight: 500;
+}

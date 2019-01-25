@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Profile.css';
 import loadingIcon from '../../Assets/loading-icon.png';
-import testImage from '../../Assets/gaurav-img-test.png';
 
 // Import components
 import NavBar from '../../Components/NavBar/NavBar';
@@ -10,6 +9,7 @@ import Stats from '../../Components/Stats/Stats';
 import Course from '../../Components/Course/Course';
 import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
+import ReviewCard from '../../Components/ReviewCard/ReviewCard';
 
 class Profile extends Component {
     state = {
@@ -66,7 +66,7 @@ class Profile extends Component {
                             <Subheading title={'Reviews:'}/>
                             <a href="#">REVIEW {this.state.name.toUpperCase()}</a>
                         </div>
-                        
+                        <ReviewCard />
                     </div>
                 }                
             </div>
