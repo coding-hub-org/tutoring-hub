@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Profile.css';
 import loadingIcon from '../../Assets/loading-icon.png';
+import {Link} from 'react-router-dom';
 
 // Import components
 import NavBar from '../../Components/NavBar/NavBar';
@@ -74,7 +75,7 @@ class Profile extends Component {
                         <Stats/>
                         <div className={'profile-section--wrapper__reviews'}>
                             <Subheading title={'Reviews:'}/>
-                            <a href="#">REVIEW {this.state.name.toUpperCase()}</a>
+                            <Link to={`${window.location.pathname}/review`}>REVIEW {this.state.name.toUpperCase()}</Link>
                         </div>
                         <ReviewCard reviews={this.state.reviews} />
                     </div>

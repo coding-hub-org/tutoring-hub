@@ -1,6 +1,7 @@
 import React from 'react';
 import './TutorCard.css';
 import testImage from '../../Assets/gaurav-img-test.png';
+import {Link} from 'react-router-dom';
 
 class TutorCard extends React.Component{
     render() {
@@ -15,7 +16,7 @@ class TutorCard extends React.Component{
                         <p className={"tutorcard-component--wrapper__description"}>
                             Jane is a chemistry tutor majoring in Medical Technologies with a minor in Math  and Biology. 
                         </p>
-                        <a href={"/tutor/" + tutor._id}>MORE</a>
+                        <Link to={`/tutor/${tutor._id}`}>MORE</Link>
                     </div>
                 </div>
             )
