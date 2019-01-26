@@ -1,0 +1,32 @@
+.questiontile-component {
+    margin-bottom: 20px;
+}
+
+.questiontile-component .questiontile-component--wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.questiontile-component .questiontile-component--wrapper span {
+    height: 30px;
+    width: 30px;
+    border-radius: 200px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #FF5E84;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.questiontile-component .questiontile-component--wrapper #checked {
+    background-color: #FF5E84;
+    color: whitesmoke;
+}
+
+.questiontile-component .questiontile-component--wrapper span:hover {
+    background-color: #FF5E84;
+    color: whitesmoke;
+}
+
