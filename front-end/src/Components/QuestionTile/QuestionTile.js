@@ -1,7 +1,7 @@
 import React from 'react';
 import './QuestionTile.css';
 
-const QuestionTile = ({questions}) => {
+const QuestionTile = ({questions, updateStatsState}) => {
     let answers = Array(5);
     
     const checkSelected = (index, element, event) => {
@@ -12,7 +12,8 @@ const QuestionTile = ({questions}) => {
         } else {
             event.target.classList.add('checked');
         }
-        answers[index] = event.target.innerHTML;
+        answers[index] = Number(event.target.innerHTML);
+        updateStatsState(answers);
     }
     
     const handleClick = (e) => {
@@ -20,26 +21,22 @@ const QuestionTile = ({questions}) => {
         switch(e.target.classList[0]) {
             case 'section0':
                 checkSelected(0, selected, e);
-                console.log(answers);
                 break;
             case 'section1':
                 checkSelected(1, selected, e);
-                console.log(answers);
                 break;
             case 'section2':
                 checkSelected(2, selected, e);
-                console.log(answers);
                 break;
             case 'section3':
                 checkSelected(3, selected, e);
-                console.log(answers);
                 break;
             default:
                 checkSelected(4, selected, e);
-                console.log(answers);
                 break;
         }
     }
+
 
     const questionList = questions.map((question, idx) => {
         return(

@@ -2,7 +2,7 @@ import React from 'react';
 import './Questions.css';
 import QuestionTile from '../QuestionTile/QuestionTile';
 
-const Questions = () => {
+const Questions = ({updateStatsState}) => {
     const questions = [
         "Methodology", 
         "Organization",
@@ -10,9 +10,11 @@ const Questions = () => {
         "Clarity",
         "Knowledge of Material"
     ];
+
+    
     return (
         <div>
-            <QuestionTile questions={questions}/>
+            <QuestionTile questions={questions} updateStatsState={updateStatsState}/>
         </div>
     );
 }

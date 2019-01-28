@@ -26,8 +26,8 @@ class Profile extends Component {
         .then(data => {
             this.setState({
                 name: `${data.firstName} ${data.lastName}`,
-                courses: [...this.state.courses, ...data.courses],
-                reviews: [...this.state.reviews, ...data.reviews],
+                courses: [...data.courses],
+                reviews: [...data.reviews],
                 isLoading: false
             });
         })
