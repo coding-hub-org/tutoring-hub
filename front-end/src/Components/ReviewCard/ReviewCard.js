@@ -4,12 +4,15 @@ import './ReviewCard.css';
 const ReviewCard = ({reviews}) => {
 
     const reviewList = reviews.map(review => {
+        let obj = review.statistics;
+        let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+
         return(
             <div className={"reviewcard-component"} key={review._id}>
                 <div className={"reviewcard-component--wrapper"}>       
                     <div className={"reviewcard-component--wrapper__rating"}>       
                         <p>RATING</p>
-                        <h1>{review.overall}</h1>
+                        <h1>{total}</h1>
                     </div>
                     <div className={"reviewcard-component--wrapper__description"}>       
                         <h1>{review.author}</h1>
