@@ -2,9 +2,43 @@ import React from 'react';
 import './QuestionTile.css';
 
 const QuestionTile = ({questions}) => {
-
+    let answers = Array(5);
+    
+    const checkSelected = (index, element, event) => {
+        element = document.querySelector(`.section${index}.checked`);
+        if (element) {
+            element.classList.remove('checked');
+            event.target.classList.add('checked');
+        } else {
+            event.target.classList.add('checked');
+        }
+        answers[index] = event.target.innerHTML;
+    }
+    
     const handleClick = (e) => {
-        console.log(e.target);
+        let selected;
+        switch(e.target.classList[0]) {
+            case 'section0':
+                checkSelected(0, selected, e);
+                console.log(answers);
+                break;
+            case 'section1':
+                checkSelected(1, selected, e);
+                console.log(answers);
+                break;
+            case 'section2':
+                checkSelected(2, selected, e);
+                console.log(answers);
+                break;
+            case 'section3':
+                checkSelected(3, selected, e);
+                console.log(answers);
+                break;
+            default:
+                checkSelected(4, selected, e);
+                console.log(answers);
+                break;
+        }
     }
 
     const questionList = questions.map((question, idx) => {
@@ -12,16 +46,16 @@ const QuestionTile = ({questions}) => {
             <div className={"questiontile-component"} key={idx}>
                 <p>{question}</p>            
                 <div className={"questiontile-component--wrapper"}>     
-                    <span onClick={handleClick}>1</span>
-                    <span onClick={handleClick}>2</span>
-                    <span onClick={handleClick}>3</span>
-                    <span onClick={handleClick}>4</span>
-                    <span onClick={handleClick}>5</span>
-                    <span onClick={handleClick}>6</span>
-                    <span onClick={handleClick}>7</span>
-                    <span onClick={handleClick}>8</span>
-                    <span onClick={handleClick}>9</span>
-                    <span onClick={handleClick}>10</span>
+                    <span className={`section${idx}`} onClick={handleClick}>1</span>
+                    <span className={`section${idx}`} onClick={handleClick}>2</span>
+                    <span className={`section${idx}`} onClick={handleClick}>3</span>
+                    <span className={`section${idx}`} onClick={handleClick}>4</span>
+                    <span className={`section${idx}`} onClick={handleClick}>5</span>
+                    <span className={`section${idx}`} onClick={handleClick}>6</span>
+                    <span className={`section${idx}`} onClick={handleClick}>7</span>
+                    <span className={`section${idx}`} onClick={handleClick}>8</span>
+                    <span className={`section${idx}`} onClick={handleClick}>9</span>
+                    <span className={`section${idx}`}onClick={handleClick}>10</span>
                 </div>
             </div>
         );

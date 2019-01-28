@@ -5,6 +5,7 @@
 .questiontile-component .questiontile-component--wrapper {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .questiontile-component .questiontile-component--wrapper span {
@@ -20,7 +21,7 @@
     transition: all 0.4s;
 }
 
-.questiontile-component .questiontile-component--wrapper #checked {
+.questiontile-component .questiontile-component--wrapper .checked {
     background-color: #FF5E84;
     color: whitesmoke;
 }

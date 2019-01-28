@@ -11,9 +11,9 @@ class TutorCard extends React.Component{
             return(
                 <div className={"tutorcard-component"}  key={tutor._id}>
                     <img src={testImage} alt=""/>
-                    <div className={"tutorcard-component--wrapper"}>
+                    <div className={"tutorcard-component--content"}>
                         <p>{tutor.firstName + "  " + tutor.lastName}</p>
-                        <p className={"tutorcard-component--wrapper__description"}>
+                        <p className={"tutorcard-component--content__description"}>
                             Jane is a chemistry tutor majoring in Medical Technologies with a minor in Math  and Biology. 
                         </p>
                         <Link to={`/tutor/${tutor._id}`}>MORE</Link>
