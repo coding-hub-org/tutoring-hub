@@ -72,7 +72,7 @@ class Profile extends Component {
                             </div>
                         </div>
                         <Subheading title={'Stats:'}/>
-                        <Stats/>
+                        <Stats reviews={this.state.reviews}/>
                         <div className={'profile-section--wrapper__reviews'}>
                             <Subheading title={'Reviews:'}/>
                             <Link to={`${window.location.pathname}/rate`}>REVIEW {this.state.name.toUpperCase()}</Link>
