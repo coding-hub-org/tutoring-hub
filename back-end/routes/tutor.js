@@ -20,7 +20,7 @@ router.post('/test', function(req, res, next) {
 });
 
 /* PUT update tutor */
-router.put('/test/:id', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
     Tutor.findByIdAndUpdate({_id: req.params.id}, 
         { $push: { 'reviews':  req.body} })
     .then(() => {

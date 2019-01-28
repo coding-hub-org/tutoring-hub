@@ -30,6 +30,7 @@
     color: #686868;
     margin-right: 15px;
 }
+
 .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left {
     border-radius: 200px;
     height: 300px;
@@ -38,6 +39,12 @@
     background-size: cover;
     align-self: center;
 }
+
+
+.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center {
+    width: 55%;
+}
+
 
 .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center p span {
     color: #FF5E84;
