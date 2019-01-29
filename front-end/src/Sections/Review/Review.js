@@ -3,44 +3,85 @@ import './Review.css';
 
 import NavBar from '../../Components/NavBar/NavBar';
 import Title from '../../Components/Title/Title';
-import Questions from '../../Components/Questions/Questions';
+import QuestionTile from '../../Components/QuestionTile/QuestionTile';
 import Subheading from '../../Components/Subheading/Subheading';
 // import Course from '../../Components/Course/Course';
 
 class Review extends React.Component {
 
+
     state = {
         author: "Anonymous",
         course: "BIO 102",
         content: undefined,
-        overall: 0
+        methodology: undefined,
+        organization: undefined,
+        preparation: undefined,
+        clarity: undefined,
+        knowlege: undefined,
     }
 
+
     handleClick = () => {
-        let url = this.props.match.url;
-        const {author, course, content, overall} = this.state;
-        if (author && course && content && overall) {
+        const {author, course, content, methodology, organization, preparation, clarity, knowlege} = this.state;
+        if (author && course && content && methodology && organization && preparation && clarity && knowlege) {
+            const url = this.props.match.url;
+            const data = {
+                "author": author,
+                "course": course,
+                "content": content,
+                "statistics": {
+                    "methodology":  methodology,
+                    "organization":  organization,
+                    "preparation": preparation,
+                    "clarity":  clarity,
+                    "knowlege":  knowlege
+                }
+            }
             fetch(`http://localhost:3001${url.substring(0, url.lastIndexOf("/"))}`, {
             method: 'PUT', 
-            body: JSON.stringify(this.state), // data can be `string` or {object}!
+            body: JSON.stringify(data), // data can be `string` or {object}!
             headers:{
                 'Content-Type': 'application/json'
             }
             }).then(res => res.json())
-            .then(response => console.log('Success'))
+            .then(response => {
+                console.log('Success')
+                window.location.href = "/";
+            })
             .catch(error => console.error('Error:', error));
-        } else {
-            console.log(author, course, content, overall);
         }
+        else {console.log("ERROR", this.state)};
     }
 
-    updateStatsState = (stats) => {
-
-        if (!stats.includes(undefined)) {
-            console.log("CALLED")
-            const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-            const total = average(stats);
-            console.log(total);
+    updateStats = (score) => {
+        const cathegory = score.target.name;
+        switch(cathegory) {
+            case 'methodology':
+                this.setState({
+                    methodology: Number(score.target.value)
+                });
+                break;
+            case 'organization':
+                this.setState({
+                    organization: Number(score.target.value)
+                });
+                break;
+            case 'preparation':
+                this.setState({
+                    preparation: Number(score.target.value)
+                });
+                break;
+            case 'clarity':
+                this.setState({
+                    clarity: Number(score.target.value)
+                });
+                break;
+            default:
+                this.setState({
+                    knowlege: score.target.value
+                });
+                break;
         }
     }
 
@@ -50,6 +91,7 @@ class Review extends React.Component {
         });
     }
 
+   
 
     render() {
         return(
@@ -57,7 +99,13 @@ class Review extends React.Component {
                 <NavBar/>  
                 <div className={'review-section--wrapper'}>
                     <Title title={'Rate Gaurav'}/>
-                    <Questions updateStatsState={this.updateStatsState}/>             
+
+                    <QuestionTile parameter={"methodology"} updateStats={this.updateStats} />
+                    <QuestionTile parameter={"organization"} updateStats={this.updateStats} />
+                    <QuestionTile parameter={"preparation"} updateStats={this.updateStats} />
+                    <QuestionTile parameter={"clarity"} updateStats={this.updateStats} />
+                    <QuestionTile parameter={"knowlege"} updateStats={this.updateStats} />
+
                     <Subheading title={'About your session'}/>
                     <div>
                         <p>Would you book this tutor again? </p>
