@@ -5,16 +5,55 @@ import "./Home.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
-import Footer from "../../Components/Footer/Footer";
+import loadingIcon from '../../Assets/loading-icon.png';
 
 class Home extends Component {
+
+  state = {
+    tutors: [],
+    isLoading: true,
+    searchField: ""
+  };
+
+  componentDidMount() {
+      fetch('http://localhost:3001/')
+      .then(response => response.json())
+      .then(data => {
+          this.setState({
+              tutors: [...this.state.tutors, ...data],
+              isLoading: false
+          });
+      })
+      .catch((error) => {
+          console.log(error);
+      }); 
+  }
+
+  handleSearch = (event) => {
+    this.setState({
+      searchField: event.target.value
+    })
+  }
+
   render() {
+    if (this.state.isLoading) {
+        return(
+          <div className={"tutors-component--loading"}>
+              <img src={loadingIcon} alt=""/>
+          </div>
+            
+        ) 
+    }
+    const filterTutors = this.state.tutors.filter(tutor => {
+      return (tutor.firstName.toLowerCase().includes(this.state.searchField.toLowerCase())) 
+      || tutor.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
+    });
     return (
       <div className="home-section">
-        <NavBar />
+        <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
-          <Tutors />
+          <Tutors tutors = {filterTutors} />
         </div>
       </div>
     );
