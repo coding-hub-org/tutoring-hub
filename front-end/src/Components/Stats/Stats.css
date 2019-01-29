@@ -1,23 +1,25 @@
 .stats-component .stats-component--feature {
-    display: flex;
-    width: 90%;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-column-gap: 25px;
+  width: 90%;
+  margin-bottom: 20px;
 }
 
 .stats-component .stats-component--feature p {
-    margin: 0;
-    width: 10%;
+  margin: 0;
+  width: 120px;
 }
 
 .stats-component .stats-component--feature .stats-component--feature__wrapper {
-    background-color: #F0F2F8;
-    width: 90%;
-    border-radius: 4px;
+  background-color: #f0f2f8;
+  /* width: 90%; */
+  border-radius: 4px;
 }
 
 .stats-component .stats-component--feature .stats-component--feature__progress {
-    background-color: #FF5E84;
-    width: 20%;
-    height: 100%;
-    border-radius: 4px;
+  background-color: #ff5e84;
+  /* width: 20%; */
+  height: 100%;
+  border-radius: 4px;
 }
