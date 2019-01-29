@@ -11,6 +11,10 @@
   grid-template-rows: auto 1fr;
   padding: 0px 0px 50px 0;
 }
+
+
+
 .home-section .home-section--wrapper {
   grid-column: 2;
 }
+
