@@ -1,5 +1,11 @@
 .title-component {
-    font-size: 3.5em;
-    font-weight: 500;
-    color: #777777;
+  font-size: 3.5em;
+  font-weight: 500;
+  color: #777777;
+}
+
+@media (max-width: 550px) {
+  .title-component {
+    font-size: 2.5em;
+  }
 }

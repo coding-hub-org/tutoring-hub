@@ -1,13 +1,20 @@
 .home-section {
-    display: grid;
-    align-items: start;
-    grid-template-columns: minmax(10vw,1fr) minmax(0,var(--content-max-width)) minmax(10vw,1fr);
-    overflow: hidden;
-    position: relative;
-    min-height: 100vh;
-    grid-template-rows: auto 1fr;
+  display: grid;
+  align-items: start;
+  grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(
+      10vw,
+      1fr
+    );
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr;
+  padding: 0px 0px 50px 0;
 }
 
+
+
 .home-section .home-section--wrapper {
-    grid-column: 2;
+  grid-column: 2;
 }
+
