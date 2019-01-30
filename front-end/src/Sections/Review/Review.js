@@ -38,7 +38,7 @@ class Review extends React.Component {
                     "knowlege":  knowlege
                 }
             }
-            fetch(`http://localhost:3001${url.substring(0, url.lastIndexOf("/"))}`, {
+            fetch(`http://137.142.172.24:3001${url.substring(0, url.lastIndexOf("/"))}`, {
             method: 'PUT', 
             body: JSON.stringify(data), // data can be `string` or {object}!
             headers:{
