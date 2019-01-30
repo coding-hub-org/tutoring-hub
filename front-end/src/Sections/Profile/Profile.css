@@ -121,7 +121,13 @@
     .profile-section--wrapper
     .profile-section--wrapper__upper--left {
     margin-right: 0px;
+    display: grid;
+    justify-content: center;
     grid-area: a;
+  }
+  .profile-section--wrapper__upper--left img {
+    width: 250px;
+    height: 250px;
   }
   .profile-section .profile-section--wrapper .profile-section--wrapper__upper {
     grid-template-columns: auto;
@@ -146,6 +152,7 @@
     .profile-section--wrapper__upper--left {
     display: grid;
     justify-content: center;
+    align-items: center;
   }
   .profile-section
     .profile-section--wrapper
@@ -174,6 +181,7 @@
     .profile-section--wrapper__upper--center
     > .profile-section--wrapper__book-again {
     text-align: center;
+    padding-top: 20px;
   }
   .profile-section
     .profile-section--wrapper
@@ -192,8 +200,17 @@
 @media (max-width: 500px) {
   .profile-section
     .profile-section--wrapper
-    .profile-section--wrapper__upper--left {
-    height: 250px;
-    width: 250px;
+    .profile-section--wrapper__upper--left > img {
+    height: 220px;
+    width: 220px;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left > img {
+    height: 180px;
+    width: 180px;
   }
 }

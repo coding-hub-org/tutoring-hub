@@ -196,6 +196,7 @@
   }
   .footer-container {
     grid-row-gap: 0px;
+    padding: 50px 25px 30px 25px;
     text-align: center;
   }
 }
