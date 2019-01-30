@@ -1,4 +1,10 @@
 .subheading-component {
-    font-weight: 500;
-    color: #777777;
+  font-weight: 500;
+  color: #777777;
+}
+
+@media (max-width: 800px) {
+  .subheading-component {
+    text-align: center;
+  }
 }

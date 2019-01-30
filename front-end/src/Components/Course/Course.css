@@ -16,3 +16,20 @@
     padding: 0 20px;
   }
 }
+
+@media (max-width: 600px) {
+  .course-component {
+    width: 110px;
+    text-align: center;
+  }
+  .course-component-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .course-component-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}

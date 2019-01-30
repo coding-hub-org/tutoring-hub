@@ -115,3 +115,63 @@
     grid-template-areas: "a b" "c b";
   }
 }
+@media (max-width: 800px) {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center {
+    padding-left: 0;
+  }
+  .profile-section .profile-section--wrapper .profile-section--wrapper__upper {
+    grid-template-areas: "a" "c" "b";
+    justify-items: center;
+    grid-row-gap: 20px;
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left {
+    display: grid;
+    justify-content: center;
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__reviews {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__reviews
+    > a {
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    > p {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: center; */
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    > .profile-section--wrapper__book-again {
+    text-align: center;
+  }
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    > h1:nth-child(7) {
+    padding-top: 20px;
+  }
+}
+@media (max-width: 500px) {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left {
+    height: 250px;
+    width: 250px;
+  }
+}
