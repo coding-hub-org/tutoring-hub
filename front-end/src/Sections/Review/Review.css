@@ -28,35 +28,8 @@
     padding: 20px;
 }
 
-.review-section .review-section--wrapper p {
-    display: inline;
-}
-
-.review-section .review-section--wrapper .review-section--wrapper__bookagain {
-    display: inline-flex;
-    margin-left: 40px;
-}
-.review-section .review-section--wrapper .review-section--wrapper__bookagain div {
-    margin-right: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.review-section .review-section--wrapper .review-section--wrapper__bookagain div span{
-    border: 3px solid #FF5E84;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 200px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-
-.review-section .review-section--wrapper .review-section--wrapper__bookagain div span:hover{
-    background-color: #FF5E84;
+.review-section .review-section--wrapper .review-section--bookagain label:nth-child(1) {
+    margin-right: 4em;
 }
 
 .review-section .review-section--wrapper button {    

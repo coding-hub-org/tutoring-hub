@@ -45,15 +45,17 @@ class Home extends Component {
         ) 
     }
     const filterTutors = this.state.tutors.filter(tutor => {
-      return (tutor.firstName.toLowerCase().includes(this.state.searchField.toLowerCase())) 
-      || tutor.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
+      return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
     return (
       <div className="home-section">
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
-          <Tutors tutors = {filterTutors} />
+          {
+            (filterTutors.length === 0) ? <p>NOT FOUND</p>:
+            <Tutors tutors = {filterTutors} />
+          }
         </div>
       </div>
     );

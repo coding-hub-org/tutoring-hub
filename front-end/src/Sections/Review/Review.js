@@ -91,6 +91,10 @@ class Review extends React.Component {
         });
     }
 
+    handleChange = (e) => {
+        console.log(e.target.value);
+    }
+
    
 
     render() {
@@ -109,20 +113,19 @@ class Review extends React.Component {
                     <Subheading title={'About your session'}/>
                     <div>
                         <p>Would you book this tutor again? </p>
-                        <div className={"review-section--wrapper__bookagain"}>     
-                            <div>
-                                <p>YES</p> 
-                                <span></span>
-                            </div>
-                            <div>
-                                <p>NO</p> 
-                                <span></span>
-                            </div>
+                        <div onChange={this.handleChange} className={"review-section--bookagain"}>   
+                            <label>
+                                <input type="radio" className={"option-input radio"} value="yes" name="book-again" /> YES
+                            </label>
+                            <label>
+                                <input type="radio" className={"option-input radio"} value="no" name={"book-again"} /> NO
+                            </label>
                         </div>
+                
                     </div>
                     <p>Class tutored </p>
-                    <Subheading title={'Comments (Optional)'}/>
-                    <textarea onChange={this.handleComment}></textarea>
+                    <Subheading title={'Comments'}/>
+                    <textarea onChange={this.handleComment} placeholder={"How was your session? Help this tutor to improve "}></textarea>
                     <button onClick={this.handleClick}>SUBMIT REVIEW</button>
                 </div>        
             </div>
