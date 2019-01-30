@@ -12,6 +12,11 @@ import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
 
+import testImage from '../../Assets/gaurav-img-test.png';
+import testImage2 from '../../Assets/swornim-img-test.jpg';
+import testImage3 from '../../Assets/tran-img-test.jpg';
+import testImage4 from '../../Assets/michelle-img-test.jpg';
+
 class Profile extends Component {
     state = {
         name: "",
@@ -21,7 +26,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3001${window.location.pathname}`)
+        fetch(`http://137.142.172.24:3001${window.location.pathname}`)
         .then(response => response.json())
         .then(data => {
             this.setState({
@@ -37,18 +42,32 @@ class Profile extends Component {
     }
 
     render() {
+
+        const getTutor = (name) => {
+            if (name === "Tran Nguyen") return testImage3
+            else if (name === "Swornim Barahi") return testImage2
+            else if (name === "Michelle Bello") return testImage4
+
+            else {
+                return testImage
+            }
+        }
+
         return (
             <div className="profile-section">
                 <NavBar/>  
                 {
                     this.state.isLoading ?
                     <div className="profile-section--wrapper">
-                        <img className={"profile-section--wrapper__loading"} src={loadingIcon} alt=""/>
+                        <div className="profile-section--wrapper-load">
+                            <img className={"profile-section--wrapper__loading"} src={loadingIcon} alt=""/>
+                        </div>
                     </div>  :
                     <div className="profile-section--wrapper">
                         <Title title = {this.state.name}/>
                         <div className="profile-section--wrapper__upper">
                             <div className={"profile-section--wrapper__upper--left"}>
+                                <img src={getTutor(this.state.name)} alt=""/>
                             </div>
                             <div className={"profile-section--wrapper__upper--center"}>
                                 <Subheading title={"Overview:"}/>

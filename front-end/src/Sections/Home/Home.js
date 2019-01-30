@@ -6,6 +6,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
 import loadingIcon from '../../Assets/loading-icon.png';
+import tutorNotFound from '../../Assets/tutor-not-found.png';
 
 class Home extends Component {
 
@@ -16,7 +17,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-      fetch('http://localhost:3001/')
+      fetch('http://137.142.172.24:3001/')
       .then(response => response.json())
       .then(data => {
           this.setState({
@@ -53,7 +54,11 @@ class Home extends Component {
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
           {
-            (filterTutors.length === 0) ? <p>NOT FOUND</p>:
+            (filterTutors.length === 0) ? 
+            <div className={"home-section--wrapper__notfound"}>
+              <img src={tutorNotFound} alt=""/>
+              <p>Sorry, we couldn't find your tutor <a href="/">Do you want to add a tutor?</a> </p>
+            </div> :
             <Tutors tutors = {filterTutors} />
           }
         </div>
