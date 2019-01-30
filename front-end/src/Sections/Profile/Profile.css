@@ -39,7 +39,7 @@
   .profile-section--wrapper
   .profile-section--wrapper__upper--left {
   height: 300px;
-  width: 300px; 
+  /* width: 300px;  */
   margin-right: 50px;
   background-size: auto;
   align-self: center;
