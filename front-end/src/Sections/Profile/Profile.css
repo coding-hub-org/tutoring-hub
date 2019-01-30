@@ -115,6 +115,7 @@
     grid-template-areas: "a b" "c b";
   }
 }
+
 @media (max-width: 800px) {
   .profile-section
     .profile-section--wrapper
@@ -165,6 +166,13 @@
     .profile-section--wrapper__upper--center
     > h1:nth-child(7) {
     padding-top: 20px;
+  }
+
+  .profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__reviews
+  a {
+    font-size: 11px;
   }
 }
 @media (max-width: 500px) {
