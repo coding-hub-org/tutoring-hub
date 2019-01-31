@@ -12,10 +12,6 @@ import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
 
-import testImage from '../../Assets/gaurav-img-test.png';
-import testImage2 from '../../Assets/swornim-img-test.jpg';
-import testImage3 from '../../Assets/tran-img-test.jpg';
-import testImage4 from '../../Assets/michelle-img-test.jpg';
 
 class Profile extends Component {
     state = {
@@ -26,7 +22,8 @@ class Profile extends Component {
         major: "",
         since: "",
         yes: 0,
-        no: 0
+        no: 0,
+        imageUrl: ""
     }
 
     getBookAgain = (reviews, answer) => {
@@ -59,7 +56,8 @@ class Profile extends Component {
                 since: data.since,
                 isLoading: false,
                 yes: this.getBookAgain(data.reviews, 1),
-                no: this.getBookAgain(data.reviews, 0)
+                no: this.getBookAgain(data.reviews, 0),
+                imageUrl: data.imageUrl
             });
         })
         .catch((error) => {
@@ -68,16 +66,6 @@ class Profile extends Component {
     }
 
     render() {
-
-        const getTutor = (name) => {
-            if (name === "Tran Nguyen") return testImage3
-            else if (name === "Swornim Barahi") return testImage2
-            else if (name === "Michelle Bello") return testImage4
-
-            else {
-                return testImage
-            }
-        }
         return (
             <div className="profile-section">
                 <NavBar/>  
@@ -92,7 +80,7 @@ class Profile extends Component {
                         <Title title = {this.state.name}/>
                         <div className="profile-section--wrapper__upper">
                             <div className={"profile-section--wrapper__upper--left"}>
-                                <img src={getTutor(this.state.name)} alt=""/>
+                                <img src={this.state.imageUrl} alt=""/>
                             </div>
                             <div className={"profile-section--wrapper__upper--center"}>
                                 <Subheading title={"Overview:"}/>
