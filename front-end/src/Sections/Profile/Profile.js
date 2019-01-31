@@ -30,7 +30,6 @@ class Profile extends Component {
     }
 
     getBookAgain = (reviews, answer) => {
-        console.log("FROM FUNCT");
         let filtered;
         const book = reviews.map( review => {
             return review.bookAgain;
