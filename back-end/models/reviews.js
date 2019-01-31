@@ -18,8 +18,11 @@ const ReviewSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    statistics: Stat.schema
-    
+    statistics: Stat.schema,
+    bookAgain: {
+        type: Boolean,
+        default: 0
+    }
 });
 
 const Review = mongoose.model('review', ReviewSchema);

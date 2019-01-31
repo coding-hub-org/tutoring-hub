@@ -12,11 +12,13 @@ const TutorSchema = new Schema({
 		type: String,
 		required: [true, 'Name field is required']
     },
-    courses: [String],
-    totalReviews: {
-        type: Number,
-        default: 0
+    major: {
+        type: String
     },
+    since: {
+        type: String
+    },
+    courses: [String],
     reviews: [Review.schema],
 });
 
