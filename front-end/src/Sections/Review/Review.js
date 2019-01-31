@@ -114,11 +114,13 @@ class Review extends React.Component {
                     <div>
                         <p>Would you book this tutor again? </p>
                         <div onChange={this.handleChange} className={"review-section--bookagain"}>   
+                                <input type="radio" className={"option-input radio"} value="yes" name="book-again" />
                             <label>
-                                <input type="radio" className={"option-input radio"} value="yes" name="book-again" /> YES
+                                YES
                             </label>
+                                <input type="radio" className={"option-input radio"} value="no" name={"book-again"} />
                             <label>
-                                <input type="radio" className={"option-input radio"} value="no" name={"book-again"} /> NO
+                                NO
                             </label>
                         </div>
                 

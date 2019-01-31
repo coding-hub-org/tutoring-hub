@@ -98,7 +98,7 @@
     width: 15px;
   }
   .questiontile-component .questiontile-component--wrapper > input{
-    font-size: 8px;
+    font-size: 7px;
   }
 }
 
@@ -108,3 +108,12 @@
   }
 }
 
+@media(max-width:340px){
+  .option-input{
+    height: 12px;
+    width: 12px;
+  }
+  .questiontile-component .questiontile-component--wrapper > input{
+    font-size: 7px;
+  }
+}
