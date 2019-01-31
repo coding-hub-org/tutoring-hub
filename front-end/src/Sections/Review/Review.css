@@ -43,3 +43,22 @@
     margin-bottom: 2em;
     cursor: pointer;
 }
+
+.review-section .review-section--bookagain {
+    display: flex;
+    align-items: center;
+}
+
+.review-section .review-section--bookagain > label {
+    padding-right: 20px;   
+}
+
+.review-section .review-section--bookagain > input {
+    margin-right: 10px;
+}
+
+@media(max-width:750px){
+    .review-section .review-section--bookagain > label{
+        font-size: 11px;
+    }
+}
