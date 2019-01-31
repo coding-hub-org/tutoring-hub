@@ -11,6 +11,7 @@ import Course from '../../Components/Course/Course';
 import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
+import NoReviews from '../../Assets/no-reviews.png';
 
 
 class Profile extends Component {
@@ -109,7 +110,14 @@ class Profile extends Component {
                             <Subheading title={'Reviews:'}/>
                             <Link to={`${window.location.pathname}/rate`}>REVIEW {this.state.name.toUpperCase()}</Link>
                         </div>
-                        <ReviewCard reviews={this.state.reviews} />
+                        {
+                            (this.state.reviews.length === 0) ?
+                            <div className={'profile-section--wrapper__no-reviews'} >
+                                <img src={NoReviews} alt=""/>
+                                <h3>{this.state.name.substring(0, this.state.name.indexOf(" "))} doesn't have any reviews yet. Be the first to review</h3>
+                            </div> :
+                            <ReviewCard reviews={this.state.reviews} />
+                        }
                     </div>
                 }                
             </div>
