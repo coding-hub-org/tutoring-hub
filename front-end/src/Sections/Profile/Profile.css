@@ -55,7 +55,6 @@
 .profile-section
   .profile-section--wrapper
   .profile-section--wrapper__upper--center {
-  /* width: 55%; */
   padding-left: 25px;
 }
 .profile-section
@@ -96,6 +95,24 @@
   animation: mymove 2s infinite;
   align-self: center;
 }
+
+.profile-section--wrapper .profile-section--wrapper__no-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4em 0;
+}
+
+.profile-section--wrapper .profile-section--wrapper__no-reviews img {
+  width: 400px;
+}
+
+.profile-section--wrapper .profile-section--wrapper__no-reviews h3 {
+  color: #777777;
+  font-weight: 400;
+}
+
 /* Standard syntax */
 @keyframes mymove {
   0%,

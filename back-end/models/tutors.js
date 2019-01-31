@@ -12,6 +12,9 @@ const TutorSchema = new Schema({
 		type: String,
 		required: [true, 'Name field is required']
     },
+    imageUrl: {
+        type: String,
+    },
     major: {
         type: String
     },
