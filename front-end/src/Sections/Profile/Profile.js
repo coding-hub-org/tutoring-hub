@@ -22,7 +22,30 @@ class Profile extends Component {
         name: "",
         courses: [],
         isLoading: true,
-        reviews: []
+        reviews: [],
+        major: "",
+        since: "",
+        yes: 0,
+        no: 0
+    }
+
+    getBookAgain = (reviews, answer) => {
+        console.log("FROM FUNCT");
+        let filtered;
+        const book = reviews.map( review => {
+            return review.bookAgain;
+        });
+        if (answer === 1) {
+            filtered = book.filter(b => {
+                return b === true;
+            }) 
+            return (100 / (book.length / filtered.length));
+        } else {
+            filtered = book.filter(b => {
+                return b === false;
+            }) 
+            return (100 / (book.length / filtered.length));
+        }
     }
 
     componentDidMount() {
@@ -33,7 +56,11 @@ class Profile extends Component {
                 name: `${data.firstName} ${data.lastName}`,
                 courses: [...data.courses],
                 reviews: [...data.reviews],
-                isLoading: false
+                major: data.major,
+                since: data.since,
+                isLoading: false,
+                yes: this.getBookAgain(data.reviews, 1),
+                no: this.getBookAgain(data.reviews, 0)
             });
         })
         .catch((error) => {
@@ -52,7 +79,6 @@ class Profile extends Component {
                 return testImage
             }
         }
-
         return (
             <div className="profile-section">
                 <NavBar/>  
@@ -71,16 +97,16 @@ class Profile extends Component {
                             </div>
                             <div className={"profile-section--wrapper__upper--center"}>
                                 <Subheading title={"Overview:"}/>
-                                <p><span>MAJOR: </span>Computer Science</p>
-                                <p><span>TUTOR SINCE: </span>Computer Science</p>
-                                <p><span>REVIEWS: </span>Computer Science</p>
+                                <p><span>MAJOR: </span>{this.state.major}</p>
+                                <p><span>TUTOR SINCE: </span>{this.state.since}</p>
+                                <p><span>REVIEWS: </span>{this.state.reviews.length}</p>
                                 <p><span>WOULD BOOK AGAIN? :</span></p>
                                 <div className={'profile-section--wrapper__book-again'}>
                                     <div>
-                                        <p><span>YES</span> 94%</p>
+                                        <p><span>YES</span> {this.state.yes.toFixed(1)} %</p>
                                     </div>  
                                     <div>
-                                        <p><span>NO</span> 6%</p>
+                                        <p><span>NO</span> {this.state.no.toFixed(1)} %</p>
                                     </div>
                                 </div>
                                 <Subheading title={"Courses:"}/>
