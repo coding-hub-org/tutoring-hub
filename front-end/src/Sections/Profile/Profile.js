@@ -91,10 +91,22 @@ class Profile extends Component {
                                 <p><span>WOULD BOOK AGAIN? :</span></p>
                                 <div className={'profile-section--wrapper__book-again'}>
                                     <div>
-                                        <p><span>YES</span> {this.state.yes.toFixed(1)} %</p>
+                                        <p><span>YES</span> 
+                                        {
+                                            (isNaN(this.state.yes.toFixed(1))) ? 
+                                            "N/A" :
+                                            this.state.yes.toFixed(1) + "%"
+                                        } 
+                                        </p>
                                     </div>  
                                     <div>
-                                        <p><span>NO</span> {this.state.no.toFixed(1)} %</p>
+                                        <p><span>NO</span>
+                                        {
+                                            (isNaN(this.state.yes.toFixed(1))) ? 
+                                            "N/A" :
+                                            this.state.no.toFixed(1) + "%"
+                                        } 
+                                        </p>
                                     </div>
                                 </div>
                                 <Subheading title={"Courses:"}/>

@@ -5,6 +5,8 @@ import "./Home.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
+import Filter from "../../Components/Filter/Filter";
+
 import loadingIcon from '../../Assets/loading-icon.png';
 import tutorNotFound from '../../Assets/tutor-not-found.png';
 
@@ -53,6 +55,7 @@ class Home extends Component {
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
+          <Filter />
           {
             (filterTutors.length === 0) ? 
             <div className={"home-section--wrapper__notfound"}>

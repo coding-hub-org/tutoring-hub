@@ -9,7 +9,6 @@ import Subheading from '../../Components/Subheading/Subheading';
 
 class Review extends React.Component {
 
-
     state = {
         author: "Anonymous",
         course: "BIO 102",
@@ -25,7 +24,7 @@ class Review extends React.Component {
 
     handleClick = () => {
         const {author, course, content, methodology, organization, preparation, clarity, knowlege, bookAgain} = this.state;
-        if (author && course && content && methodology && organization && preparation && clarity && knowlege && bookAgain) {
+        if (author && course && content && methodology && organization && preparation && clarity && knowlege && bookAgain !== undefined) {
             const url = this.props.match.url;
             const data = {
                 "author": author,
@@ -101,6 +100,7 @@ class Review extends React.Component {
     }
     
     render() {
+
         return(
             <div className={'review-section'}>
                 <NavBar/>  
@@ -117,7 +117,7 @@ class Review extends React.Component {
                     <div>
                         <p>Would you book this tutor again? </p>
                         <div onChange={this.handleChange} className={"review-section--bookagain"}>   
-                                <input type="radio" className={"option-input radio"} value="yes" name="book-again" />
+                                <input type="radio" className={"option-input radio"} value="yes" name={"book-again"} />
                             <label>
                                 YES
                             </label>

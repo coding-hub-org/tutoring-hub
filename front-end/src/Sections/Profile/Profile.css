@@ -64,6 +64,7 @@
   span {
   color: #ff5e84;
   font-weight: 600;
+  margin-right: 10px;
 }
 .profile-section .profile-section--wrapper .profile-section--wrapper__reviews {
   display: flex;
