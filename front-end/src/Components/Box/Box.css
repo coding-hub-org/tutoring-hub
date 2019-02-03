@@ -1,0 +1,30 @@
+.box-component {
+    box-sizing: border-box;
+    padding: 0;
+    border: 1px solid #B9C6E0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.box-component .box-component--field {
+    display: none;
+    transition: all 0.4s;
+    pointer-events: none;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.box-component .box-component--field:hover {
+    color: white;
+    background-color: #B9C6E0;
+}
+
+.box-component .box-component--title {
+    display: inline-block;
+    padding: 10px 20px;
+}

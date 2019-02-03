@@ -5,6 +5,8 @@ import "./Home.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
+import Filter from "../../Components/Filter/Filter";
+
 import loadingIcon from '../../Assets/loading-icon.png';
 import tutorNotFound from '../../Assets/tutor-not-found.png';
 
@@ -13,7 +15,8 @@ class Home extends Component {
   state = {
     tutors: [],
     isLoading: true,
-    searchField: ""
+    searchField: "",
+    courses: []
   };
 
   componentDidMount() {
@@ -22,7 +25,8 @@ class Home extends Component {
       .then(data => {
           this.setState({
               tutors: [...this.state.tutors, ...data],
-              isLoading: false
+              isLoading: false,
+              courses: this.getCourses([...data])
           });
       })
       .catch((error) => {
@@ -34,6 +38,22 @@ class Home extends Component {
     this.setState({
       searchField: event.target.value
     })
+  }
+
+  updateTutorState = (queryTutors) => {
+    this.setState({
+      tutors: [...queryTutors]
+    })
+  }
+
+  getCourses = (tutors) => {
+    let coursesSet = new Set();
+    tutors.forEach(tutor => {
+      tutor.courses.forEach(course => {
+        coursesSet.add(course);
+      });
+    });
+    return [...coursesSet];
   }
 
   render() {
@@ -50,11 +70,13 @@ class Home extends Component {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
     //
+    this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
+          <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
           {
             (filterTutors.length === 0) ? 
             <div className={"home-section--wrapper__notfound"}>

@@ -11,11 +11,8 @@ import Course from '../../Components/Course/Course';
 import RatingCard from '../../Components/RatingCard/RatingCard';
 import Subheading from '../../Components/Subheading/Subheading';
 import ReviewCard from '../../Components/ReviewCard/ReviewCard';
+import NoReviews from '../../Assets/no-reviews.png';
 
-import testImage from '../../Assets/gaurav-img-test.png';
-import testImage2 from '../../Assets/swornim-img-test.jpg';
-import testImage3 from '../../Assets/tran-img-test.jpg';
-import testImage4 from '../../Assets/michelle-img-test.jpg';
 
 class Profile extends Component {
     state = {
@@ -26,11 +23,11 @@ class Profile extends Component {
         major: "",
         since: "",
         yes: 0,
-        no: 0
+        no: 0,
+        imageUrl: ""
     }
 
     getBookAgain = (reviews, answer) => {
-        console.log("FROM FUNCT");
         let filtered;
         const book = reviews.map( review => {
             return review.bookAgain;
@@ -60,7 +57,8 @@ class Profile extends Component {
                 since: data.since,
                 isLoading: false,
                 yes: this.getBookAgain(data.reviews, 1),
-                no: this.getBookAgain(data.reviews, 0)
+                no: this.getBookAgain(data.reviews, 0),
+                imageUrl: data.imageUrl
             });
         })
         .catch((error) => {
@@ -69,16 +67,6 @@ class Profile extends Component {
     }
 
     render() {
-
-        const getTutor = (name) => {
-            if (name === "Tran Nguyen") return testImage3
-            else if (name === "Swornim Barahi") return testImage2
-            else if (name === "Michelle Bello") return testImage4
-
-            else {
-                return testImage
-            }
-        }
         return (
             <div className="profile-section">
                 <NavBar/>  
@@ -93,7 +81,7 @@ class Profile extends Component {
                         <Title title = {this.state.name}/>
                         <div className="profile-section--wrapper__upper">
                             <div className={"profile-section--wrapper__upper--left"}>
-                                <img src={getTutor(this.state.name)} alt=""/>
+                                <img src={this.state.imageUrl} alt=""/>
                             </div>
                             <div className={"profile-section--wrapper__upper--center"}>
                                 <Subheading title={"Overview:"}/>
@@ -103,10 +91,22 @@ class Profile extends Component {
                                 <p><span>WOULD BOOK AGAIN? :</span></p>
                                 <div className={'profile-section--wrapper__book-again'}>
                                     <div>
-                                        <p><span>YES</span> {this.state.yes.toFixed(1)} %</p>
+                                        <p><span>YES</span> 
+                                        {
+                                            (isNaN(this.state.yes.toFixed(1))) ? 
+                                            "N/A" :
+                                            this.state.yes.toFixed(1) + "%"
+                                        } 
+                                        </p>
                                     </div>  
                                     <div>
-                                        <p><span>NO</span> {this.state.no.toFixed(1)} %</p>
+                                        <p><span>NO</span>
+                                        {
+                                            (isNaN(this.state.yes.toFixed(1))) ? 
+                                            "N/A" :
+                                            this.state.no.toFixed(1) + "%"
+                                        } 
+                                        </p>
                                     </div>
                                 </div>
                                 <Subheading title={"Courses:"}/>
@@ -122,7 +122,14 @@ class Profile extends Component {
                             <Subheading title={'Reviews:'}/>
                             <Link to={`${window.location.pathname}/rate`}>REVIEW {this.state.name.toUpperCase()}</Link>
                         </div>
-                        <ReviewCard reviews={this.state.reviews} />
+                        {
+                            (this.state.reviews.length === 0) ?
+                            <div className={'profile-section--wrapper__no-reviews'} >
+                                <img src={NoReviews} alt=""/>
+                                <h3>{this.state.name.substring(0, this.state.name.indexOf(" "))} doesn't have any reviews yet. Be the first to review</h3>
+                            </div> :
+                            <ReviewCard reviews={this.state.reviews} />
+                        }
                     </div>
                 }                
             </div>

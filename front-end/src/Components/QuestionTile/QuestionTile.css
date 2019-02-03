@@ -87,18 +87,37 @@
     height: 25px;
     width: 25px;
   }
-  .questiontile-component .questiontile-component--wrapper > label{
-    font-size: 10px;
+  .questiontile-component .questiontile-component--wrapper > span > label{
+    font-size: 12px;
   }
 }
 
 @media(max-width:600px){
+
+  #radioLabel {
+    /* grid-area: testt; */
+  }
+
   .option-input{
+    /* grid-area: inputTest; */
     height: 15px;
     width: 15px;
   }
+
+  .questiontile-component .questiontile-component--wrapper {
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+    margin-top: 10px;
+}
+
   .questiontile-component .questiontile-component--wrapper > input{
-    font-size: 7px;
+    /* display: block; */
+  }
+
+  .questiontile-component .questiontile-component--wrapper > span {
+    /* display: inline-block; */
   }
 }
 
