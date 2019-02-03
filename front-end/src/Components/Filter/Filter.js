@@ -1,32 +1,22 @@
 import React from 'react';
 import './Filter.css';
+import Box from '../Box/Box';
 
 const Filter = () => {
+    
+    const handleClick = (e) => {
+        const courses = document.querySelectorAll(".box-component .box-component--title");
+        [...courses].forEach(c => {
+            console.log(c.innerHTML);
+        })
+    }
+
     return (
         <div className={"filter-component"}>
-            <form action="">
-            <select name="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-
-            </select>
-            </form>
+            <Box title={"courses"}/>
+            <Box title={"rating"}/>
+            <Box title={"reviews"}/>
+            <button onClick={handleClick}>Filter</button>
         </div>
     )
 }
