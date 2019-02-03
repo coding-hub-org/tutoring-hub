@@ -4,11 +4,18 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Tutor.find({}).then((tutors) => {
+  if (req.query.course) {
+    //const course = req.query.course.toUpperCase();
+    Tutor.find({courses: { "$in" : [req.query.course]}}).then((tutors) => {
       res.json(tutors);
-  });
-  // res.render('index', { title: 'TUTORS' });
+    });
+  } else {
+    Tutor.find({}).then((tutors) => {
+      res.json(tutors);
+    });
+  }
 });
+
 
 module.exports = router;
 
