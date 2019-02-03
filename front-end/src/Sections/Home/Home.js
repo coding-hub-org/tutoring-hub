@@ -15,7 +15,8 @@ class Home extends Component {
   state = {
     tutors: [],
     isLoading: true,
-    searchField: ""
+    searchField: "",
+    courses: []
   };
 
   componentDidMount() {
@@ -24,7 +25,8 @@ class Home extends Component {
       .then(data => {
           this.setState({
               tutors: [...this.state.tutors, ...data],
-              isLoading: false
+              isLoading: false,
+              courses: this.getCourses([...data])
           });
       })
       .catch((error) => {
@@ -35,6 +37,12 @@ class Home extends Component {
   handleSearch = (event) => {
     this.setState({
       searchField: event.target.value
+    })
+  }
+
+  updateTutorState = (queryTutors) => {
+    this.setState({
+      tutors: [...queryTutors]
     })
   }
 
@@ -66,7 +74,7 @@ class Home extends Component {
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
-          <Filter coursesSet={this.getCourses(this.state.tutors)}/>
+          <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
           {
             (filterTutors.length === 0) ? 
             <div className={"home-section--wrapper__notfound"}>
