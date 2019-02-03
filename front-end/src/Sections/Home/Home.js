@@ -38,6 +38,16 @@ class Home extends Component {
     })
   }
 
+  getCourses = (tutors) => {
+    let coursesSet = new Set();
+    tutors.forEach(tutor => {
+      tutor.courses.forEach(course => {
+        coursesSet.add(course);
+      });
+    });
+    return [...coursesSet];
+  }
+
   render() {
     if (this.state.isLoading) {
         return(
@@ -50,12 +60,13 @@ class Home extends Component {
     const filterTutors = this.state.tutors.filter(tutor => {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
+    this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={"ALL TUTORS"} />
-          <Filter />
+          <Filter coursesSet={this.getCourses(this.state.tutors)}/>
           {
             (filterTutors.length === 0) ? 
             <div className={"home-section--wrapper__notfound"}>
