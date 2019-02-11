@@ -67,9 +67,11 @@ class Home extends Component {
             
         ) 
     }
+    //Display the Loading Icon while waiting for loading.
     const filterTutors = this.state.tutors.filter(tutor => {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
+    //
     this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
