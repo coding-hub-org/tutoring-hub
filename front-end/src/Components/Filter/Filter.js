@@ -13,7 +13,7 @@ const Filter = ({coursesSet, updateTutorState}) => {
         fetch(`http://137.142.172.24:3001/?course=${courseParam}`)
         .then(response => response.json())
         .then(data => {
-            updateTutorState(data);
+            updateTutorState(data, courseParam);
         })
         .catch((error) => {
             console.log(error);

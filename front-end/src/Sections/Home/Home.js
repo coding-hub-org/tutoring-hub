@@ -16,7 +16,8 @@ class Home extends Component {
     tutors: [],
     isLoading: true,
     searchField: "",
-    courses: []
+    courses: [],
+    title: "All tutors"
   };
 
   componentDidMount() {
@@ -40,9 +41,10 @@ class Home extends Component {
     })
   }
 
-  updateTutorState = (queryTutors) => {
+  updateTutorState = (queryTutors, filterTitle) => {
     this.setState({
-      tutors: [...queryTutors]
+      tutors: [...queryTutors],
+      title: `TUTORS FOR ${filterTitle}`
     })
   }
 
@@ -73,7 +75,7 @@ class Home extends Component {
       <div className="home-section">
         <NavBar handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
-          <Title title={"ALL TUTORS"} />
+          <Title title={this.state.title.toUpperCase()} />
           <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
           {
             (filterTutors.length === 0) ? 
