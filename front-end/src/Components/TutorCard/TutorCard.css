@@ -30,6 +30,35 @@
   font-size: 1em;
 }
 
+.tutorcard-component
+  .tutorcard-component--content
+  .tutorcard-component--content__more div {
+    display: flex;
+  }
+  
+.tutorcard-component
+  .tutorcard-component--content
+  .tutorcard-component--content__more p {
+    margin: 0;
+    margin-right: 10px;
+  }
+
+  .tutorcard-component
+  .tutorcard-component--content
+  .tutorcard-component--content__more img {
+    height: auto;
+    width: auto;
+    object-fit: none;
+  }
+
+.tutorcard-component
+  .tutorcard-component--content
+  .tutorcard-component--content__more {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  } 
+
 .tutorcard-component .tutorcard-component--content a {
   text-decoration: none;
   color: white;

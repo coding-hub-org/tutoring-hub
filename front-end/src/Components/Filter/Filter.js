@@ -10,7 +10,7 @@ const Filter = ({coursesSet, updateTutorState}) => {
 
         // Test single parameter
         const courseParam = document.querySelector(".box-component .box-component--title").innerHTML;
-        fetch(`http://137.142.172.24:3001/?course=${courseParam}`)
+        fetch(`http://localhost:3001/?course=${courseParam}`)
         .then(response => response.json())
         .then(data => {
             updateTutorState(data, courseParam);

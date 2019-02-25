@@ -17,11 +17,11 @@ class Home extends Component {
     isLoading: true,
     searchField: "",
     courses: [],
-    title: "All tutors"
+    title: "All tutors",
   };
 
   componentDidMount() {
-      fetch('http://137.142.172.24:3001/')
+      fetch('http://localhost:3001/')
       .then(response => response.json())
       .then(data => {
           this.setState({
@@ -67,6 +67,7 @@ class Home extends Component {
             
         ) 
     }
+
     //Display the Loading Icon while waiting for loading.
     const filterTutors = this.state.tutors.filter(tutor => {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());

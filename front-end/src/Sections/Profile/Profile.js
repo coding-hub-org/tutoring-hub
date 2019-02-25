@@ -46,7 +46,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://137.142.172.24:3001${window.location.pathname}`)
+        fetch(`http://localhost:3001${window.location.pathname}`)
         .then(response => response.json())
         .then(data => {
             this.setState({
