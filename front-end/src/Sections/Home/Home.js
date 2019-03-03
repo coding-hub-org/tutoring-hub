@@ -60,16 +60,15 @@ class Home extends Component {
   }
 
   render() {
+    //Display the Loading Icon while waiting for loading.
     if (this.state.isLoading) {
         return(
           <div className={"tutors-component--loading"}>
               <img src={loadingIcon} alt=""/>
           </div>
-            
         ) 
     }
 
-    //Display the Loading Icon while waiting for loading.
     const filterTutors = this.state.tutors.filter(tutor => {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
