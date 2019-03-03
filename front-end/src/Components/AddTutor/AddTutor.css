@@ -1,0 +1,16 @@
+.add-tutor-component {
+    margin: 1em auto;
+}
+
+
+.add-tutor-component button {
+    background-color: #FF5E84;
+    border: #FF5E84 1px solid;
+    color: white;
+    box-sizing: border-box;
+    padding: 0 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    max-height: 45px;
+    height: 38px;
+}

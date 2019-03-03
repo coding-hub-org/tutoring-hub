@@ -6,6 +6,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
 import Filter from "../../Components/Filter/Filter";
+import AddTutor from "../../Components/AddTutor/AddTutor";
 
 import loadingIcon from '../../Assets/loading-icon.png';
 import tutorNotFound from '../../Assets/tutor-not-found.png';
@@ -88,8 +89,14 @@ class Home extends Component {
             </div> :
             <Tutors tutors = {filterTutors} />
           }
+          <div class="add-tutor-section">
+            <p href="">Missing someone?</p>
+            <div class="add-tutor-button">
+              <AddTutor/>
+            </div>
+          </div>
         </div>
-      </div>
+      </div>6
     );
   }
 }
