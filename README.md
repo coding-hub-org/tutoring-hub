@@ -1,5 +1,7 @@
 # TutoringHub
 
+![Example image of Tutoring Hub](http://i.imgur.com/2bgyx0o.png)
+
 ## Set up workspace
 
 Essentially, there are 2 NodeJS projects in this repository. Treat each as its own, with its own commands and its own file structures. 
