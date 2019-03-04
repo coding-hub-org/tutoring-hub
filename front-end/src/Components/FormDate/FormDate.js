@@ -1,13 +1,13 @@
 import React from 'react';
-import './FormInput.css';
+import './FormDate.css';
 
-const FormInput = (props) => {
+const FormDate = (props) => {
 
     return (
         <input
             id={props.name}
             name={props.name}
-            type={props.type}
+            type="date"
             value={props.value}
             onChange={props.handleChange}
             placeholder={props.placeholder}
@@ -15,4 +15,4 @@ const FormInput = (props) => {
     );
 }
 
-export default FormInput;
+export default FormDate;

@@ -1,10 +1,12 @@
 import React from 'react';
 import './AddTutorForm.css';
 
-import Upload from '../Upload/Upload';
+import ImageUpload from '../ImageUpload/ImageUpload';
 import FormInput from '../FormInput/FormInput';
+import FormDate from '../FormDate/FormDate';
 import FormLabel from '../FormLabel/FormLabel';
 import FormButton from '../FormButton/FormButton';
+import FormList from '../FormList/FormList';
 
 // https://www.codementor.io/blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
 class AddTutorForm extends React.Component {
@@ -26,6 +28,8 @@ class AddTutorForm extends React.Component {
         this.handleClearForm = this.handleClearForm.bind(this);
 
         this.handleInput = this.handleInput.bind(this);
+        this.handleDate = this.handleDate.bind(this);
+        this.handleCoursesChange = this.handleCoursesChange.bind(this);
     }
 
     handleFormSubmit(e) {
@@ -45,8 +49,7 @@ class AddTutorForm extends React.Component {
             });
         })
 
-
-        alert("Submitted!");
+        // alert("Submitted!");
     }
 
     handleClearForm(e) {
@@ -76,6 +79,29 @@ class AddTutorForm extends React.Component {
         });
     }
 
+    handleDate(e) {
+        let value = e.target.value;
+        let name = e.target.name;
+        this.setState(prevState => {
+            return {
+                newTutor: {
+                    ...prevState.newTutor, [name]: value
+                }
+            }
+        });
+    }
+
+    handleCoursesChange(items) {
+        this.setState(prevState => {
+            return {
+                newTutor: {
+                    ...prevState.newTutor, courses: items
+                }
+            }
+        });
+        console.log("Course change");
+    }
+
     render() {
         return (
             <form id={"form"} onSubmit={this.handleFormSubmit} className={"add-tutor-form"} >
@@ -84,7 +110,7 @@ class AddTutorForm extends React.Component {
                         labelText={"Profile Picture"}
                         name="profilePicture"
                     />
-                    <Upload
+                    <ImageUpload
                         id="profilePicture"
                         name="profilePicture"
                     />
@@ -141,15 +167,13 @@ class AddTutorForm extends React.Component {
                     <span className="form-field">
                         <FormLabel
                             labelText={"Tutor Since"}
-                            name="since"
+                            name="tutorSince"
                         />
-                        <FormInput
-                            id={"since"}
-                            name={"since"}
-                            type={"date"}
+                        <FormDate
+                            id={"tutorSince"}
+                            name={"tutorSince"}
                             value={this.state.newTutor.tutorSince}
-                            placeholder={'01/01/2019'}
-                            handleChange={this.handleInput}
+                            handleChange={this.handleDate}
                         />
                     </span>
                 </div>
@@ -159,13 +183,13 @@ class AddTutorForm extends React.Component {
                             labelText={"Courses"}
                             name="courses"
                         />
-                        <FormInput
+                        <FormList
                             id={"courses"}
                             name={"courses"}
                             type={"text"}
+                            placeholder={'CSC221'}
                             value={this.state.newTutor.courses}
-                            placeholder={'CSC221,CSC309'}
-                            handleChange={this.handleInput}
+                            handleChange={this.handleCoursesChange}
                         />
                     </span>
                 </div>

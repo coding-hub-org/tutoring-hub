@@ -1,7 +1,7 @@
 import React from 'react';
-import './Upload.css';
+import './ImageUpload.css';
 
-class Upload extends React.Component {
+class ImageUpload extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,13 +18,15 @@ class Upload extends React.Component {
 
     render() {
         return (
-            <div className="upload">
+            <div className="image-upload">
                 <input type="file" onChange={this.handleChange} id={this.props.id} name={this.props.name} />
                 <div className="image-preview-zone">
-                    <img src={this.state.file} className="image-preview" alt="Preview" />
+                    {this.state.file && 
+                        <img src={this.state.file} className="image-preview" alt="Preview" />
+                    }
                 </div>
             </div>
         );
     }
 }
-export default Upload;
+export default ImageUpload;
