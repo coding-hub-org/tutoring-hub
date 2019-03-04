@@ -6,6 +6,7 @@ import Footer from "./Components/Footer/Footer";
 import Home from "./Sections/Home/Home";
 import Profile from "./Sections/Profile/Profile";
 import Review from "./Sections/Review/Review";
+import AddTutor from "./Sections/AddTutor/AddTutor";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/tutor/:id" component={Profile} />
           <Route path="/tutor/:id/rate" component={Review} />
+          <Route exact path="/addtutor" component={AddTutor} />
           <Footer />
         </div>
       </BrowserRouter>

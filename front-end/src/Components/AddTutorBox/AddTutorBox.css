@@ -1,0 +1,30 @@
+.add-tutor-box-component {
+    margin: 1em auto;
+    float: right;
+}
+
+.add-tutor-box-component p {
+    margin: 0.25em auto;
+    text-align: center;
+}
+
+.add-tutor-box-button {
+    background-color: #FF5E84;
+    border: #FF5E84 1px solid;
+    color: white;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    padding: 0 40px;
+    height: 2.5em;
+    line-height: 2.5em;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.add-tutor-box-button a {
+    color: #FFFFFF;
+    text-decoration: none;
+}

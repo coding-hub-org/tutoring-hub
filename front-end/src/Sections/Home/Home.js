@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./Home.css";
 
 // Import components
-import NavBar from "../../Components/NavBar/NavBar";
+import NavBarSearchable from "../../Components/NavBarSearchable/NavBarSearchable";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
 import Filter from "../../Components/Filter/Filter";
-import AddTutor from "../../Components/AddTutor/AddTutor";
+import AddTutorBox from "../../Components/AddTutorBox/AddTutorBox";
 
 import loadingIcon from '../../Assets/loading-icon.png';
 import tutorNotFound from '../../Assets/tutor-not-found.png';
@@ -76,7 +76,7 @@ class Home extends Component {
     this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
-        <NavBar handleSearch={this.handleSearch} />
+        <NavBarSearchable handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={this.state.title.toUpperCase()} />
           <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
@@ -88,12 +88,7 @@ class Home extends Component {
             </div> :
             <Tutors tutors = {filterTutors} />
           }
-          <div class="add-tutor-section">
-            <p href="">Missing someone?</p>
-            <div class="add-tutor-button">
-              <AddTutor/>
-            </div>
-          </div>
+          <AddTutorBox/>
         </div>
       </div>
     );
