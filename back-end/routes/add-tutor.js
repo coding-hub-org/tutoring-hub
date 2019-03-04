@@ -1,0 +1,14 @@
+var express = require('express');
+const mongoose = require('mongoose');
+var router = express.Router();
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+router.post('/', function (req, res, next) {
+    console.log(req.body);
+    res.send({ result: "Success" });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+module.exports = router;
