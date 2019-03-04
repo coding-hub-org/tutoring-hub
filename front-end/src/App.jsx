@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 // Import components
 import Home from "./Sections/Home/Home";
