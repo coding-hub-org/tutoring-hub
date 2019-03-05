@@ -52,7 +52,7 @@ class FormList extends React.Component {
                                 />
                                 {i > 0 &&
                                     <button className="remove" onClick={this.removeItem.bind(this, i)}>
-                                        <span><i className="fas fa-minus-circle"></i> Remove Course</span>
+                                        <span><i className="fas fa-minus-circle"></i> Remove</span>
                                     </button>
                                 }
                             </li>
@@ -61,7 +61,7 @@ class FormList extends React.Component {
                 </ul>
 
                 <button className="add" onClick={this.addItem.bind(this)}>
-                    <i className="fas fa-plus-circle"></i> Add Another Course
+                    <i className="fas fa-plus-circle"></i> Add Another
                 </button>
             </div>
         );

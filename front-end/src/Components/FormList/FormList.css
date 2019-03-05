@@ -31,3 +31,16 @@
 .form-list-item input {
     margin: auto 0.25em auto auto;
 }
+
+.form-list-wrapper button {
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.form-list-wrapper button span {
+    font-size: 13px;
+    line-height: 32px;
+    /* color: #FFFFFF; */
+}
