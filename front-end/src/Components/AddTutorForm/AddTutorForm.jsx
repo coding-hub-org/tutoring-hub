@@ -15,11 +15,12 @@ class AddTutorForm extends React.Component {
         super(props);
 
         this.state = {
+            submitted: false,
             newTutor: {
                 firstName: '',
                 lastName: '',
                 major: '',
-                tutorSince: '',
+                since: '',
                 courses: []
             }
         };
@@ -34,8 +35,33 @@ class AddTutorForm extends React.Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        let tutorData = this.state.newTutor;
 
+        if (this.state.newTutor.firstName === '') {
+            alert('You must enter a valid first name');
+            return;
+        }
+
+        if (this.state.newTutor.lastName === '') {
+            alert('You must enter a valid last name');
+            return;
+        }
+
+        if (this.state.newTutor.major === '') {
+            alert('You must enter a valid major');
+            return;
+        }
+
+        if (this.state.newTutor.since === '') {
+            alert('You must enter a valid date');
+            return;
+        }
+
+        if (this.state.newTutor.courses.length === 0) {
+            alert('You must enter courses');
+            return;
+        }
+
+        let tutorData = this.state.newTutor;
         fetch('http://localhost:3001/addtutor', {
             method: "POST",
             body: JSON.stringify(tutorData),
@@ -43,13 +69,13 @@ class AddTutorForm extends React.Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-        }).then(response => {
-            response.json().then(data => {
-                console.log("Successful " + data);
+        }).then(() => {
+            this.setState(() => {
+                return {
+                    submitted: true
+                }
             });
-        })
-
-        // alert("Submitted!");
+        });
     }
 
     handleClearForm(e) {
@@ -60,7 +86,7 @@ class AddTutorForm extends React.Component {
                     firstName: '',
                     lastName: '',
                     major: '',
-                    tutorSince: '',
+                    since: '',
                     courses: []
                 }
             }
@@ -99,105 +125,112 @@ class AddTutorForm extends React.Component {
                 }
             }
         });
-        console.log("Course change");
     }
 
     render() {
-        return (
-            <form id={"form"} onSubmit={this.handleFormSubmit} className={"add-tutor-form"} >
-                <div className="form-row">
-                    <FormLabel
-                        labelText={"Profile Picture"}
-                        name="profilePicture"
+        if (this.state.submitted) {
+            return (
+                <div>
+                    <p>Added new tutor to the database</p>
+                </div>
+            )
+        } else {
+            return (
+                <form id={"form"} onSubmit={this.handleFormSubmit} className={"add-tutor-form"} >
+                    <div className="form-row">
+                        <FormLabel
+                            labelText={"Profile Picture"}
+                            name="profilePicture"
+                        />
+                        <ImageUpload
+                            id="profilePicture"
+                            name="profilePicture"
+                        />
+                    </div>
+                    <div className="form-row">
+                        <span className="form-field">
+                            <FormLabel
+                                labelText={"First Name"}
+                                name="firstName"
+                            />
+                            <FormInput
+                                id={"firstName"}
+                                name={"firstName"}
+                                type={"text"}
+                                value={this.state.newTutor.firstName}
+                                placeholder={'Jane'}
+                                handleChange={this.handleInput}
+                            />
+                        </span>
+                    </div>
+                    <div className="form-row">
+                        <span className="form-field">
+                            <FormLabel
+                                labelText={"Last Name"}
+                                name="lastName"
+                            />
+                            <FormInput
+                                id={"lastName"}
+                                name={"lastName"}
+                                type={"text"}
+                                value={this.state.newTutor.lastName}
+                                placeholder={'Doe'}
+                                handleChange={this.handleInput}
+                            />
+                        </span>
+                    </div>
+                    <div className="form-row">
+                        <span className="form-field">
+                            <FormLabel
+                                labelText={"Major"}
+                                name="major"
+                            />
+                            <FormInput
+                                id={"major"}
+                                name={"major"}
+                                type={"text"}
+                                value={this.state.newTutor.major}
+                                placeholder={'Computer Science'}
+                                handleChange={this.handleInput}
+                            />
+                        </span>
+                    </div>
+                    <div className="form-row">
+                        <span className="form-field">
+                            <FormLabel
+                                labelText={"Tutor Since"}
+                                name="since"
+                            />
+                            <FormDate
+                                id={"since"}
+                                name={"since"}
+                                value={this.state.newTutor.since}
+                                handleChange={this.handleDate}
+                            />
+                        </span>
+                    </div>
+                    <div className="form-row">
+                        <span className="form-field">
+                            <FormLabel
+                                labelText={"Courses"}
+                                name="courses"
+                            />
+                            <FormList
+                                id={"courses"}
+                                name={"courses"}
+                                type={"text"}
+                                placeholder={'CSC221'}
+                                value={this.state.newTutor.courses}
+                                handleChange={this.handleCoursesChange}
+                            />
+                        </span>
+                    </div>
+                    <FormButton
+                        title={"Submit"}
                     />
-                    <ImageUpload
-                        id="profilePicture"
-                        name="profilePicture"
-                    />
-                </div>
-                <div className="form-row">
-                    <span className="form-field">
-                        <FormLabel
-                            labelText={"First Name"}
-                            name="firstName"
-                        />
-                        <FormInput
-                            id={"firstName"}
-                            name={"firstName"}
-                            type={"text"}
-                            value={this.state.newTutor.firstName}
-                            placeholder={'Jane'}
-                            handleChange={this.handleInput}
-                        />
-                    </span>
-                </div>
-                <div className="form-row">
-                    <span className="form-field">
-                        <FormLabel
-                            labelText={"Last Name"}
-                            name="lastName"
-                        />
-                        <FormInput
-                            id={"lastName"}
-                            name={"lastName"}
-                            type={"text"}
-                            value={this.state.newTutor.lastName}
-                            placeholder={'Doe'}
-                            handleChange={this.handleInput}
-                        />
-                    </span>
-                </div>
-                <div className="form-row">
-                    <span className="form-field">
-                        <FormLabel
-                            labelText={"Major"}
-                            name="major"
-                        />
-                        <FormInput
-                            id={"major"}
-                            name={"major"}
-                            type={"text"}
-                            value={this.state.newTutor.major}
-                            placeholder={'Computer Science'}
-                            handleChange={this.handleInput}
-                        />
-                    </span>
-                </div>
-                <div className="form-row">
-                    <span className="form-field">
-                        <FormLabel
-                            labelText={"Tutor Since"}
-                            name="tutorSince"
-                        />
-                        <FormDate
-                            id={"tutorSince"}
-                            name={"tutorSince"}
-                            value={this.state.newTutor.tutorSince}
-                            handleChange={this.handleDate}
-                        />
-                    </span>
-                </div>
-                <div className="form-row">
-                    <span className="form-field">
-                        <FormLabel
-                            labelText={"Courses"}
-                            name="courses"
-                        />
-                        <FormList
-                            id={"courses"}
-                            name={"courses"}
-                            type={"text"}
-                            placeholder={'CSC221'}
-                            value={this.state.newTutor.courses}
-                            handleChange={this.handleCoursesChange}
-                        />
-                    </span>
-                </div>
-                <FormButton
-                    title={"Submit"}
-                />
-            </form>
-        )
+                </form>
+            )
+        }
     }
 }
 
