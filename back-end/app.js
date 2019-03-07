@@ -11,22 +11,15 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var tutorsRouter = require("./routes/tutor");
 
-<<<<<<< HEAD
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
+var tutorsRouter = require("./routes/tutor");
+var addTutorRouter = require("./routes/add-tutor");
+
 var loginRouter = require("./routes/login");
 var signupRouter = require("./routes/signup");
 var logoutRouter = require("./routes/logout");
 var settingRouter = require("./routes/setting");
-=======
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var tutorsRouter = require('./routes/tutor');
-var addTutorRouter = require('./routes/add-tutor');
-
-var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/signup');
-var logoutRouter = require('./routes/logout');
-var settingRouter = require('./routes/setting');
->>>>>>> 138e0400cc06c3dc9fee458adee5beee17fcc969
 
 // Connect to mongoDB
 const mongoose = require("mongoose");
@@ -54,7 +47,6 @@ mongoose.connect(
 );
 mongoose.Promise = global.Promise;
 
-<<<<<<< HEAD
 // Cloudinary API Information
 const CLOUDINARY_API_KEY = "551819357444522";
 const CLOUDINARY_API_KEY_SECRET = "asGC9I6QtnXmPMSV8Y0EFV20dQU";
@@ -62,20 +54,11 @@ const CLOUDINARY_API_KEY_SECRET = "asGC9I6QtnXmPMSV8Y0EFV20dQU";
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/tutor", tutorsRouter);
+app.use("/addtutor", addTutorRouter);
 app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/setting", settingRouter);
-=======
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/tutor', tutorsRouter);
-app.use('/addtutor', addTutorRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
-app.use('/logout', logoutRouter);
-app.use('/setting', settingRouter);
->>>>>>> 138e0400cc06c3dc9fee458adee5beee17fcc969
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
