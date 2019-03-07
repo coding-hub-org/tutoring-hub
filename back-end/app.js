@@ -11,6 +11,7 @@ var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tutorsRouter = require('./routes/tutor');
+var addTutorRouter = require('./routes/add-tutor');
 
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
@@ -41,6 +42,7 @@ mongoose.Promise = global.Promise;
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tutor', tutorsRouter);
+app.use('/addtutor', addTutorRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);

@@ -1,4 +1,4 @@
-.home-section {
+.section {
   display: grid;
   align-items: start;
   grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(10vw, 1fr);
@@ -9,25 +9,17 @@
   padding: 0px 0px 50px 0;
 }
 
-
-.tutors-component--loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.home-section .home-section--wrapper {
+.section .section--wrapper {
   grid-column: 2;
 }
 
-.home-section .home-section--wrapper .home-section--wrapper__notfound {
+.section .section--wrapper .section--wrapper__notfound {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.home-section .home-section--wrapper .home-section--wrapper__notfound p {
+.section .section--wrapper .section--wrapper__notfound p {
   font-size: 1.2em;
 }

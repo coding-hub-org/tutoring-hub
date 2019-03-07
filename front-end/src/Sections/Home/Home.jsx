@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import "./Home.css";
 
 // Import components
-import NavBar from "../../Components/NavBar/NavBar";
+import NavBarSearchable from "../../Components/NavBarSearchable/NavBarSearchable";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
 import Filter from "../../Components/Filter/Filter";
+import AddTutorBox from "../../Components/AddTutorBox/AddTutorBox";
 
 import loadingIcon from '../../Assets/loading-icon.png';
 import tutorNotFound from '../../Assets/tutor-not-found.png';
@@ -59,16 +60,15 @@ class Home extends Component {
   }
 
   render() {
+    //Display the Loading Icon while waiting for loading.
     if (this.state.isLoading) {
         return(
           <div className={"tutors-component--loading"}>
               <img src={loadingIcon} alt=""/>
           </div>
-            
         ) 
     }
 
-    //Display the Loading Icon while waiting for loading.
     const filterTutors = this.state.tutors.filter(tutor => {
       return (tutor.firstName + " " + tutor.lastName).toLowerCase().includes(this.state.searchField.toLowerCase());
     });
@@ -76,7 +76,7 @@ class Home extends Component {
     this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
-        <NavBar handleSearch={this.handleSearch} />
+        <NavBarSearchable handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={this.state.title.toUpperCase()} />
           <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
@@ -88,6 +88,7 @@ class Home extends Component {
             </div> :
             <Tutors tutors = {filterTutors} />
           }
+          <AddTutorBox/>
         </div>
       </div>
     );
