@@ -10,11 +10,8 @@ var cors = require("cors");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var tutorsRouter = require("./routes/tutor");
-
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var tutorsRouter = require("./routes/tutor");
 var addTutorRouter = require("./routes/add-tutor");
+var cloudinaryRouter = require("./routes/cloudinary");
 
 var loginRouter = require("./routes/login");
 var signupRouter = require("./routes/signup");
@@ -59,6 +56,7 @@ app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/setting", settingRouter);
+app.use("/cloudinary", cloudinaryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
