@@ -53,21 +53,7 @@ dbhelper.createConfig().then(function (created) {
 
 // Image API
 var imageHelper = require('./imagehelper');
-imageHelper.createConfig().then(function (created) {
-  if (created) {
-    console.log("Created default image helper config file. Edit it and restart the app.");
-  }
-  // connect
-  // imageHelper.connect().then(function () {
-  //   console.log("Successfully connected to the image");
-  // }).catch(function (err) {
-  //   console.log("There was an error connecting to the image.");
-  //   console.log(err);
-  // });
-}).catch(function (err) {
-  console.log("There was an error creating the image helper config file.");
-  console.log(err);
-});
+imageHelper.createAndLoadConfig();
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

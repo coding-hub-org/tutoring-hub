@@ -53,7 +53,7 @@ class AddTutorForm extends React.Component {
 
         if (this.state.newTutor.since === '') {
             alert('You must enter a valid date');
-            return;
+            return; 
         }
 
         if (this.state.newTutor.courses.length === 0) {
@@ -64,7 +64,7 @@ class AddTutorForm extends React.Component {
         let tutorData = this.state.newTutor;
         let jsonData = JSON.stringify(tutorData);
         fetch('/api/v1/tutors/create', {
-            method: "POST",
+            method: "POST", 
             body: jsonData,
             headers: {
                 'Accept': 'application/json',
