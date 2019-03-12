@@ -62,9 +62,10 @@ class AddTutorForm extends React.Component {
         }
 
         let tutorData = this.state.newTutor;
-        fetch('http://localhost:3001/addtutor', {
+        let jsonData = JSON.stringify(tutorData);
+        fetch('/api/v1/tutors/create', {
             method: "POST",
-            body: JSON.stringify(tutorData),
+            body: jsonData,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'

@@ -22,18 +22,18 @@ class Home extends Component {
   };
 
   componentDidMount() {
-      fetch('http://localhost:3001/')
+    fetch('/api/v1/tutors/')
       .then(response => response.json())
       .then(data => {
-          this.setState({
-              tutors: [...this.state.tutors, ...data],
-              isLoading: false,
-              courses: this.getCourses([...data])
-          });
+        this.setState({
+          tutors: [...this.state.tutors, ...data],
+          isLoading: false,
+          courses: this.getCourses([...data])
+        });
       })
       .catch((error) => {
-          console.log(error);
-      }); 
+        console.log(error);
+      });
   }
 
   handleSearch = (event) => {
@@ -62,11 +62,11 @@ class Home extends Component {
   render() {
     //Display the Loading Icon while waiting for loading.
     if (this.state.isLoading) {
-        return(
-          <div className={"tutors-component--loading"}>
-              <img src={loadingIcon} alt=""/>
-          </div>
-        ) 
+      return (
+        <div className={"tutors-component--loading"}>
+          <img src={loadingIcon} alt="" />
+        </div>
+      )
     }
 
     const filterTutors = this.state.tutors.filter(tutor => {
@@ -79,16 +79,16 @@ class Home extends Component {
         <NavBarSearchable handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={this.state.title.toUpperCase()} />
-          <Filter coursesSet={this.state.courses} updateTutorState = {this.updateTutorState}/>
+          <Filter coursesSet={this.state.courses} updateTutorState={this.updateTutorState} />
           {
-            (filterTutors.length === 0) ? 
-            <div className={"home-section--wrapper__notfound"}>
-              <img src={tutorNotFound} alt=""/>
-              <p>Sorry, we couldn't find your tutor <a href="/">Do you want to add a tutor?</a> </p>
-            </div> :
-            <Tutors tutors = {filterTutors} />
+            (filterTutors.length === 0) ?
+              <div className={"home-section--wrapper__notfound"}>
+                <img src={tutorNotFound} alt="" />
+                <p>Sorry, we couldn't find your tutor <a href="/">Do you want to add a tutor?</a> </p>
+              </div> :
+              <Tutors tutors={filterTutors} />
           }
-          <AddTutorBox/>
+          <AddTutorBox />
         </div>
       </div>
     );

@@ -27,7 +27,6 @@ const Filter = ({coursesSet, updateTutorState}) => {
 
     const ratingOptions= [1,2,3,4,5,6,7,8,9,10]
 
-    console.log(coursesSet);
     return (
         <div className={"filter-component"}>
             <Box title={"courses"} boxOptions={coursesSet}/>
