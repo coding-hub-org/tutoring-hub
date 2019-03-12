@@ -25,7 +25,12 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
-  secret: "It's a new secret!"
+  secret: "This is a secret",
+  name: "cookie_name",
+  // store: sessionStore, // connect-mongo session store
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
 }));
 
 // DB Helper
