@@ -4,7 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
-
 var cors = require("cors");
 
 var app = express();
@@ -29,22 +28,41 @@ app.use(session({
   secret: "It's a new secret!"
 }));
 
-// Connect to mongoDB
-const mongoose = require("mongoose");
-
-// Connect to database
-mongoose.connect(
-  "mongodb://codinghub:Plattsburgh#1@ds135577.mlab.com:35577/tutoringhub", {
-    useNewUrlParser: true
+// DB Helper
+var dbhelper = require('./dbhelper');
+dbhelper.createConfig().then(function (created) {
+  if (created) {
+    console.log("Created default database config file. Edit it and restart the app.");
   }
-);
-mongoose.Promise = global.Promise;
+  // connect
+  dbhelper.connect().then(function () {
+    console.log("Successfully connected to the database");
+  }).catch(function (err) {
+    console.log("There was an error connecting to the database.");
+    console.log(err);
+  });
+}).catch(function (err) {
+  console.log("There was an error creating the database config file.");
+  console.log(err);
+});
 
-// Cloudinary API Information
-const CLOUDINARY_API_KEY = "551819357444522";
-const CLOUDINARY_API_KEY_SECRET = "asGC9I6QtnXmPMSV8Y0EFV20dQU";
-
-//TODO image API setup here
+// Image API
+var imageHelper = require('./imagehelper');
+imageHelper.createConfig().then(function (created) {
+  if (created) {
+    console.log("Created default image helper config file. Edit it and restart the app.");
+  }
+  // connect
+  // imageHelper.connect().then(function () {
+  //   console.log("Successfully connected to the image");
+  // }).catch(function (err) {
+  //   console.log("There was an error connecting to the image.");
+  //   console.log(err);
+  // });
+}).catch(function (err) {
+  console.log("There was an error creating the image helper config file.");
+  console.log(err);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
