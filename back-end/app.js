@@ -7,24 +7,11 @@ var session = require("express-session");
 
 var cors = require("cors");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var tutorsRouter = require("./routes/tutor");
-
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var tutorsRouter = require("./routes/tutor");
-var addTutorRouter = require("./routes/add-tutor");
-
-var loginRouter = require("./routes/login");
-var signupRouter = require("./routes/signup");
-var logoutRouter = require("./routes/logout");
-var settingRouter = require("./routes/setting");
-
-// Connect to mongoDB
-const mongoose = require("mongoose");
-
 var app = express();
+
+// setup all routes here
+const routes = require('./routes');
+app.use('/', routes);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -33,15 +20,21 @@ app.set("view engine", "pug");
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(session({ secret: "It's a new secret!" }));
+app.use(session({
+  secret: "It's a new secret!"
+}));
+
+// Connect to mongoDB
+const mongoose = require("mongoose");
 
 // Connect to database
 mongoose.connect(
-  "mongodb://codinghub:Plattsburgh#1@ds135577.mlab.com:35577/tutoringhub",
-  {
+  "mongodb://codinghub:Plattsburgh#1@ds135577.mlab.com:35577/tutoringhub", {
     useNewUrlParser: true
   }
 );
@@ -51,22 +44,15 @@ mongoose.Promise = global.Promise;
 const CLOUDINARY_API_KEY = "551819357444522";
 const CLOUDINARY_API_KEY_SECRET = "asGC9I6QtnXmPMSV8Y0EFV20dQU";
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/tutor", tutorsRouter);
-app.use("/addtutor", addTutorRouter);
-app.use("/login", loginRouter);
-app.use("/signup", signupRouter);
-app.use("/logout", logoutRouter);
-app.use("/setting", settingRouter);
+//TODO image API setup here
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

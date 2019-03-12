@@ -9,9 +9,6 @@ const Tutor = require('../models/tutors');
 
 /* GET home page. */
 router.post('/test', function(req, res, next) {
-    // const tutor = new Tutor(req.body);
-    // tutor.save();
-
     Tutor.create(req.body).then(
         (tutor) => {
             res.send(tutor);
