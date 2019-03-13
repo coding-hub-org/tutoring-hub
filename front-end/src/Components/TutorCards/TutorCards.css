@@ -5,3 +5,21 @@
     grid-column-gap: 25px;
     grid-row-gap: 25px;
 }
+
+@media only screen and (max-width: 1024px) {
+    .Tutor-Cards-Component {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 25px;
+        grid-row-gap: 25px;
+    }
+}
+
+@media only screen and (max-width: 512px) {
+    .Tutor-Cards-Component {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 25px;
+        grid-row-gap: 25px;
+    }
+}
