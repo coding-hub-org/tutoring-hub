@@ -1,0 +1,50 @@
+.simple-tutor-card {
+    width: 300px;
+    border-radius: 7px;
+
+    background-color: #f2f2f2;
+
+    margin: 1em;
+}
+
+.simple-tutor-card img {
+    width: 100%;
+    border-radius: 7px 7px 0 0;
+    height: 250px;
+    object-fit: cover;
+}
+
+.simple-tutor-card-title {
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+
+    padding: 0.5em 0;
+}
+
+.simple-tutor-card-controls {
+    padding: 0.1em 0;
+}
+
+.simple-tutor-card-controls ul {
+    padding: 0;
+    list-style-type: none;
+
+    text-align: center;
+}
+
+
+.simple-tutor-card-controls ul li {
+    display: inline;
+    margin: auto 0.2em;
+}
+
+
+.simple-tutor-card-controls ul li a {
+    text-decoration: none;
+}
+
+.simple-tutor-card-controls ul li a,
+.simple-tutor-card-controls ul li a:active {
+    color: blue;
+}

@@ -4,22 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
-
 var cors = require("cors");
-
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var tutorsRouter = require("./routes/tutor");
-var addTutorRouter = require("./routes/add-tutor");
-var cloudinaryRouter = require("./routes/cloudinary");
-
-var loginRouter = require("./routes/login");
-var signupRouter = require("./routes/signup");
-var logoutRouter = require("./routes/logout");
-var settingRouter = require("./routes/setting");
-
-// Connect to mongoDB
-const mongoose = require("mongoose");
 
 var app = express();
 
@@ -29,42 +14,32 @@ app.set("view engine", "pug");
 
 app.use(cors());
 app.use(logger("dev"));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(session({ secret: "It's a new secret!" }));
+app.use(session({
+  secret: "This is a secret",
+  name: "cookie_name",
+  // store: sessionStore, // connect-mongo session store
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
 
-// Connect to database
-mongoose.connect(
-  "mongodb://codinghub:Plattsburgh#1@ds135577.mlab.com:35577/tutoringhub",
-  {
-    useNewUrlParser: true
-  }
-);
-mongoose.Promise = global.Promise;
-
-// Cloudinary API Information
-const CLOUDINARY_API_KEY = "551819357444522";
-const CLOUDINARY_API_KEY_SECRET = "asGC9I6QtnXmPMSV8Y0EFV20dQU";
-
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/tutor", tutorsRouter);
-app.use("/addtutor", addTutorRouter);
-app.use("/login", loginRouter);
-app.use("/signup", signupRouter);
-app.use("/logout", logoutRouter);
-app.use("/setting", settingRouter);
-app.use("/cloudinary", cloudinaryRouter);
+// setup all routes here
+const routes = require('./routes');
+app.use('/', routes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -73,5 +48,29 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+
+// DB Helper
+var dbhelper = require('./dbhelper');
+dbhelper.createConfig().then(function (created) {
+  if (created) {
+    console.log("Created default database config file. Edit it and restart the app.");
+  }
+  // connect
+  dbhelper.connect().then(function () {
+    console.log("Successfully connected to the database");
+  }).catch(function (err) {
+    console.log("There was an error connecting to the database.");
+    console.log(err);
+  });
+}).catch(function (err) {
+  console.log("There was an error creating the database config file.");
+  console.log(err);
+});
+
+// Image API
+var imageHelper = require('./imagehelper');
+imageHelper.createAndLoadConfig();
+
 
 module.exports = app;

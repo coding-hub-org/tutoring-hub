@@ -46,7 +46,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:3001${window.location.pathname}`)
+        fetch(`/api/v1${window.location.pathname}`)
         .then(response => response.json())
         .then(data => {
             this.setState({

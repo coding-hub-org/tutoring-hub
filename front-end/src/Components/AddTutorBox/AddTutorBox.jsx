@@ -6,7 +6,7 @@ const AddTutorBox = () => {
     return (
         <div className={"add-tutor-box-component"}>
             <p>Missing someone?</p>
-            <a href="/addtutor">
+            <a href="/tutors/add">
                 <div className="add-tutor-box-button">
                     <p>Add Tutor</p>
                 </div>
