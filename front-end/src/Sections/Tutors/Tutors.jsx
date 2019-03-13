@@ -6,6 +6,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import TutorCards from "../../Components/TutorCards/TutorCards";
 
+const _ = require('underscore');
+
 class Tutors extends Component {
 
     constructor(props) {
@@ -27,7 +29,7 @@ class Tutors extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    tutors: data,
+                    tutors: _.sortBy(data, 'lastName'),
                     isLoading: false,
                 });
             })

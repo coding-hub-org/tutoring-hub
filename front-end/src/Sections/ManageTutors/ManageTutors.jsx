@@ -33,7 +33,7 @@ class ManageTutors extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          tutors: data,
+          tutors: _.sortBy(data, 'lastName'),
           isLoading: false,
         });
       })
