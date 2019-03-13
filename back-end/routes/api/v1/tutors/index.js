@@ -16,12 +16,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/create', function (req, res) {
-    // console.log(res);
-    if (!req.body) {
-        res.status(400);
-        res.send("There was an error creating the tutor: no data found\n");
-        return;
-    }
     Tutor.create(req.body).then(
         (tutor) => {
             res.send(tutor);
