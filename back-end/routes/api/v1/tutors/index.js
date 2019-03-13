@@ -3,16 +3,57 @@ const router = express.Router({
     mergeParams: true
 });
 
-const display = require('./display');
-const update = require('./update');
-const create = require('./create');
-const remove = require('./remove');
-const all = require('./all');
+var Tutor = require('../../../../models/tutors');
 
-router.get('/:tutorID', display);
-router.put('/:tutorID', update);
-router.post('/create', create);
-router.post('/remove/:tutorID', remove);
-router.get('/', all);
+router.get('/', (req, res, next) => {
+    Tutor.find({}, function (err, tutors) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.send(tutors);
+    });
+});
+
+router.post('/create', function (req, res) {
+    // console.log(res);
+    if (!req.body) {
+        res.status(400);
+        res.send("There was an error creating the tutor: no data found\n");
+        return;
+    }
+    Tutor.create(req.body).then(
+        (tutor) => {
+            res.send(tutor);
+        }
+    );
+});
+
+router.get('/create', function (req, res) {
+    res.send("Creating a tutor requires a POST request, not a GET request");
+});
+
+router.post('/remove/:tutorID', function (req, res, next) {
+    Tutor.find({
+        _id: req.params.tutorID
+    }).deleteOne().exec(function (err, data) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.send("Removed tutor with id: " + req.params.tutorID);
+    });
+});
+
+router.get('/remove/:tutorID', function (req, res) {
+    res.send("Removing a tutor requires a POST request, not a GET request");
+});
+
+router.get('/:tutorID', (req, res, next) => {
+    Tutor.findById(req.params.tutorID, function (err, result) {
+        res.json(err ? [] : result);
+    });
+});
+
 
 module.exports = router;

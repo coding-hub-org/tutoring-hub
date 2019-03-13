@@ -36,40 +36,38 @@ class AddTutorForm extends React.Component {
     handleFormSubmit(e) {
         e.preventDefault();
 
-        if (this.state.newTutor.firstName === '') {
-            alert('You must enter a valid first name');
-            return;
-        }
+        // if (this.state.newTutor.firstName === '') {
+        //     alert('You must enter a valid first name');
+        //     return;
+        // }
 
-        if (this.state.newTutor.lastName === '') {
-            alert('You must enter a valid last name');
-            return;
-        }
+        // if (this.state.newTutor.lastName === '') {
+        //     alert('You must enter a valid last name');
+        //     return;
+        // }
 
-        if (this.state.newTutor.major === '') {
-            alert('You must enter a valid major');
-            return;
-        }
+        // if (this.state.newTutor.major === '') {
+        //     alert('You must enter a valid major');
+        //     return;
+        // }
 
-        if (this.state.newTutor.since === '') {
-            alert('You must enter a valid date');
-            return; 
-        }
+        // if (this.state.newTutor.since === '') {
+        //     alert('You must enter a valid date');
+        //     return;
+        // }
 
-        if (this.state.newTutor.courses.length === 0) {
-            alert('You must enter courses');
-            return;
-        }
+        // if (this.state.newTutor.courses.length === 0) {
+        //     alert('You must enter courses');
+        //     return;
+        // }
 
         let tutorData = this.state.newTutor;
-        let jsonData = JSON.stringify(tutorData);
         fetch('/api/v1/tutors/create', {
-            method: "POST", 
-            body: jsonData,
+            method: "POST",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
+            body: JSON.stringify(tutorData)
         }).then(() => {
             this.setState(() => {
                 return {

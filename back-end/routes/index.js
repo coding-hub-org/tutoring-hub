@@ -1,5 +1,4 @@
 var express = require('express');
-const Tutor = require('../models/tutors');
 var router = express.Router();
 
 
@@ -10,6 +9,10 @@ router.use('/api/v1', require('./api/v1'));
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send("This is the homepage of the server");
+});
+
+router.post('/', function (req, res, next) {
+  res.json(req.body);
 });
 
 
