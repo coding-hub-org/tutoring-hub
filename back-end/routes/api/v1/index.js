@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.use('/tutors', require('./tutors'));
+router.use('/courses', require('./courses'));
+
 router.use('/cloudinary', require('./cloudinary'));
 
 router.use('/auth', require('./auth'));

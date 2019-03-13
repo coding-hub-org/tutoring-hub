@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./Tutors.css";
 
 // Import components
-import NavBar from "../../Components/NavBar/NavBar";
+import NavBarSearchable from "../../Components/NavBarSearchable/NavBarSearchable";
 import Title from "../../Components/Title/Title";
 import TutorCards from "../../Components/TutorCards/TutorCards";
+import TutorCardsFilterable from "../../Components/TutorCardsFilterable/TutorCardsFilterable";
+import FormDropdown from "../../Components/FormDropdown/FormDropdown";
 
 const _ = require('underscore');
 
@@ -14,14 +16,22 @@ class Tutors extends Component {
         super(props);
 
         this.state = {
-            title: "Tutors",
+            title: "All Tutors",
+            isLoading: true,
             tutors: [],
-            isLoading: true
+            courses: [],
+            filtering: false,
+            filterCourse: '',
+            filterRating: 0.0
         }
+
+        this.handleSearch = this.handleSearch.bind(this);
+        this.filterCourses = this.filterCourses.bind(this);
     }
 
     componentDidMount() {
         this.fetchTutors();
+        this.fetchCourses();
     }
 
     fetchTutors() {
@@ -38,13 +48,66 @@ class Tutors extends Component {
             });
     }
 
+
+    fetchCourses() {
+        fetch('/api/v1/courses')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    courses: _.sortBy(data, '')
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    handleSearch() {
+
+    }
+
+
+    filterCourses(course) {
+        if (course === '') {
+            this.setState({
+                filterCourse: ''
+            });
+        } else {
+            this.setState({
+                filtering: true,
+                filterCourse: course
+            });
+        }
+    }
+
     render() {
         return (
             <div className="section">
-                <NavBar handleSearch={this.handleSearch} />
+                <NavBarSearchable handleSearch={this.handleSearch} />
                 <div className="section--wrapper">
                     <Title title={this.state.title.toUpperCase()} />
-                    <TutorCards tutors={this.state.tutors} />
+
+                    <div className="Filters">
+                        <span>Filters</span>
+                        <FormDropdown
+                            title={"Courses"}
+                            options={this.state.courses}
+                            onChange={this.filterCourses}
+                        />
+                    </div>
+
+
+                    {(this.state.filtering) ?
+                        <TutorCardsFilterable
+                            tutors={this.state.tutors}
+                            filterCourse={this.state.filterCourse}
+                            filterRating={this.state.filterRating}
+                        />
+                        :
+                        <TutorCards tutors={this.state.tutors} />
+                    }
+
+
                 </div>
             </div>
         );
