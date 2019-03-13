@@ -1,0 +1,71 @@
+.Tutor-Card-Partial-Component {
+  -webkit-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 7px;
+  box-sizing: border-box;
+
+  max-width: 350px;
+
+  padding-bottom: 1em;
+}
+
+.Tutor-Card-Partial-Component>img {
+  min-width: 100%;
+  width: 100%;
+  min-height: 250px;
+  height: 250px;
+
+  border-radius: 7px 7px 0 0;
+
+  box-sizing: border-box;
+
+  object-fit: cover;
+}
+
+.Tutor-Card-Partial-Component .content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Tutor-Card-Partial-Component .content .full-name {
+  color: #06255d;
+  font-size: 1.2em;
+}
+
+.Tutor-Card-Partial-Component .content .bio {
+  color: #777777;
+  font-size: 1em;
+}
+
+
+.Tutor-Card-Partial-Component .bottom {}
+
+.Tutor-Card-Partial-Component .bottom a {
+  text-decoration: none;
+  color: white;
+  border-radius: 4px;
+  background-color: #ff5e84;
+  border: 1px solid #ff5e84;
+  padding: 6px 20px;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+
+.Tutor-Card-Partial-Component .rating {
+  float: right;
+}
+
+
+
+.Tutor-Card-Partial-Component .rating span {
+  margin-right: 0.3em;
+}
+
+
+.Tutor-Card-Partial-Component .bottom img {
+  height: 1em;
+  width: 1em;
+}

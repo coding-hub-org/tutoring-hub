@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Sections/Home/Home";
 import Profile from "./Sections/Profile/Profile";
 import Review from "./Sections/Review/Review";
+import Tutors from "./Sections/Tutors/Tutors";
 import AddTutor from "./Sections/AddTutor/AddTutor";
 import ManageTutors from "./Sections/ManageTutors/ManageTutors";
 
@@ -18,7 +19,7 @@ class App extends Component {
         <div className="App">
           <Route exact path="/" component={Home} />
           <Switch>
-            <Route exact path="/tutors" component={Home} />
+            <Route exact path="/tutors" component={Tutors} />
             <Route path="/tutors/manage" component={ManageTutors} />
             <Route path="/tutors/add" component={AddTutor} />
             <Route exact path="/tutors/:id" component={Profile} />
