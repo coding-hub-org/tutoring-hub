@@ -34,7 +34,7 @@ class ManageTutors extends Component {
       .then(data => {
         console.log("Tutors A: " + this.state.tutors.length);
         this.setState({
-          tutors: _.sortBy([...this.state.tutors, ...data], 'lastName'),
+          tutors: data,
           isLoading: false,
         });
         console.log("Tutors B: " + this.state.tutors.length);
