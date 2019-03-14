@@ -88,18 +88,15 @@ class Tutors extends Component {
                 filtering: false,
                 filterRating: 0
             });
-            console.log("Resetting rating filter");
         } else {
             this.setState({
                 filtering: true,
                 filterRating: rating
             });
-            console.log("Filtering for " + rating + " or above");
         }
     }
 
     render() {
-        console.log("Updating for rating: " + this.state.filterRating);
         return (
             <div className="section">
                 <NavBarSearchable handleSearch={this.handleSearch} />
