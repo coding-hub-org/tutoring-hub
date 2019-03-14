@@ -7,6 +7,7 @@ import Title from "../../Components/Title/Title";
 import TutorCards from "../../Components/TutorCards/TutorCards";
 import TutorCardsFilterable from "../../Components/TutorCardsFilterable/TutorCardsFilterable";
 import FormDropdown from "../../Components/FormDropdown/FormDropdown";
+import FormSlider from "../../Components/FormSlider/FormSlider";
 
 const _ = require('underscore');
 
@@ -22,11 +23,12 @@ class Tutors extends Component {
             courses: [],
             filtering: false,
             filterCourse: '',
-            filterRating: 0.0
+            filterRating: 0
         }
 
         this.handleSearch = this.handleSearch.bind(this);
         this.filterCourses = this.filterCourses.bind(this);
+        this.filterRatings = this.filterRatings.bind(this);
     }
 
     componentDidMount() {
@@ -80,7 +82,24 @@ class Tutors extends Component {
         }
     }
 
+    filterRatings(rating) {
+        if (rating <= 0) {
+            this.setState({
+                filtering: false,
+                filterRating: 0
+            });
+            console.log("Resetting rating filter");
+        } else {
+            this.setState({
+                filtering: true,
+                filterRating: rating
+            });
+            console.log("Filtering for " + rating + " or above");
+        }
+    }
+
     render() {
+        console.log("Updating for rating: " + this.state.filterRating);
         return (
             <div className="section">
                 <NavBarSearchable handleSearch={this.handleSearch} />
@@ -93,6 +112,12 @@ class Tutors extends Component {
                             title={"Courses"}
                             options={this.state.courses}
                             onChange={this.filterCourses}
+                        />
+                        <span>Rating</span>
+                        <FormSlider
+                            min={0}
+                            max={10}
+                            onChange={this.filterRatings}
                         />
                     </div>
 

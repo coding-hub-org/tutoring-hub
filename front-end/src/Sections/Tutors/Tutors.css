@@ -7,7 +7,7 @@
     border: 1px solid #B9C6E0;
     caret-color: #B9C6E0;
 
-    margin: 0 1em;
+    /* margin: 0 1em; */
     padding: 0.5em 1em;
     width: 150px;
 
@@ -16,4 +16,12 @@
 
 .Filters select:focus {
     outline: none;
+}
+
+.Filters span {
+    margin: 1em;
+}
+
+.Filters * {
+    display: inline-block;
 }
