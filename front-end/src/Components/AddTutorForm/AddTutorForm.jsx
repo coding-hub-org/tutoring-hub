@@ -159,6 +159,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.firstName}
                                 placeholder={'Jane'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -175,6 +176,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.lastName}
                                 placeholder={'Doe'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -191,6 +193,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.major}
                                 placeholder={'Computer Science'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -205,6 +208,7 @@ class AddTutorForm extends React.Component {
                                 name={"since"}
                                 value={this.state.newTutor.since}
                                 handleChange={this.handleDate}
+                                required={true}
                             />
                         </span>
                     </div>
