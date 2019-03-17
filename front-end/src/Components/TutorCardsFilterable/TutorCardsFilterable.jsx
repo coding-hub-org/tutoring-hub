@@ -22,12 +22,19 @@ class TutorCardsFilterable extends Component {
 
         let tutors = this.props.tutors.filter(tutor => {
             var rating = this.getRating(tutor.reviews);
-            console.log("Rating: " + this.props.filterRating);
-            return (
-                tutor.courses.includes(this.props.filterCourse) ||
-                (rating !== -1 && rating >= this.props.filterRating)
-            );
-        });
+
+            //TODO figure this shit out
+            var included = false;
+            if (this.props.filterCourse !== '' && tutor.courses.includes(this.props.filterCourse)) {
+                included = true;
+            }
+
+            if (rating !== -1 && rating >= this.props.filterRating) {
+                included = true;
+            }
+
+            return included;
+        }, this);
 
         let cards = tutors.map((tutor) =>
             <TutorCardPartial tutor={tutor} key={tutor._id} />
