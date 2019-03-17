@@ -9,6 +9,7 @@ import TutorCardsFilterable from "../../Components/TutorCardsFilterable/TutorCar
 import FormDropdown from "../../Components/FormDropdown/FormDropdown";
 import FormSlider from "../../Components/FormSlider/FormSlider";
 import FormButton from "../../Components/FormButton/FormButton";
+import AddTutorBox from "../../Components/AddTutorBox/AddTutorBox";
 
 const _ = require('underscore');
 
@@ -57,7 +58,7 @@ class Tutors extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    courses: _.sortBy(data, '')
+                    courses: _.sortBy(data, function (course) { return course; })
                 });
             })
             .catch((error) => {
@@ -120,6 +121,7 @@ class Tutors extends Component {
                                 options={this.state.courses}
                                 onChange={this.filterCourses}
                                 value={this.state.filterCourse}
+                                uppercase={true}
                             />
                         </div>
                         <div>
@@ -152,6 +154,7 @@ class Tutors extends Component {
                             <TutorCards tutors={this.state.tutors} />
                     }
 
+                    <AddTutorBox />
 
                 </div>
             </div>

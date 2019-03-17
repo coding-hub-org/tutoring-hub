@@ -17,7 +17,7 @@ class FormDropdown extends Component {
     render() {
 
         const options = this.props.options.map((option) =>
-            <option value={option} key={option}>{option}</option>
+            <option value={option} key={option}>{this.props.uppercase ? option.toUpperCase() : option}</option>
         );
 
         return (
