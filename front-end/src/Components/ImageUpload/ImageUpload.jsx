@@ -11,9 +11,11 @@ class ImageUpload extends React.Component {
     }
 
     handleChange(event) {
+        var url = URL.createObjectURL(event.target.files[0]);
         this.setState({
-            file: URL.createObjectURL(event.target.files[0])
+            file: url
         });
+        this.props.onChange(url);
     }
 
     render() {

@@ -4,8 +4,6 @@ var cloudinary = require("cloudinary");
 var multer = require("multer"); // handling multipart/form-data
 var cloudinaryStorage = require("multer-storage-cloudinary");
 
-var app = require('../../../app');
-
 ////////////////////////////////////////////////////////////////////////////////////////
 
 var storage = cloudinaryStorage({

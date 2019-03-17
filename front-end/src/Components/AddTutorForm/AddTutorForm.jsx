@@ -17,6 +17,7 @@ class AddTutorForm extends React.Component {
         this.state = {
             submitted: false,
             newTutor: {
+                image: '',
                 firstName: '',
                 lastName: '',
                 major: '',
@@ -28,6 +29,7 @@ class AddTutorForm extends React.Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
 
+        this.handleImageSelect = this.handleImageSelect.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.handleDate = this.handleDate.bind(this);
         this.handleCoursesChange = this.handleCoursesChange.bind(this);
@@ -36,30 +38,10 @@ class AddTutorForm extends React.Component {
     handleFormSubmit(e) {
         e.preventDefault();
 
-        // if (this.state.newTutor.firstName === '') {
-        //     alert('You must enter a valid first name');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.lastName === '') {
-        //     alert('You must enter a valid last name');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.major === '') {
-        //     alert('You must enter a valid major');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.since === '') {
-        //     alert('You must enter a valid date');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.courses.length === 0) {
-        //     alert('You must enter courses');
-        //     return;
-        // }
+        if (this.state.newTutor.courses.length === 0) {
+            alert('You must enter courses');
+            return;
+        }
 
         let tutorData = this.state.newTutor;
         fetch('/api/v1/tutors/create', {
@@ -69,6 +51,13 @@ class AddTutorForm extends React.Component {
             },
             body: JSON.stringify(tutorData)
         }).then(() => {
+            //TODO implement image upload
+            // fetch('/api/v1/tutors/create', {
+            //     method: "POST",
+            //     body: this.state.image
+            // }).then((res) => {
+            //     console.log(res.json());
+            // });
             this.setState(() => {
                 return {
                     submitted: true
@@ -82,6 +71,7 @@ class AddTutorForm extends React.Component {
         this.setState(() => {
             return {
                 newTutor: {
+                    image: '',
                     firstName: '',
                     lastName: '',
                     major: '',
@@ -90,6 +80,12 @@ class AddTutorForm extends React.Component {
                 }
             }
         });
+    }
+
+    handleImageSelect(url) {
+        this.setState({
+            image: url
+        })
     }
 
     handleInput(e) {
@@ -144,6 +140,7 @@ class AddTutorForm extends React.Component {
                         <ImageUpload
                             id="profilePicture"
                             name="profilePicture"
+                            onChange={this.handleImageSelect}
                         />
                     </div>
                     <div className="form-row">
