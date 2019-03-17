@@ -23,15 +23,24 @@ class FormSlider extends Component {
 
     render() {
         return (
-            <div className={""} >
+            <div className={"Form-Slider-Component"} >
                 <input
                     type="range"
                     min={this.props.min}
                     max={this.props.max}
                     value={this.state.value}
                     onChange={this.onChange}
+                    step={this.step}
                     className={"slider"}
                 />
+                <div class="label">
+                    <span>
+                        {(this.state.value == 0) ?
+                            "n/a" :
+                            this.state.value
+                        }
+                    </span>
+                </div>
             </div>
         );
     }

@@ -104,18 +104,23 @@ class Tutors extends Component {
                     <Title title={this.state.title.toUpperCase()} />
 
                     <div className="Filters">
-                        <span>Filters</span>
-                        <FormDropdown
-                            title={"Courses"}
-                            options={this.state.courses}
-                            onChange={this.filterCourses}
-                        />
-                        <span>Rating</span>
-                        <FormSlider
-                            min={0}
-                            max={10}
-                            onChange={this.filterRatings}
-                        />
+                        <div>
+                            <span>Filters</span>
+                            <FormDropdown
+                                title={"Courses"}
+                                options={this.state.courses}
+                                onChange={this.filterCourses}
+                            />
+                        </div>
+                        <div>
+                            <span>Rating</span>
+                            <FormSlider
+                                min={0}
+                                max={10}
+                                step={1}
+                                onChange={this.filterRatings}
+                            />
+                        </div>
                     </div>
 
 
