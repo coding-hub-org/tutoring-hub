@@ -33,7 +33,7 @@ class FormSlider extends Component {
                     step={this.step}
                     className={"slider"}
                 />
-                <div class="label">
+                <div className="label">
                     <span>
                         {(this.state.value == 0) ?
                             "n/a" :
