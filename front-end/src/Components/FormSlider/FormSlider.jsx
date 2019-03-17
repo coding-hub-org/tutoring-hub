@@ -9,15 +9,10 @@ class FormSlider extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: props.min
-        };
-
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(event) {
-        this.setState({ value: event.target.value });
         this.props.onChange(event.target.value);
     }
 
@@ -28,16 +23,16 @@ class FormSlider extends Component {
                     type="range"
                     min={this.props.min}
                     max={this.props.max}
-                    value={this.state.value}
+                    value={this.props.value}
                     onChange={this.onChange}
                     step={this.step}
                     className={"slider"}
                 />
                 <div className="label">
                     <span>
-                        {(this.state.value == 0) ?
+                        {(this.props.value == 0) ?
                             "n/a" :
-                            this.state.value
+                            this.props.value
                         }
                     </span>
                 </div>

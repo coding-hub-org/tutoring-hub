@@ -8,6 +8,7 @@ import TutorCards from "../../Components/TutorCards/TutorCards";
 import TutorCardsFilterable from "../../Components/TutorCardsFilterable/TutorCardsFilterable";
 import FormDropdown from "../../Components/FormDropdown/FormDropdown";
 import FormSlider from "../../Components/FormSlider/FormSlider";
+import FormButton from "../../Components/FormButton/FormButton";
 
 const _ = require('underscore');
 
@@ -26,6 +27,7 @@ class Tutors extends Component {
         }
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.resetFilters = this.resetFilters.bind(this);
         this.filterCourses = this.filterCourses.bind(this);
         this.filterRatings = this.filterRatings.bind(this);
     }
@@ -67,6 +69,13 @@ class Tutors extends Component {
 
     }
 
+    resetFilters(e) {
+        e.preventDefault();
+        this.setState({
+            filterCourse: '',
+            filterRating: 0
+        });
+    }
 
     filterCourses(course) {
         if (course === '') {
@@ -110,6 +119,7 @@ class Tutors extends Component {
                                 title={"Courses"}
                                 options={this.state.courses}
                                 onChange={this.filterCourses}
+                                value={this.state.filterCourse}
                             />
                         </div>
                         <div>
@@ -119,6 +129,13 @@ class Tutors extends Component {
                                 max={10}
                                 step={1}
                                 onChange={this.filterRatings}
+                                value={this.state.filterRating}
+                            />
+                        </div>
+                        <div>
+                            <FormButton
+                                title={"Reset Filters"}
+                                action={this.resetFilters}
                             />
                         </div>
                     </div>

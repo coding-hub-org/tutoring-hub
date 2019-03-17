@@ -7,15 +7,10 @@ class FormDropdown extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: '-- ' + this.props.title + '--'
-        };
-
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(event) {
-        this.setState({ value: event.target.value });
         this.props.onChange(event.target.value === '-- ' + this.props.title + '--' ? '' : event.target.value);
     }
 
@@ -26,7 +21,7 @@ class FormDropdown extends Component {
         );
 
         return (
-            <select onChange={this.onChange}>
+            <select onChange={this.onChange} value={this.props.value}>
                 <option value={'-- ' + this.props.title + '--'}>-- {this.props.title} --</option>
                 {options}
             </select>
