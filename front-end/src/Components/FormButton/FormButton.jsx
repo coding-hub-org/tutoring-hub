@@ -3,11 +3,13 @@ import './FormButton.css';
 
 const FormButton = (props) => {
     return (
-        <button
-            style={props.style}
-            onClick={props.action}>
-            {props.title}
-        </button>
+        <div className={"Form-Button-Component"}>
+            <button
+                style={props.style}
+                onClick={props.action}>
+                {props.title}
+            </button>
+        </div>
     );
 }
 
