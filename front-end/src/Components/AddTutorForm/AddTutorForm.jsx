@@ -63,8 +63,8 @@ class AddTutorForm extends React.Component {
                     .then(createdImage => {
 
                         // update the tutor to have the image
-                        var url = createdImage.url;
-                        tutorData.imageUrl = url;
+                        tutorData.imageUrl = createdImage.url;
+                        tutorData.imageID = createdImage.public_id;
                         fetch('/api/v1/tutors/' + tutorID, {
                             method: "PUT",
                             headers: {
@@ -73,7 +73,7 @@ class AddTutorForm extends React.Component {
                             body: JSON.stringify(tutorData)
                         })
                             .then(response => response.json())
-                            .then(fetchedTutor => {
+                            .then(() => {
                                 this.setState(() => {
                                     return {
                                         submitted: true
