@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Home.css";
 
 // Import components
-import NavBarSearchable from "../../Components/NavBarSearchable/NavBarSearchable";
+import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import Tutors from "../../Components/Tutors/Tutors";
 import Filter from "../../Components/Filter/Filter";
@@ -76,7 +76,7 @@ class Home extends Component {
     this.getCourses(this.state.tutors);
     return (
       <div className="home-section">
-        <NavBarSearchable handleSearch={this.handleSearch} />
+        <NavBar searchable={true} handleSearch={this.handleSearch} />
         <div className="home-section--wrapper">
           <Title title={this.state.title.toUpperCase()} />
           <Filter coursesSet={this.state.courses} updateTutorState={this.updateTutorState} />

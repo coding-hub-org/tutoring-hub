@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Tutors.css";
 
 // Import components
-import NavBarSearchable from "../../Components/NavBarSearchable/NavBarSearchable";
+import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
 import TutorCards from "../../Components/TutorCards/TutorCards";
 import TutorCardsFilterable from "../../Components/TutorCardsFilterable/TutorCardsFilterable";
@@ -76,6 +76,7 @@ class Tutors extends Component {
 
     resetFilters(e) {
         e.preventDefault();
+        //TODO reset HTML for elements
         this.setState({
             filterName: '',
             filterCourse: '',
@@ -108,7 +109,7 @@ class Tutors extends Component {
     render() {
         return (
             <div className="section">
-                <NavBarSearchable handleSearch={this.handleSearch} />
+                <NavBar searchable={true} handleSearch={this.handleSearch} />
                 <div className="section--wrapper">
                     <Title title={this.state.title.toUpperCase()} />
 
