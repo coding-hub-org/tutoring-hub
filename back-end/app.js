@@ -5,6 +5,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
 var cors = require("cors");
+var mongoose = require("mongoose");
+var cloudinary = require('cloudinary');
+var fetch = require('node-fetch');
+
+var config = require('./config');
+
 
 var app = express();
 
@@ -50,27 +56,89 @@ app.use(function (err, req, res, next) {
 });
 
 
-// DB Helper
-var dbhelper = require('./dbhelper');
-dbhelper.createConfig().then(function (created) {
+// setup database
+config.create("database-config.json", {
+  username: "",
+  password: "",
+  url: "",
+  useNewParser: true
+}).then(function (created) {
   if (created) {
     console.log("Created default database config file. Edit it and restart the app.");
+    process.exit();
+    return;
   }
-  // connect
-  dbhelper.connect().then(function () {
-    console.log("Successfully connected to the database");
+
+  config.load("database-config.json").then(function (loaded) {
+    let dbUsername = loaded.username;
+    let dbPassword = loaded.password;
+    let databaseURL = loaded.url
+      .replace("{username}", dbUsername)
+      .replace("{password}", dbPassword);
+    let useNewParser = loaded.useNewParser;
+
+    mongoose.connect(databaseURL, {
+      useNewUrlParser: useNewParser
+    }).then(function () {
+      mongoose.Promise = global.Promise;
+
+      var db = mongoose.connection;
+
+      //Bind connection to error event (to get notification of connection errors)
+      db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+      console.log("Successfully connected to the database");
+
+    }).catch(function (err) {
+      console.log("There was an error connecting to the database.");
+      console.log(err);
+      process.exit();
+      return;
+    });
   }).catch(function (err) {
-    console.log("There was an error connecting to the database.");
+    console.log("There was an error creating the database config file.");
     console.log(err);
+    return;
   });
-}).catch(function (err) {
-  console.log("There was an error creating the database config file.");
-  console.log(err);
 });
 
-// Image API
-var imageHelper = require('./imagehelper');
-imageHelper.createAndLoadConfig();
+// setup image CDN config
+config.create("image-cdn-config.json", {
+  cloud_name: "",
+  api_key: "",
+  api_secret: ""
+}).then(function (created) {
+  if (created) {
+    console.log("Created default database config file. Edit it and restart the app.");
+    process.exit();
+    return;
+  }
+
+  config.load("image-cdn-config.json").then(function (loaded) {
+
+    let url = "https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image"
+      .replace("API_KEY", loaded.api_key)
+      .replace("API_SECRET", loaded.api_secret)
+      .replace("CLOUD_NAME", loaded.cloud_name);
+
+    fetch(url).then(function (value) {
+      if (value.status == 200) {
+        cloudinary.config(loaded);
+        console.log("Successfully connected to the Image CDN");
+      }
+    }).catch(function (err) {
+      console.log("There was an error connecting to the Image CDN.");
+      console.log(err);
+      process.exit();
+    });
+  }).catch(function (err) {
+    console.log("There was an error creating the image config file.");
+    console.log(err);
+    process.exit();
+    return;
+  });
+});
+
 
 
 module.exports = app;

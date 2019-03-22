@@ -27,11 +27,18 @@ class SimpleTutorCard extends React.Component {
     removeTutor(e) {
         e.preventDefault();
 
-        fetch('/api/v1/tutors/remove/' + this.props.tutor._id, {
-            method: "POST"
+        fetch('/api/v1/cloudinary/delete/', {
+            method: "DELETE"
         }).then(() => {
-            console.log('Removed tutor with id ' + this.props.tutor._id);
-            this.props.onUpdate();
+            console.log('Removed image with id ' + this.props.tutor.imageID);
+            fetch('/api/v1/tutors/remove/' + this.props.tutor._id, {
+                method: "POST"
+            }).then(() => {
+                console.log('Removed tutor with id ' + this.props.tutor._id);
+                this.props.onUpdate();
+            });
+        }).catch(function (err) {
+            console.log(err);
         });
     }
 

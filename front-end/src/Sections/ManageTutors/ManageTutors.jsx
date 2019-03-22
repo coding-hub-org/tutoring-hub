@@ -32,12 +32,10 @@ class ManageTutors extends Component {
     fetch('/api/v1/tutors')
       .then(response => response.json())
       .then(data => {
-        console.log("Tutors A: " + this.state.tutors.length);
         this.setState({
-          tutors: data,
+          tutors: _.sortBy(data, 'lastName'),
           isLoading: false,
         });
-        console.log("Tutors B: " + this.state.tutors.length);
       })
       .catch((error) => {
         console.log(error);

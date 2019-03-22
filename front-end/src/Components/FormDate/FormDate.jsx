@@ -11,6 +11,7 @@ const FormDate = (props) => {
             value={props.value}
             onChange={props.handleChange}
             placeholder={props.placeholder}
+            required={props.required}
         />
     );
 }

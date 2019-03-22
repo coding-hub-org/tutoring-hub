@@ -17,6 +17,7 @@ class AddTutorForm extends React.Component {
         this.state = {
             submitted: false,
             newTutor: {
+                image: '',
                 firstName: '',
                 lastName: '',
                 major: '',
@@ -28,60 +29,70 @@ class AddTutorForm extends React.Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
 
+        this.handleImageSelect = this.handleImageSelect.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.handleDate = this.handleDate.bind(this);
         this.handleCoursesChange = this.handleCoursesChange.bind(this);
     }
 
-    handleFormSubmit(e) {
-        e.preventDefault();
-
-        // if (this.state.newTutor.firstName === '') {
-        //     alert('You must enter a valid first name');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.lastName === '') {
-        //     alert('You must enter a valid last name');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.major === '') {
-        //     alert('You must enter a valid major');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.since === '') {
-        //     alert('You must enter a valid date');
-        //     return;
-        // }
-
-        // if (this.state.newTutor.courses.length === 0) {
-        //     alert('You must enter courses');
-        //     return;
-        // }
+    handleFormSubmit(event) {
+        event.preventDefault();
 
         let tutorData = this.state.newTutor;
+
+        // create the tutor
         fetch('/api/v1/tutors/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(tutorData)
-        }).then(() => {
-            this.setState(() => {
-                return {
-                    submitted: true
-                }
+        })
+            .then(response => response.json())
+            .then(createdTutor => {
+                var tutorID = createdTutor._id;
+
+                // upload the image
+                var form = new FormData();
+                form.append("image", this.state.image);
+                fetch("/api/v1/cloudinary/upload", {
+                    method: "POST",
+                    body: form
+                })
+                    .then(response => response.json())
+                    .then(createdImage => {
+
+                        // update the tutor to have the image
+                        tutorData.imageUrl = createdImage.url;
+                        tutorData.imageID = createdImage.public_id;
+                        fetch('/api/v1/tutors/' + tutorID, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(tutorData)
+                        })
+                            .then(response => response.json())
+                            .then(() => {
+                                this.setState(() => {
+                                    return {
+                                        submitted: true
+                                    }
+                                });
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             });
-        });
     }
 
-    handleClearForm(e) {
-        e.preventDefault();
+    handleClearForm(event) {
+        event.preventDefault();
         this.setState(() => {
             return {
                 newTutor: {
+                    image: '',
                     firstName: '',
                     lastName: '',
                     major: '',
@@ -92,9 +103,15 @@ class AddTutorForm extends React.Component {
         });
     }
 
-    handleInput(e) {
-        let value = e.target.value;
-        let name = e.target.name;
+    handleImageSelect(image) {
+        this.setState({
+            image: image
+        });
+    }
+
+    handleInput(event) {
+        let value = event.target.value;
+        let name = event.target.name;
         this.setState(prevState => {
             return {
                 newTutor: {
@@ -104,9 +121,9 @@ class AddTutorForm extends React.Component {
         });
     }
 
-    handleDate(e) {
-        let value = e.target.value;
-        let name = e.target.name;
+    handleDate(event) {
+        let value = event.target.value;
+        let name = event.target.name;
         this.setState(prevState => {
             return {
                 newTutor: {
@@ -135,7 +152,7 @@ class AddTutorForm extends React.Component {
             )
         } else {
             return (
-                <form id={"form"} onSubmit={this.handleFormSubmit} className={"add-tutor-form"} >
+                <form className={"add-tutor-form"} method="post" encType="multipart/form-data" onSubmit={this.handleFormSubmit}>
                     <div className="form-row">
                         <FormLabel
                             labelText={"Profile Picture"}
@@ -144,6 +161,7 @@ class AddTutorForm extends React.Component {
                         <ImageUpload
                             id="profilePicture"
                             name="profilePicture"
+                            onChange={this.handleImageSelect}
                         />
                     </div>
                     <div className="form-row">
@@ -159,6 +177,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.firstName}
                                 placeholder={'Jane'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -175,6 +194,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.lastName}
                                 placeholder={'Doe'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -191,6 +211,7 @@ class AddTutorForm extends React.Component {
                                 value={this.state.newTutor.major}
                                 placeholder={'Computer Science'}
                                 handleChange={this.handleInput}
+                                required={true}
                             />
                         </span>
                     </div>
@@ -205,6 +226,7 @@ class AddTutorForm extends React.Component {
                                 name={"since"}
                                 value={this.state.newTutor.since}
                                 handleChange={this.handleDate}
+                                required={true}
                             />
                         </span>
                     </div>
