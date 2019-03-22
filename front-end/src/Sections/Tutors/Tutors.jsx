@@ -23,6 +23,7 @@ class Tutors extends Component {
             isLoading: true,
             tutors: [],
             courses: [],
+            filterName: '',
             filterCourse: '',
             filterRating: 0
         }
@@ -66,28 +67,26 @@ class Tutors extends Component {
             });
     }
 
-    handleSearch() {
-
+    handleSearch(e) {
+        var value = e.target.value;
+        this.setState({
+            filterName: value,
+        });
     }
 
     resetFilters(e) {
         e.preventDefault();
         this.setState({
+            filterName: '',
             filterCourse: '',
             filterRating: 0
         });
     }
 
     filterCourses(course) {
-        if (course === '') {
-            this.setState({
-                filterCourse: ''
-            });
-        } else {
-            this.setState({
-                filterCourse: course
-            });
-        }
+        this.setState({
+            filterCourse: course === '' ? '' : course
+        });
     }
 
     filterRatings(rating) {
@@ -103,7 +102,7 @@ class Tutors extends Component {
     }
 
     isFiltering() {
-        return this.state.filterCourse !== '' || this.state.filterRating != 0;
+        return this.state.filterCourse !== '' || this.state.filterRating != 0 || this.state.filterName !== '';
     }
 
     render() {
@@ -149,6 +148,7 @@ class Tutors extends Component {
                                 tutors={this.state.tutors}
                                 filterCourse={this.state.filterCourse}
                                 filterRating={this.state.filterRating}
+                                filterName={this.state.filterName}
                             />
                             :
                             <TutorCards tutors={this.state.tutors} />

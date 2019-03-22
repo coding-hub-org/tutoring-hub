@@ -24,7 +24,8 @@ class TutorCardsFilterable extends Component {
         tutors = tutors.filter(tutor => {
             var rating = this.getRating(tutor.reviews);
             return (this.props.filterCourse === '' || tutor.courses.includes(this.props.filterCourse)) &&
-                (this.props.filterRating === 0 || rating >= this.props.filterRating);
+                (this.props.filterRating === 0 || rating >= this.props.filterRating) &&
+                (this.props.filterName === '' || tutor.firstName.toLowerCase().includes(this.props.filterName.toLowerCase()) || tutor.lastName.toLowerCase().includes(this.props.filterName.toLowerCase()));
         }, this);
 
         let cards = tutors.map((tutor) =>
