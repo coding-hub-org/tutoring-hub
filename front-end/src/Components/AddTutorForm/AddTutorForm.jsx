@@ -35,39 +35,60 @@ class AddTutorForm extends React.Component {
         this.handleCoursesChange = this.handleCoursesChange.bind(this);
     }
 
-    handleFormSubmit(e) {
-        e.preventDefault();
-
-        if (this.state.newTutor.courses.length === 0) {
-            alert('You must enter courses');
-            return;
-        }
+    handleFormSubmit(event) {
+        event.preventDefault();
 
         let tutorData = this.state.newTutor;
+
+        // create the tutor
         fetch('/api/v1/tutors/create', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(tutorData)
-        }).then(() => {
-            //TODO implement image upload
-            // fetch('/api/v1/tutors/create', {
-            //     method: "POST",
-            //     body: this.state.image
-            // }).then((res) => {
-            //     console.log(res.json());
-            // });
-            this.setState(() => {
-                return {
-                    submitted: true
-                }
+        })
+            .then(response => response.json())
+            .then(createdTutor => {
+                var tutorID = createdTutor._id;
+
+                // upload the image
+                var form = new FormData();
+                form.append("image", this.state.image);
+                fetch("/api/v1/cloudinary/upload", {
+                    method: "POST",
+                    body: form
+                })
+                    .then(response => response.json())
+                    .then(createdImage => {
+
+                        // update the tutor to have the image
+                        tutorData.imageUrl = createdImage.url;
+                        tutorData.imageID = createdImage.public_id;
+                        fetch('/api/v1/tutors/' + tutorID, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(tutorData)
+                        })
+                            .then(response => response.json())
+                            .then(() => {
+                                this.setState(() => {
+                                    return {
+                                        submitted: true
+                                    }
+                                });
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             });
-        });
     }
 
-    handleClearForm(e) {
-        e.preventDefault();
+    handleClearForm(event) {
+        event.preventDefault();
         this.setState(() => {
             return {
                 newTutor: {
@@ -82,15 +103,15 @@ class AddTutorForm extends React.Component {
         });
     }
 
-    handleImageSelect(url) {
+    handleImageSelect(image) {
         this.setState({
-            image: url
-        })
+            image: image
+        });
     }
 
-    handleInput(e) {
-        let value = e.target.value;
-        let name = e.target.name;
+    handleInput(event) {
+        let value = event.target.value;
+        let name = event.target.name;
         this.setState(prevState => {
             return {
                 newTutor: {
@@ -100,9 +121,9 @@ class AddTutorForm extends React.Component {
         });
     }
 
-    handleDate(e) {
-        let value = e.target.value;
-        let name = e.target.name;
+    handleDate(event) {
+        let value = event.target.value;
+        let name = event.target.name;
         this.setState(prevState => {
             return {
                 newTutor: {
@@ -131,7 +152,7 @@ class AddTutorForm extends React.Component {
             )
         } else {
             return (
-                <form id={"form"} onSubmit={this.handleFormSubmit} className={"add-tutor-form"} >
+                <form className={"add-tutor-form"} method="post" encType="multipart/form-data" onSubmit={this.handleFormSubmit}>
                     <div className="form-row">
                         <FormLabel
                             labelText={"Profile Picture"}

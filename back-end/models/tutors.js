@@ -15,6 +15,9 @@ const TutorSchema = new Schema({
     imageUrl: {
         type: String,
     },
+    imageID: {
+        type: String,
+    },
     major: {
         type: String
     },

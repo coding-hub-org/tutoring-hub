@@ -49,5 +49,11 @@ router.get('/:tutorID', (req, res, next) => {
     });
 });
 
+router.put('/:tutorID', (req, res, next) => {
+    Tutor.findByIdAndUpdate(req.params.tutorID, req.body, function (err, result) {
+        res.json(err ? [] : result);
+    });
+});
+
 
 module.exports = router;
