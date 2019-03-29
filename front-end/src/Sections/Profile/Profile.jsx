@@ -120,7 +120,7 @@ class Profile extends Component {
                         <Stats reviews={this.state.reviews}/>
                         <div className={'profile-section--wrapper__reviews'}>
                             <Subheading title={'Reviews:'}/>
-                            <Link to={`${window.location.pathname}/rate`}>REVIEW {this.state.name.toUpperCase()}</Link>
+                                <Link  to={`${window.location.pathname}/rate`} onClick={()=>{document.getElementById('navbar').scrollIntoView();}}> REVIEW {this.state.name.toUpperCase()}</Link>
                         </div>
                         {
                             (this.state.reviews.length === 0) ?

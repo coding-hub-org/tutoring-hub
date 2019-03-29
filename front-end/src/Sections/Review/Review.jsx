@@ -23,6 +23,7 @@ class Review extends React.Component {
 
 
     handleClick = () => {
+        
         const {author, course, content, methodology, organization, preparation, clarity, knowlege, bookAgain} = this.state;
         if (author && course && content && methodology && organization && preparation && clarity && knowlege && bookAgain !== undefined) {
             const url = this.props.match.url;
@@ -39,7 +40,7 @@ class Review extends React.Component {
                     "knowlege":  knowlege
                 }
             }
-            fetch(`http://localhost:3001${url.substring(0, url.lastIndexOf("/"))}`, {
+            fetch(`/api/v1${window.location.pathname}`.replace('/rate',''), {
             method: 'PUT', 
             body: JSON.stringify(data), // data can be `string` or {object}!
             headers:{
@@ -47,7 +48,8 @@ class Review extends React.Component {
             }
             }).then(res => res.json())
             .then(response => {
-                console.log('Success')
+                console.log('Success');
+                document.getElementById("navbar").scrollIntoView();
                 window.location.href = "/";
             })
             .catch(error => console.error('Error:', error));
@@ -100,7 +102,7 @@ class Review extends React.Component {
     }
     
     render() {
-
+        
         return(
             <div className={'review-section'}>
                 <NavBar/>  
