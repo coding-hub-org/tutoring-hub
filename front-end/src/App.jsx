@@ -20,8 +20,8 @@ class App extends Component {
           <Route exact path="/" component={Tutors} />
           <Switch>
             <Route exact path="/tutors" component={Tutors} />
-            <Route path="/tutors/manage" component={ManageTutors} />
-            <Route path="/tutors/add" component={AddTutor} />
+            {/* <Route path="/tutors/manage" component={ManageTutors} /> */}
+            {/* <Route path="/tutors/add" component={AddTutor} /> */}
             <Route exact path="/tutors/:id" component={Profile} />
             <Route exact path="/tutors/:id/rate" component={Review} />
           </Switch>
