@@ -1,66 +1,64 @@
 import React, { Component } from "react";
 import "./Footer.css";
 
+import LogoImage from "../../Assets/coding_hub_ic.svg";
+
+import Github from "../../Assets/github_ic.svg";
+import Gmail from "../../Assets/gmail_ic.svg";
+import Instagram from "../../Assets/codepen_ic.svg";
+import LinkedIn from "../../Assets/linkedin_ic.svg";
+
 class Footer extends Component {
-  render() {
-    return (
-      <div className="footer-container">
-        <div className="footer-row-1">
-          <div className="footer-logo">
-            Coding Hub
-            <span className="greenDot">.</span>
-          </div>
-          <div className="footer-navigation">
-            <div className="footer-navigation-item">
-              <a href="#home-component">HOME</a>
-            </div>
-            <div className="footer-navigation-item">
-              <a href="#Projects">PROJECTS</a>
-            </div>
-            <div className="footer-navigation-item">
-              <a href="#WhatWeDo">SERVICES</a>
-            </div>
-            <div className="footer-navigation-item">
-              <a href="#ContactUs">CONTACT</a>
-            </div>
-          </div>
-          <div className="footer-social">
-            <div className="footer-social-item">
-              <a href="/">
-                <i className="fab fa-instagram" />
-              </a>
-            </div>
-            <div className="footer-social-item">
-              <a href="/">
-                <i className="fab fa-twitter" />
-              </a>
-            </div>
-            <div className="footer-social-item">
-              <a href="/">
-                <i className="fab fa-facebook" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="footer-row-2">
-          <hr id="footer-hr" />
-        </div>
-        <div className="footer-row-3">
-          <div className="footer-rights">
-            © 2018 Creation All Rights Reserved
-          </div>
-          <div className="terms-and-privacy">
-            <div className="footer-privacy-policy">
-              <a href="/">PRIVACY POLICY</a>
-            </div>
-            <div className="footer-terms-of-service">
-              <a href="/">TERMS OF SERVICE</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="footer-component">
+				<div className="footer-component--wrapper">
+					<div className="footer-component--wrapper__top">
+						<div className="footer-component--wrapper__top--logo">
+							<img src={LogoImage} alt="Coding hub logo" />
+							<p>Coding Hub</p>
+						</div>
+						<div className="footer-component--wrapper__top--navigation">
+							<div className="footer-navigation-item">
+								<a href="/#About">ABOUT</a>
+							</div>
+							<div className="footer-navigation-item">
+								<a href="/#OurTeam">TEAM</a>
+							</div>
+							<div className="footer-navigation-item">
+								<a href="/#WhatWeDo">SERVICES</a>
+							</div>
+							<div className="footer-navigation-item">
+								<a href="/#Projects">PROJECTS</a>
+							</div>
+							<div className="footer-navigation-item">
+								<a href="/#ContactUs">CONTACT US</a>
+							</div>
+						</div>
+						<div className="footer-component--wrapper__top--social">
+							<a href="mailto:psu-coders@gmail.com">
+								<img src={Gmail} alt="" />
+							</a>
+							<a href="https://github.com/PSUCoders">
+								<img src={Github} alt="Github logo" />
+							</a>
+							<a href="https://www.linkedin.com/company/coding-hub-suny-plattsburgh/about/">
+								<img src={LinkedIn} alt="Linkedin logo" />
+							</a>
+							<a href="https://www.instagram.com/codinghub_plattsburgh/">
+								<img src={Instagram} alt="Instagram logo" />
+							</a>
+						</div>
+					</div>
+					<div className="footer-component--wrapper__bottom">
+						<span className="copyright">
+							&copy; 2019 Coding Hub All Rights Reserved
+						</span>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Footer;
