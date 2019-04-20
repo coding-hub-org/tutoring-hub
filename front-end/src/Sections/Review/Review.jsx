@@ -18,7 +18,7 @@ class Review extends React.Component {
 			tutor: undefined,
 
 			author: "Anonymous",
-			course: "BIO 102",
+			course: undefined,
 			content: undefined,
 			methodology: undefined,
 			organization: undefined,
@@ -57,7 +57,8 @@ class Review extends React.Component {
 			clarity,
 			knowlege,
 			bookAgain
-		} = this.state;
+        } = this.state;
+        
 		if (
 			author &&
 			course &&
@@ -152,9 +153,36 @@ class Review extends React.Component {
 		this.setState({
 			bookAgain: value
 		});
-	};
+    };
+    
+    handleChangeCourse = (e) => {
+        const value = e.target.value;
+        this.setState({
+            course: value
+        })
+    }
 
 	render() {
+        if (this.state.loading){
+            return (
+                <div className={"tutors-component--loading"}>
+                    <img src={loadingIcon} alt="" />
+                </div>
+            )
+        }
+        
+        const courses_list = this.state.tutor.courses.map((course) => 
+            <div className="review-section--tutored-class">
+                <input
+                    type="radio"
+                    className={"option-input radio"}
+                    value={course}
+                    name={"tutored-course"}
+				/>
+
+				<label>{course}</label>
+            </div>
+        )
 
 		return (
 			<div className={"review-section"}>
@@ -192,10 +220,7 @@ class Review extends React.Component {
 						<Subheading title={"About your session"} />
 						<div>
 							<p>Would you book this tutor again? </p>
-							<div
-								onChange={this.handleChange}
-								className={"review-section--bookagain"}
-							>
+							<div onChange={this.handleChange} className={"review-section--bookagain"}>
 								<input
 									type="radio"
 									className={"option-input radio"}
@@ -213,6 +238,9 @@ class Review extends React.Component {
 							</div>
 						</div>
 						<p>Class tutored </p>
+                        <div onChange={this.handleChangeCourse} className={"review-section--tutored-classes"}>
+                            {courses_list}
+                        </div>
 						<Subheading title={"Comments"} />
 						<textarea
 							onChange={this.handleComment}
