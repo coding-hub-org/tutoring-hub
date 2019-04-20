@@ -130,12 +130,11 @@ class Profile extends Component {
 							<div className={"profile-section--wrapper__reviews"}>
 								<Subheading title={"Reviews:"} />
 								<Link
-									to={`${window.location.pathname}/rate`}
+									to={`/tutors/${this.state.tutor._id}/rate`}
 									onClick={() => {
 										document.getElementById("navbar").scrollIntoView();
 									}}
 								>
-									{" "}
 									REVIEW {this.getName().toUpperCase()}
 								</Link>
 							</div>
@@ -143,8 +142,7 @@ class Profile extends Component {
 								<div className={"profile-section--wrapper__no-reviews"}>
 									<img src={NoReviews} alt="" />
 									<h3>
-										{this.getName().substring(0, this.getName().indexOf(" "))}{" "}
-										doesn't have any reviews yet. Be the first to review
+										{this.state.tutor.firstName} doesn't have any reviews yet. Be the first to review
 									</h3>
 								</div>
 								:
