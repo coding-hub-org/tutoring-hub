@@ -1,5 +1,6 @@
 import React from "react";
 import "./Review.css";
+import loadingIcon from "../../Assets/loading-icon.png";
 
 import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
@@ -8,17 +9,42 @@ import Subheading from "../../Components/Subheading/Subheading";
 // import Course from '../../Components/Course/Course';
 
 class Review extends React.Component {
-	state = {
-		author: "Anonymous",
-		course: "BIO 102",
-		content: undefined,
-		methodology: undefined,
-		organization: undefined,
-		preparation: undefined,
-		clarity: undefined,
-		knowlege: undefined,
-		bookAgain: undefined
-	};
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			loading: true,
+			tutor: undefined,
+
+			author: "Anonymous",
+			course: "BIO 102",
+			content: undefined,
+			methodology: undefined,
+			organization: undefined,
+			preparation: undefined,
+			clarity: undefined,
+			knowlege: undefined,
+			bookAgain: undefined
+		};
+	}
+
+	componentDidMount() {
+		window.scrollTo(0, 0);
+
+		fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""))
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					tutor: data,
+					loading: false,
+				});
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
 
 	handleClick = () => {
 		const {
@@ -57,20 +83,28 @@ class Review extends React.Component {
 					knowlege: knowlege
 				}
 			};
-			fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
-				method: "PUT",
-				body: JSON.stringify(data), // data can be `string` or {object}!
-				headers: {
-					"Content-Type": "application/json"
-				}
-			})
-				.then(res => res.json())
-				.then(response => {
-					console.log("Success");
-					document.getElementById("navbar").scrollIntoView();
-					window.location.href = "/";
+
+			let updatedTutor = this.state.tutor;
+			updatedTutor.reviews.push(data);
+
+			this.setState({
+				tutor: updatedTutor
+			}, function () {
+				fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
+					method: "PUT",
+					body: JSON.stringify(this.state.tutor),
+					headers: {
+						"Content-Type": "application/json"
+					}
 				})
-				.catch(error => console.error("Error:", error));
+					.then(res => res.json())
+					.then(response => {
+						console.log("Success");
+						document.getElementById("navbar").scrollIntoView();
+						window.location.href = "/";
+					})
+					.catch(error => console.error("Error:", error));
+			});
 		} else {
 			console.log("ERROR", this.state);
 		}
@@ -121,58 +155,72 @@ class Review extends React.Component {
 	};
 
 	render() {
+
 		return (
 			<div className={"review-section"}>
 				<NavBar />
-				<div className={"review-section--wrapper"}>
-					<Title title={"Rate Gaurav"} />
 
-					<QuestionTile
-						parameter={"methodology"}
-						updateStats={this.updateStats}
-					/>
-					<QuestionTile
-						parameter={"organization"}
-						updateStats={this.updateStats}
-					/>
-					<QuestionTile
-						parameter={"preparation"}
-						updateStats={this.updateStats}
-					/>
-					<QuestionTile parameter={"clarity"} updateStats={this.updateStats} />
-					<QuestionTile parameter={"knowlege"} updateStats={this.updateStats} />
-
-					<Subheading title={"About your session"} />
-					<div>
-						<p>Would you book this tutor again? </p>
-						<div
-							onChange={this.handleChange}
-							className={"review-section--bookagain"}
-						>
-							<input
-								type="radio"
-								className={"option-input radio"}
-								value="yes"
-								name={"book-again"}
+				{this.state.loading ?
+					<div className="review-section--wrapper">
+						<div className="review-section--wrapper-load">
+							<img
+								className={"review-section--wrapper__loading"}
+								src={loadingIcon}
+								alt=""
 							/>
-							<label>YES</label>
-							<input
-								type="radio"
-								className={"option-input radio"}
-								value="no"
-								name={"book-again"}
-							/>
-							<label>NO</label>
 						</div>
 					</div>
-					<p>Class tutored </p>
-					<Subheading title={"Comments"} />
-					<textarea
-						onChange={this.handleComment}
-						placeholder={"How was your session? Help this tutor to improve "}
-					/>
-					<button onClick={this.handleClick}>SUBMIT REVIEW</button>
-				</div>
+					:
+					<div className={"review-section--wrapper"}>
+						<Title title={"Rate " + this.state.tutor.firstName} />
+
+						<QuestionTile
+							parameter={"methodology"}
+							updateStats={this.updateStats}
+						/>
+						<QuestionTile
+							parameter={"organization"}
+							updateStats={this.updateStats}
+						/>
+						<QuestionTile
+							parameter={"preparation"}
+							updateStats={this.updateStats}
+						/>
+						<QuestionTile parameter={"clarity"} updateStats={this.updateStats} />
+						<QuestionTile parameter={"knowlege"} updateStats={this.updateStats} />
+
+						<Subheading title={"About your session"} />
+						<div>
+							<p>Would you book this tutor again? </p>
+							<div
+								onChange={this.handleChange}
+								className={"review-section--bookagain"}
+							>
+								<input
+									type="radio"
+									className={"option-input radio"}
+									value="yes"
+									name={"book-again"}
+								/>
+								<label>YES</label>
+								<input
+									type="radio"
+									className={"option-input radio"}
+									value="no"
+									name={"book-again"}
+								/>
+								<label>NO</label>
+							</div>
+						</div>
+						<p>Class tutored </p>
+						<Subheading title={"Comments"} />
+						<textarea
+							onChange={this.handleComment}
+							placeholder={"How was your session? Help this tutor to improve "}
+						/>
+						<button onClick={this.handleClick}>SUBMIT REVIEW</button>
+					</div>
+				}
 			</div>
 		);
 	}
