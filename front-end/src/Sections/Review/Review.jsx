@@ -18,7 +18,7 @@ class Review extends React.Component {
 			tutor: undefined,
 
 			author: "Anonymous",
-			course: undefined,
+			course: "BIO 102",
 			content: undefined,
 			methodology: undefined,
 			organization: undefined,
