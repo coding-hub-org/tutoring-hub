@@ -5,22 +5,46 @@ import NavBar from '../../Components/NavBar/NavBar';
 import Title from '../../Components/Title/Title';
 import QuestionTile from '../../Components/QuestionTile/QuestionTile';
 import Subheading from '../../Components/Subheading/Subheading';
+import loadingIcon from '../../Assets/loading-icon.png';
 // import Course from '../../Components/Course/Course';
 
 class Review extends React.Component {
 
-    state = {
-        author: "Anonymous",
-        course: "BIO 102",
-        content: undefined,
-        methodology: undefined,
-        organization: undefined,
-        preparation: undefined,
-        clarity: undefined,
-        knowlege: undefined,
-        bookAgain: undefined,
-    }
+	constructor(props){
+		super(props);
+		this.state = {
+			author: "Anonymous",
+			course: undefined,
+			content: undefined,
+			methodology: undefined,
+			organization: undefined,
+			preparation: undefined,
+			clarity: undefined,
+			knowlege: undefined,
+			bookAgain: undefined,
+			data: undefined,
+			isLoading: true,
+		};
+	}
 
+	componentDidMount(){
+		var courses_path = window.location.pathname;
+        courses_path = '/api/v1' + courses_path.replace('/rate', '');
+		fetch(courses_path, {
+			method: "GET",
+			headers: {
+				"Accept": 'application/json',
+				'Content-Type': 'application/json',
+			}
+		})
+			.then(response => response.json())
+			.then(data => {
+				this.setState({
+					data: data,
+					isLoading: false,
+				})
+			})
+	}
 
     handleClick = () => {
         
@@ -49,7 +73,7 @@ class Review extends React.Component {
             }).then(res => res.json())
             .then(response => {
                 console.log('Success');
-                document.getElementById("navbar").scrollIntoView();
+            	document.getElementById("navbar").scrollIntoView();
                 window.location.href = "/";
             })
             .catch(error => console.error('Error:', error));
@@ -99,15 +123,40 @@ class Review extends React.Component {
         this.setState({
             bookAgain: value
         });    
-    }
+	}
+	
+	handleChangeCourse = (e) => {
+		const value = e.target.value;
+		this.setState({
+			course: value
+		})
+	}
     
     render() {
-        
+		if (this.state.isLoading) {
+			return (
+				<div className={"tutors-component--loading"}>
+					<img src={loadingIcon} alt="" />
+				</div>
+			)
+		}
+
+		const courses_list = this.state.data.courses.map((course) =>
+			<div className="review-section--tutored-class">
+				<input type="radio" className={"option-input radio"} value={course} name="tutored-course" key={course}/>
+				<label>
+					{course}
+				</label>
+			</div>
+		);
+
+		const title = "Rate " + this.state.data.firstName;
+
         return(
             <div className={'review-section'}>
                 <NavBar/>  
                 <div className={'review-section--wrapper'}>
-                    <Title title={'Rate Gaurav'}/>
+                    <Title title={title}/>
 
                     <QuestionTile parameter={"methodology"} updateStats={this.updateStats} />
                     <QuestionTile parameter={"organization"} updateStats={this.updateStats} />
@@ -130,7 +179,12 @@ class Review extends React.Component {
                         </div>
                 
                     </div>
-                    <p>Class tutored </p>
+					<div>
+						<p>Class tutored </p>
+						<div onChange={this.handleChangeCourse} className="review-section--tutored-classes">
+							{courses_list}
+						</div>
+					</div>
                     <Subheading title={'Comments'}/>
                     <textarea onChange={this.handleComment} placeholder={"How was your session? Help this tutor to improve "}></textarea>
                     <button onClick={this.handleClick}>SUBMIT REVIEW</button>

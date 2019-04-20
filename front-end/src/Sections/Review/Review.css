@@ -57,6 +57,24 @@
     margin-right: 10px;
 }
 
+.review-section .review-section--tutored-classes {
+    display: flex;
+    align-items: center;
+}
+
+.review-section .review-section--tutored-class {
+    display: flex;
+    align-items: center;
+}
+
+.review-section--tutored-class > label {
+    padding-right: 20px;
+}
+
+.review-section--tutored-class > input {
+    margin-right: 10px;
+}
+
 @media(max-width:750px){
     .review-section .review-section--bookagain > label{
         font-size: 11px;
