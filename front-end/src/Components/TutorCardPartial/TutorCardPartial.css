@@ -51,6 +51,20 @@
 .Tutor-Card-Partial-Component .content .bio {
   color: #777777;
   font-size: 1em;
+
+  list-style-type: none;
+  display: inline-block;
+}
+
+.Tutor-Card-Partial-Component .content .bio li {
+  width: fit-content;
+	padding: 10px 20px;
+	margin: 10px;
+  float: left;
+  
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
 }
 
 

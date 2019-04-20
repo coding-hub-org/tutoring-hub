@@ -25,15 +25,20 @@ class TutorCardPartial extends Component {
     }
 
     render() {
+        console.log(this.props.tutor);
+        const courses_list = this.props.tutor.courses.map((course) =>
+            <li>{course}</li>
+        )
+
         return (
             <div className={"Tutor-Card-Partial-Component"}>
                 <img src={this.props.tutor.imageUrl} alt={"Image of " + this.getFullName()} />
 
                 <div className={"content"}>
                     <p className="full-name">{this.getFullName()}</p>
-                    <p className="bio">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eum, quam facilis dicta provident illum consequuntur modi, non minima quia soluta repellat? Odio dignissimos quod beatae velit reiciendis error obcaecati!
-                    </p>
+                    <div className="bio">
+                        {courses_list}
+                    </div>
 
                     <div className="bottom">
                         <Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
