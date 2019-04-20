@@ -148,7 +148,7 @@ class Profile extends Component {
 									</h3>
 								</div>
 								:
-								<ReviewCard reviews={this.state.tutor.reviews} />
+								<ReviewCard tutor={this.state.tutor} />
 							}
 						</div>
 					)}
