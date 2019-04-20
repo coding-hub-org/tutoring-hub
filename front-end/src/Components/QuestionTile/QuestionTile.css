@@ -1,5 +1,7 @@
 .questiontile-component {
     margin-bottom: 20px;
+
+    text-transform: capitalize;
 }
 
 .questiontile-component .questiontile-component--wrapper {
