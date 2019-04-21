@@ -154,7 +154,7 @@ class Tutors extends Component {
 						<TutorCards tutors={this.state.tutors} />
 					)}
 
-					<AddTutorBox />
+					{/* <AddTutorBox /> */}
 				</div>
 			</div>
 		);
