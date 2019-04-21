@@ -1,11 +1,14 @@
 .Filters {
     margin: 1em 0;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .Filters select {
-    background-color: #FFFFFF;
-    border: 1px solid #B9C6E0;
-    caret-color: #B9C6E0;
+    background-color: #ffffff;
+    border: 1px solid #b9c6e0;
+    caret-color: #b9c6e0;
 
     /* margin: 0 1em; */
     padding: 0.5em 1em;
@@ -24,4 +27,20 @@
 
 .Filters * {
     display: inline-block;
+}
+
+.Filters > div:nth-child(2n + 2) {
+    width: 850px;
+}
+
+@media (max-width: 1700px) {
+    .Filters > div:nth-child(2n + 2) {
+        width: 600px;
+    }
+}
+
+@media (max-width: 1350px) {
+    .Filters > div:nth-child(2n + 2) {
+        width: 400px;
+    }
 }
