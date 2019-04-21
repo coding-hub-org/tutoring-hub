@@ -10,24 +10,24 @@ class TutorCardPartial extends Component {
 		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
 	}
 
-    getAvg = (ratings) => {
-        let rating = 0, total, obj;
+	getAvg = (ratings) => {
+		let rating = 0, total, obj;
 
-        if (ratings.length === 0) return -1;
-        ratings.forEach(review => {
-            obj = review.statistics;
-            total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
-            rating += total;
-        });
+		if (ratings.length === 0) return -1;
+		ratings.forEach(review => {
+			obj = review.statistics;
+			total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+			rating += total;
+		});
 
-        return rating / ratings.length;
-    }
+		return rating / ratings.length;
+	}
 
 	render() {
-		console.log(this.props.tutor);
+		// console.log(this.props.tutor);
 		const courses_list = this.props.tutor.courses
 			.slice(0, 7)
-			.map(course => <li>{course}</li>);
+			.map((course, index) => <li key={"tutor-" + index}>{course}</li>);
 
 		return (
 			<div className={"Tutor-Card-Partial-Component"}>
@@ -51,8 +51,8 @@ class TutorCardPartial extends Component {
 							{this.getAvg(this.props.tutor.reviews) === -1 ? (
 								<span>N/A</span>
 							) : (
-								<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
-							)}
+									<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
+								)}
 							<img src={starRating} alt="star rating" />
 						</span>
 					</div>
