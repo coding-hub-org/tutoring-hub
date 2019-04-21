@@ -1,16 +1,16 @@
-import React from 'react';
-import './Stats.css';
+import React from "react";
+import "./Stats.css";
 
 // Import components
 
-const Stats = ({reviews}) => {
+const Stats = ({ reviews }) => {
     let stats = {
-        "methodology": 0,
-        "organization": 0,
-        "preparation": 0,
-        "clarity": 0,
-        "knowlege": 0
-    }
+        methodology: 0,
+        organization: 0,
+        preparation: 0,
+        clarity: 0,
+        knowlege: 0
+    };
 
     const getStats = () => {
         reviews.forEach(review => {
@@ -20,74 +20,88 @@ const Stats = ({reviews}) => {
             stats.clarity += review.statistics.clarity;
             stats.knowlege += review.statistics.knowlege;
         });
-        
+
         for (let key in stats) {
-            stats[key] = (stats[key] / reviews.length).toFixed(2) * 100 / 10;
+            stats[key] = ((stats[key] / reviews.length).toFixed(2) * 100) / 10;
         }
-    }
+    };
 
     getStats();
 
     let methodologyBar = {
-        "width": `${stats.methodology}%`
+        width: `${stats.methodology}%`
     };
 
     let organizationBar = {
-        "width": `${stats.organization}%`
+        width: `${stats.organization}%`
     };
 
     let preparationBar = {
-        "width": `${stats.preparation}%`
+        width: `${stats.preparation}%`
     };
 
     let clarityBar = {
-        "width": `${stats.clarity}%`
+        width: `${stats.clarity}%`
     };
 
     let knowlegeBar = {
-        "width": `${stats.knowlege}%`
+        width: `${stats.knowlege}%`
     };
 
-
-    return(
-        <div className={'stats-component'}>
-            <div className={'stats-component--feature'}>
+    return (
+        <div className={"stats-component"}>
+            <div className={"stats-component--feature"}>
                 <p>Methodology: </p>
-                <div className={'stats-component--feature__wrapper'}>
-                    <div style={methodologyBar} className={'stats-component--feature__progress'}>
-                    </div>
+                <div className={"stats-component--feature__wrapper"}>
+                    <div
+                        style={methodologyBar}
+                        className={"stats-component--feature__progress"}
+                    />
                 </div>
+                <span>{(stats.methodology / 10).toFixed(1)}</span>
             </div>
-            <div className={'stats-component--feature'}>
+            <div className={"stats-component--feature"}>
                 <p>Organization: </p>
-                <div className={'stats-component--feature__wrapper'}>
-                    <div style={organizationBar} className={'stats-component--feature__progress'}>
-                    </div>
+                <div className={"stats-component--feature__wrapper"}>
+                    <div
+                        style={organizationBar}
+                        className={"stats-component--feature__progress"}
+                    />
                 </div>
+                <span>{(stats.organization / 10).toFixed(1)}</span>
             </div>
-            <div className={'stats-component--feature'}>
+            <div className={"stats-component--feature"}>
                 <p>Preparation: </p>
-                <div className={'stats-component--feature__wrapper'}>
-                    <div style={preparationBar} className={'stats-component--feature__progress'}>
-                    </div>
+                <div className={"stats-component--feature__wrapper"}>
+                    <div
+                        style={preparationBar}
+                        className={"stats-component--feature__progress"}
+                    />
                 </div>
+                <span>{(stats.preparation / 10).toFixed(1)}</span>
             </div>
-            <div className={'stats-component--feature'}>
+            <div className={"stats-component--feature"}>
                 <p>Clarity: </p>
-                <div className={'stats-component--feature__wrapper'}>
-                    <div style={clarityBar} className={'stats-component--feature__progress'}>
-                    </div>
+                <div className={"stats-component--feature__wrapper"}>
+                    <div
+                        style={clarityBar}
+                        className={"stats-component--feature__progress"}
+                    />
                 </div>
+                <span>{(stats.clarity / 10).toFixed(1)}</span>
             </div>
-            <div className={'stats-component--feature'}>
+            <div className={"stats-component--feature"}>
                 <p>Knowlege: </p>
-                <div className={'stats-component--feature__wrapper'}>
-                    <div style={knowlegeBar} className={'stats-component--feature__progress'}>
-                    </div>
+                <div className={"stats-component--feature__wrapper"}>
+                    <div
+                        style={knowlegeBar}
+                        className={"stats-component--feature__progress"}
+                    />
                 </div>
+                <span>{(stats.knowlege / 10).toFixed(1)}</span>
             </div>
         </div>
     );
-}
+};
 
 export default Stats;

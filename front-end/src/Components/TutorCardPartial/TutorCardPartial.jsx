@@ -5,30 +5,23 @@ import { Link } from "react-router-dom";
 import starRating from "../../Assets/rating-star.svg";
 
 class TutorCardPartial extends Component {
+
 	getFullName() {
 		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
 	}
 
-	getAvg = ratings => {
-		let rating = 0,
-			total,
-			obj;
+    getAvg = (ratings) => {
+        let rating = 0, total, obj;
 
-		if (ratings.length === 0) return -1;
-		ratings.forEach(review => {
-			obj = review.statistics;
-			total =
-				(obj.methodology +
-					obj.organization +
-					obj.preparation +
-					obj.knowlege +
-					obj.clarity) /
-				5;
-			rating += total;
-		});
+        if (ratings.length === 0) return -1;
+        ratings.forEach(review => {
+            obj = review.statistics;
+            total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+            rating += total;
+        });
 
-		return rating / ratings.length;
-	};
+        return rating / ratings.length;
+    }
 
 	render() {
 		console.log(this.props.tutor);
