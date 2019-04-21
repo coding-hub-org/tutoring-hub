@@ -2,43 +2,46 @@
 
 ![Example image of Tutoring Hub](http://i.imgur.com/2bgyx0o.png)
 
-## Set up workspace
+## How to run locally
 
-Essentially, there are 2 NodeJS projects in this repository. Treat each as its own, with its own commands and its own file structures. 
+### Pre-requisites
+* You must have NodeJS & NPM installed
+* You must have enough disk space for the project (~1GB from react libs)
+* You must have a mongodb server, either local or hosted works. You can get one for free from [here](https://cloud.mongodb.com/).
+* You must have an image CDN to host the tutor images. We use [Cloudinary](https://cloudinary.com/) and the project may not work with other CDNs.
 
-### Linux
+### Setting up the workspace
 
-1. `git clone git@github.com:PSUCoders/tutoring-hub.git && cd tutoring-hub`
-2. `cd front-end && npm install`
-3. `cd ../back-end && npm install`
+1. Download the latest version of the repo and enter the directory
 
-### Windows (Powershell)
+2. Run the setup.sh script (works fine bash or batch, powershell soon) or run the following:
 
-1. `git clone git@github.com:PSUCoders/tutoring-hub.git | cd tutoring-hub/`
-2. `cd front-end/ | npm install`
-3. `cd ../back-end/ | npm install`
+#### Bash/Batch
 
-## How to run
+```
+git clone git@github.com:PSUCoders/tutoring-hub.git && cd tutoring-hub
+cd front-end && npm install
+cd ../back-end && npm install
+```
 
-This project uses a RESTful NodeJS backend with a ReactJS frontend. To run the project, you must run one instance of the backend and another instance of the frontend.
+#### Powershell
 
-### Linux
+```
+git clone git@github.com:PSUCoders/tutoring-hub.git | cd tutoring-hub/
+cd front-end/ | npm install
+cd ../back-end/ | npm install
+```
 
-(From the root folder)
+3. Start the project
 
-`cd back-end && npm start`
+This project uses a RESTful NodeJS backend with a ReactJS frontend. To run the project, you must run one instance of the backend and another instance of the frontend. (In other words, 2 terminals)
 
-(In another instance, from the root folder)
+```bash
+# From the root dir
+cd backend && npm start
+```
 
-`cd front-end && npm start`
-
-
-### Windows (Powershell)
-
-(From the root folder)
-
-`cd back-end/ | npm start`
-
-(In another instance, from the root folder)
-
-`cd front-end/ | npm start`
+```bash
+# From the root dir, in another terminal
+cd frontend && npm start
+```
