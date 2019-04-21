@@ -4,8 +4,10 @@ import loadingIcon from "../../Assets/loading-icon.png";
 
 import NavBar from "../../Components/NavBar/NavBar";
 import Title from "../../Components/Title/Title";
-import QuestionTile from "../../Components/QuestionTile/QuestionTile";
+import ScaleInput from "../../Components/ScaleInput/ScaleInput";
+import YesNoInput from "../../Components/YesNoInput/YesNoInput";
 import Subheading from "../../Components/Subheading/Subheading";
+import CourseInput from "../../Components/CourseInput/CourseInput";
 // import Course from '../../Components/Course/Course';
 
 class Review extends React.Component {
@@ -18,15 +20,26 @@ class Review extends React.Component {
 			tutor: undefined,
 
 			author: "Anonymous",
+
 			course: undefined,
+
 			content: undefined,
+
 			methodology: undefined,
 			organization: undefined,
 			preparation: undefined,
 			clarity: undefined,
-			knowlege: undefined,
+			knowledge: undefined,
+
 			bookAgain: undefined
 		};
+
+		this.onStatUpdate = this.onStatUpdate.bind(this);
+		this.onBookAgainUpdate = this.onBookAgainUpdate.bind(this);
+		this.onCourseTutoredUpdate = this.onCourseTutoredUpdate.bind(this);
+
+		this.validateForm = this.validateForm.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	componentDidMount() {
@@ -41,106 +54,162 @@ class Review extends React.Component {
 				});
 			})
 			.catch(error => {
-				console.log(error);
+				console.debug(error);
 			});
 	}
 
 
-	handleClick = () => {
-		const {
-			author,
-			course,
-			content,
-			methodology,
-			organization,
-			preparation,
-			clarity,
-			knowlege,
-			bookAgain
-        } = this.state;
-        
-		if (
-			author &&
-			course &&
-			content &&
-			methodology &&
-			organization &&
-			preparation &&
-			clarity &&
-			knowlege &&
-			bookAgain !== undefined
-		) {
-			// const url = this.props.match.url;
+	validateForm(callback) {
+
+		if (!this.state.course) {
+			let msg = (`The course tutored must be selected!`);
+			callback(msg);
+			return;
+		}
+
+		if (!this.state.methodology) {
+			let msg = (`A rating for methodology must be given!`);
+			callback(msg);
+			return;
+		}
+		if (!this.state.organization) {
+			let msg = (`A rating for organization must be given!`);
+			callback(msg);
+			return;
+		}
+		if (!this.state.preparation) {
+			let msg = (`A rating for preparation must be given!`);
+			callback(msg);
+			return;
+		}
+		if (!this.state.clarity) {
+			let msg = (`A rating for clarity must be given!`);
+			callback(msg);
+			return;
+		}
+		if (!this.state.knowledge) {
+			let msg = (`A rating for knowledge must be given!`);
+			callback(msg);
+			return;
+		}
+
+		if (this.state.bookAgain === undefined) {
+			let msg = (`A selection for booking again must be given!`);
+			callback(msg);
+			return;
+		}
+
+		callback();
+	}
+
+
+	handleSubmit = () => {
+		let self = this;
+		this.validateForm(function (err) {
+			if (err) {
+				alert(err);
+				return;
+			}
+
 			const data = {
-				author: author,
-				course: course,
-				content: content,
-				bookAgain: bookAgain,
+				author: self.state.author,
+				course: self.state.course,
+				content: self.state.content,
+				bookAgain: self.state.ookAgain,
 				statistics: {
-					methodology: methodology,
-					organization: organization,
-					preparation: preparation,
-					clarity: clarity,
-					knowlege: knowlege
+					methodology: self.state.methodology,
+					organization: self.state.organization,
+					preparation: self.state.preparation,
+					clarity: self.state.clarity,
+					knowledge: self.state.knowledge
 				}
 			};
 
-			let updatedTutor = this.state.tutor;
+			let updatedTutor = self.state.tutor;
 			updatedTutor.reviews.push(data);
 
-			this.setState({
+			self.setState({
 				tutor: updatedTutor
 			}, function () {
 				fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
 					method: "PUT",
-					body: JSON.stringify(this.state.tutor),
+					body: JSON.stringify(self.state.tutor),
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
 					.then(res => res.json())
 					.then(response => {
-						console.log("Success");
+						console.debug("Success");
 						document.getElementById("navbar").scrollIntoView();
 						window.location.href = "/";
 					})
 					.catch(error => console.error("Error:", error));
 			});
-		} else {
-			console.log("ERROR", this.state);
-		}
+		});
 	};
 
-	updateStats = score => {
-		const cathegory = score.target.name;
-		switch (cathegory) {
+	onStatUpdate(elementName, value) {
+		switch (elementName.toLowerCase()) {
+			default:
+				break;
 			case "methodology":
 				this.setState({
-					methodology: Number(score.target.value)
+					methodology: value !== -1 ? Number(value) : undefined
 				});
 				break;
 			case "organization":
 				this.setState({
-					organization: Number(score.target.value)
+					organization: value !== -1 ? Number(value) : undefined
 				});
 				break;
 			case "preparation":
 				this.setState({
-					preparation: Number(score.target.value)
+					preparation: value !== -1 ? Number(value) : undefined
 				});
 				break;
 			case "clarity":
 				this.setState({
-					clarity: Number(score.target.value)
+					clarity: value !== -1 ? Number(value) : undefined
 				});
 				break;
-			default:
+			case "knowledge":
 				this.setState({
-					knowlege: score.target.value
+					knowledge: value !== -1 ? Number(value) : undefined
 				});
 				break;
 		}
-	};
+		console.debug(`Updated stat: ${elementName} to ${value}`);
+	}
+
+	onBookAgainUpdate(elementName) {
+		if (elementName) {
+			const value = elementName.toLowerCase() === "yes" ? true : false;
+			this.setState({
+				bookAgain: value
+			});
+		}
+		else {
+			this.setState({
+				bookAgain: undefined
+			});
+		}
+		console.debug(`Book again is now: ${elementName}`);
+	}
+
+	onCourseTutoredUpdate(elementName) {
+		if (elementName) {
+			this.setState({
+				course: elementName
+			});
+		}
+		else {
+			this.setState({
+				course: undefined
+			});
+		}
+		console.debug(`Course tutored is now: ${elementName}`);
+	}
 
 	handleComment = e => {
 		this.setState({
@@ -153,36 +222,16 @@ class Review extends React.Component {
 		this.setState({
 			bookAgain: value
 		});
-    };
-    
-    handleChangeCourse = (e) => {
-        const value = e.target.value;
-        this.setState({
-            course: value
-        })
-    }
+	};
 
 	render() {
-        if (this.state.loading){
-            return (
-                <div className={"tutors-component--loading"}>
-                    <img src={loadingIcon} alt="" />
-                </div>
-            )
-        }
-        
-        const courses_list = this.state.tutor.courses.map((course) => 
-            <div className="review-section--tutored-class">
-                <input
-                    type="radio"
-                    className={"option-input radio"}
-                    value={course}
-                    name={"tutored-course"}
-				/>
-
-				<label>{course}</label>
-            </div>
-        )
+		if (this.state.loading) {
+			return (
+				<div className={"tutors-component--loading"}>
+					<img src={loadingIcon} alt="" />
+				</div>
+			)
+		}
 
 		return (
 			<div className={"review-section"}>
@@ -202,51 +251,59 @@ class Review extends React.Component {
 					<div className={"review-section--wrapper"}>
 						<Title title={"Rate " + this.state.tutor.firstName} />
 
-						<QuestionTile
+						<ScaleInput
 							parameter={"methodology"}
-							updateStats={this.updateStats}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
 						/>
-						<QuestionTile
+						<ScaleInput
 							parameter={"organization"}
-							updateStats={this.updateStats}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
 						/>
-						<QuestionTile
+						<ScaleInput
 							parameter={"preparation"}
-							updateStats={this.updateStats}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
 						/>
-						<QuestionTile parameter={"clarity"} updateStats={this.updateStats} />
-						<QuestionTile parameter={"knowlege"} updateStats={this.updateStats} />
+						<ScaleInput
+							parameter={"clarity"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
+						<ScaleInput
+							parameter={"knowledge"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
 
 						<Subheading title={"About your session"} />
 						<div>
 							<p>Would you book this tutor again? </p>
-							<div onChange={this.handleChange} className={"review-section--bookagain"}>
-								<input
-									type="radio"
-									className={"option-input radio"}
-									value="yes"
-									name={"book-again"}
-								/>
-								<label>YES</label>
-								<input
-									type="radio"
-									className={"option-input radio"}
-									value="no"
-									name={"book-again"}
-								/>
-								<label>NO</label>
-							</div>
+							<YesNoInput
+								choices={["yes", "no"]}
+								onChange={this.onBookAgainUpdate}
+							/>
 						</div>
-						<p>Class tutored </p>
-                        <div onChange={this.handleChangeCourse} className={"review-section--tutored-classes"}>
-                            {courses_list}
-                        </div>
+
+						<Subheading title={"Class Tutored"} />
+						<CourseInput
+							choices={this.state.tutor.courses}
+							onChange={this.onCourseTutoredUpdate}
+						/>
+
 						<Subheading title={"Comments"} />
 						<textarea
 							onChange={this.handleComment}
 							placeholder={"How was your session? Help this tutor to improve "}
 						/>
-						<button onClick={this.handleClick}>SUBMIT REVIEW</button>
+
+						<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
 					</div>
 				}
 			</div>
