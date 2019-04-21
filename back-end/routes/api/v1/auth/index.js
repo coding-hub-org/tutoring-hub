@@ -3,16 +3,19 @@ const router = express.Router({
     mergeParams: true
 });
 
-// const display = require('./display');
-// const update = require('./update');
-// const create = require('./create');
-// const remove = require('./remove');
-// const all = require('./all');
+router.get('/', function (req, res, next) {
+    res.send("This is where we check if the user is authenticated");
+});
 
-// router.get('/:tutorID', display);
-// router.put('/:tutorID', update);
-// router.post('/create', create);
-// router.post('/remove/:tutorID', remove);
-// router.get('/', all);
+router.post('/', function (req, res, next) {
+    res.json(req.body);
+});
+
+
+
+router.post('/google', function (req, res, next) {
+    
+});
+
 
 module.exports = router;

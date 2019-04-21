@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
 import Contact from "../Contact/Contact";
+import UserBox from "../UserBox/UserBox";
 
 import tutoringHubLogo from "../../Assets/tutoring-hub-logo.png";
 
@@ -17,7 +18,8 @@ const NavBar = (props) => {
         {props.searchable &&
           <SearchBar handleSearch={props.handleSearch} />
         }
-        <Contact />
+        {/* <Contact /> */}
+        <UserBox />
       </div>
     </nav>
   );
