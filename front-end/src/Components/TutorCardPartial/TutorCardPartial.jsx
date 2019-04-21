@@ -25,9 +25,8 @@ class TutorCardPartial extends Component {
     }
 
     render() {
-        console.log(this.props.tutor);
-        const courses_list = this.props.tutor.courses.map((course) =>
-            <li>{course}</li>
+        const courses_list = this.props.tutor.courses.map((course, index) =>
+            <li key={index}>{course}</li>
         )
 
         return (
