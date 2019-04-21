@@ -1,37 +1,11 @@
-@media only screen and (min-width: 1400px) {
-    .Tutor-Cards-Component {
-        display: grid;
-
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-column-gap: 25px;
-        grid-row-gap: 25px;
-    }
-}
-
-@media only screen and (max-width: 1400px) {
-    .Tutor-Cards-Component {
-        display: grid;
-
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 25px;
-        grid-row-gap: 25px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .Tutor-Cards-Component {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 25px;
-        grid-row-gap: 25px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .Tutor-Cards-Component {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-column-gap: 25px;
-        grid-row-gap: 25px;
-    }
+.Tutor-Cards-Component {
+	list-style-type: none;
+	padding: 0;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+	grid-gap: 2.2rem;
 }

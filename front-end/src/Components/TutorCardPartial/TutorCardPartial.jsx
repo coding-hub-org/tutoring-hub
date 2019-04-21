@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import './TutorCardPartial.css';
+import React, { Component } from "react";
+import "./TutorCardPartial.css";
 
-import { Link } from 'react-router-dom';
-import starRating from '../../Assets/rating-star.svg';
+import { Link } from "react-router-dom";
+import starRating from "../../Assets/rating-star.svg";
 
 class TutorCardPartial extends Component {
 
-    getFullName() {
-        return this.props.tutor.firstName + " " + this.props.tutor.lastName;
-    }
-
+	getFullName() {
+		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
+	}
 
     getAvg = (ratings) => {
         let rating = 0, total, obj;
@@ -24,38 +23,43 @@ class TutorCardPartial extends Component {
         return rating / ratings.length;
     }
 
-    render() {
-        const courses_list = this.props.tutor.courses.map((course, index) =>
-            <li key={index}>{course}</li>
-        )
+	render() {
+		console.log(this.props.tutor);
+		const courses_list = this.props.tutor.courses
+			.slice(0, 7)
+			.map(course => <li>{course}</li>);
 
-        return (
-            <div className={"Tutor-Card-Partial-Component"}>
-                <img src={this.props.tutor.imageUrl} alt={"Image of " + this.getFullName()} />
+		return (
+			<div className={"Tutor-Card-Partial-Component"}>
+				<img
+					src={this.props.tutor.imageUrl}
+					alt={"Image of " + this.getFullName()}
+				/>
 
-                <div className={"content"}>
-                    <p className="full-name">{this.getFullName()}</p>
-                    <div className="bio">
-                        {courses_list}
-                    </div>
+				<div className={"content"}>
+					<p className="full-name">{this.getFullName()}</p>
+					<div className="bio">
+						{courses_list}
+						{this.props.tutor.courses.length > 7
+							? "+" + (this.props.tutor.courses.length - 7).toString()
+							: ""}
+					</div>
 
-                    <div className="bottom">
-                        <Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
-                        <span className="rating">
-                            {
-                                (this.getAvg(this.props.tutor.reviews) === -1) ?
-                                    <span>N/A</span>
-                                    :
-                                    <span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
-                            }
-                            <img src={starRating} alt="star rating" />
-                        </span>
-                    </div>
-                </div>
-            </div>
-        );
-
-    }
+					<div className="bottom">
+						<Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
+						<span className="rating">
+							{this.getAvg(this.props.tutor.reviews) === -1 ? (
+								<span>N/A</span>
+							) : (
+								<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
+							)}
+							<img src={starRating} alt="star rating" />
+						</span>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default TutorCardPartial;
