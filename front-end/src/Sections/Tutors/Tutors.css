@@ -44,3 +44,30 @@
         width: 400px;
     }
 }
+
+@media (max-width: 1150px) {
+    .Filters > div:nth-child(2n + 2) {
+        width: 700px;
+    }
+
+    .Filters {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .Filters > div {
+        display: block;
+    }
+}
+
+@media (max-width: 850px) {
+    .Filters > div:nth-child(2n + 2) {
+        width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .Filters > div:nth-child(2n + 2) {
+        width: 350px;
+    }
+}
