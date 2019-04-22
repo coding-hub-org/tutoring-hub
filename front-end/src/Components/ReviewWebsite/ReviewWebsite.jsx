@@ -3,7 +3,9 @@ import './ReviewWebsite.css';
 
 const ReviewWebsiteButton = () => {
     return (
-        <a className="review-website" href="https://forms.gle/kC1egakNaZScDtsr5">REVIEW</a>
+        <button className="review-website">
+            <a href="https://forms.gle/kC1egakNaZScDtsr5" target="_blank">REVIEW</a>
+        </button>
     )
 };
 
