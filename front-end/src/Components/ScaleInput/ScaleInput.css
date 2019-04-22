@@ -1,9 +1,9 @@
-.QuestionTile-component {
+.ScaleInput-component {
   margin-bottom: 20px;
   text-transform: capitalize;
 }
 
-.QuestionTile-component .QuestionTile-component--wrapper {
+.ScaleInput-component .ScaleInput-component--wrapper {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   align-items: center;
@@ -94,7 +94,7 @@
     height: 25px;
     width: 25px;
   }
-  .QuestionTile-component .QuestionTile-component--wrapper>span>label {
+  .ScaleInput-component .ScaleInput-component--wrapper>span>label {
     font-size: 12px;
   }
 }
@@ -108,22 +108,22 @@
     height: 15px;
     width: 15px;
   }
-  .QuestionTile-component .QuestionTile-component--wrapper {
+  .ScaleInput-component .ScaleInput-component--wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
   }
-  .QuestionTile-component .QuestionTile-component--wrapper>input {
+  .ScaleInput-component .ScaleInput-component--wrapper>input {
     /* display: block; */
   }
-  .QuestionTile-component .QuestionTile-component--wrapper>span {
+  .ScaleInput-component .ScaleInput-component--wrapper>span {
     /* display: inline-block; */
   }
 }
 
 @media(max-width:475px) {
-  .QuestionTile-component .QuestionTile-component--wrapper {
+  .ScaleInput-component .ScaleInput-component--wrapper {
     grid-column-gap: 2px;
   }
 }
@@ -133,7 +133,7 @@
     height: 12px;
     width: 12px;
   }
-  .QuestionTile-component .QuestionTile-component--wrapper>input {
+  .ScaleInput-component .ScaleInput-component--wrapper>input {
     font-size: 7px;
   }
 }

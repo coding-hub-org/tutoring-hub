@@ -1,14 +1,15 @@
 import React, { Fragment } from "react";
-import "./QuestionTile.css";
+import "./CourseInput.css";
 
-class QuestionTile extends React.Component {
+const _ = require("underscore");
+
+class CourseInput extends React.Component {
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			selectedElementName: undefined,
-			value: -1,
 		};
 
 		this.onChange = this.onChange.bind(this);
@@ -24,29 +25,19 @@ class QuestionTile extends React.Component {
 		this.clear();
 	}
 
-	getValueFromName(name) {
-		let value = name ?
-			name.replace(this.props.parameter + "-", "")
-			:
-			-1;
-		return value;
-	}
 
 	triggerChange(elementName) {
 		if (elementName) {
-			let elemValue = this.getValueFromName(elementName);
 			this.setState({
 				selectedElementName: elementName,
-				value: elemValue
 			});
-			this.props.onChange(this.props.parameter, elemValue);
+			this.props.onChange(elementName);
 		}
 		else {
 			this.setState({
 				selectedElementName: undefined,
-				value: -1
 			});
-			this.props.onChange(this.props.parameter, -1);
+			this.props.onChange(undefined);
 		}
 	}
 
@@ -60,35 +51,35 @@ class QuestionTile extends React.Component {
 
 	render() {
 
-		let inputs = [];
-		for (let i = this.props.scaleMin; i <= this.props.scaleMax; i++) {
-			var input =
+
+		const inputs = _.sortBy(this.props.choices, (name) => { return name; }).map(function (value, index) {
+			return (
 				<Fragment
-					key={this.props.parameter + "-" + i}
+					key={value + "-" + index}
 				>
 					<input
 						type="radio"
 						className={"option-input radio"}
-						value={i}
-						name={this.props.parameter + "-" + i}
+						value={value}
+						name={value}
 						onChange={this.onChange}
 						onContextMenu={this.onRightClick}
-						checked={this.isChecked(this.props.parameter + "-" + i)}
+						checked={this.isChecked(value)}
 					/>
 					<label
-						htmlFor={this.props.parameter + "-" + i}
+						htmlFor={value}
 					>
-						{i}
+						{value}
 					</label>
 				</Fragment>
-			inputs.push(input);
-		}
+			);
+		}, this);
 
 		return (
-			<div className={"QuestionTile-component"}>
+			<div className={"CourseInput-component"}>
 				<p>{this.props.parameter}</p>
 				<div
-					className={"QuestionTile-component--wrapper"}
+					className={"CourseInput-component--wrapper"}
 				>
 					{inputs}
 				</div>
@@ -97,4 +88,4 @@ class QuestionTile extends React.Component {
 	}
 }
 
-export default QuestionTile;
+export default CourseInput;
