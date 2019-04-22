@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import "./QuestionTile.css";
+import "./ScaleInput.css";
 
-class QuestionTile extends React.Component {
+class ScaleInput extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -85,10 +85,10 @@ class QuestionTile extends React.Component {
 		}
 
 		return (
-			<div className={"QuestionTile-component"}>
+			<div className={"ScaleInput-component"}>
 				<p>{this.props.parameter}</p>
 				<div
-					className={"QuestionTile-component--wrapper"}
+					className={"ScaleInput-component--wrapper"}
 				>
 					{inputs}
 				</div>
@@ -97,4 +97,4 @@ class QuestionTile extends React.Component {
 	}
 }
 
-export default QuestionTile;
+export default ScaleInput;
