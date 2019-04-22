@@ -38,7 +38,9 @@ class TutorCardPartial extends Component {
 
         const tooltip_courses_list = this.props.tutor.courses
             .slice(7, this.props.tutor.courses.length)
-            .map(course => <div className="tooltip-content">{course}</div>);
+            .map((course, i, j) => (
+                <span>{i < j.length - 1 ? course + ", " : course}</span>
+            ));
 
         return (
             <div className={"Tutor-Card-Partial-Component"}>
@@ -58,7 +60,9 @@ class TutorCardPartial extends Component {
                                       this.props.tutor.courses.length - 7
                                   ).toString()
                                 : ""}
-                            {tooltip_courses_list}
+                            <div div className="tooltip-content">
+                                {tooltip_courses_list}
+                            </div>
                         </span>
                     </div>
 
