@@ -33,6 +33,11 @@
     width: 850px;
 }
 
+.review-website-button {
+    width: fit-content;
+    margin: 40px 0 auto auto;
+}
+
 @media (max-width: 1700px) {
     .Filters > div:nth-child(2n + 2) {
         width: 600px;
