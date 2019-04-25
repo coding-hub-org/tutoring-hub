@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./FormSlider.css";
-
 // const _ = require("underscore");
 
 class FormSlider extends Component {
@@ -27,7 +26,7 @@ class FormSlider extends Component {
 					className={"slider"}
 				/>
 				<div className="label">
-					<span>{this.props.value === 0 ? "n/a" : this.props.value}</span>
+					<span>{this.props.value === 0 ? "ALL" : this.props.value}</span>
 				</div>
 			</div>
 		);

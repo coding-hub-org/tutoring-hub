@@ -5,6 +5,11 @@
 	text-align: center;
 }
 
+.Filters #filter-submit {
+	display: flex;
+	align-items: center;
+}
+
 .section--wrapper .section--wrapper-title {
 	display: flex;
 	align-items: center;
@@ -12,12 +17,13 @@
 
 .Filters select {
 	background-color: #ffffff;
-	border: 1px solid #b9c6e0;
+	border: 2px solid #ececec;
 	caret-color: #b9c6e0;
-
+	border-radius: 5px;
+	height: 40px;
 	/* margin: 0 1em; */
 	padding: 0.5em 1em;
-	width: 200px;
+	width: 300px;
 
 	cursor: pointer;
 }
@@ -28,10 +34,6 @@
 
 .Filters span {
 	margin: 1em;
-}
-
-.Filters * {
-	display: inline-block;
 }
 
 .Filters > div:nth-child(2n + 2) {
