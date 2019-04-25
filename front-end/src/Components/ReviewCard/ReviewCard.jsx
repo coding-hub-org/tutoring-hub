@@ -21,8 +21,18 @@ class ReviewCard extends Component {
                 return review.course === this.props.filter_course;
             });
 
-        console.log(course_filter_reviews);
-        const reviewList = course_filter_reviews.map(review => {
+        const rating_filter_reviews = this.props.filter_rating === 0 ?
+            course_filter_reviews
+            :
+            course_filter_reviews.filter(review => {
+                let obj = review.statistics;
+                let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+                return total >= this.props.filter_rating;
+            })
+
+        const filtered_review = rating_filter_reviews;
+
+        const reviewList = filtered_review.map(review => {
             let obj = review.statistics;
             let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
 

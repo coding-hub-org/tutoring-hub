@@ -13,6 +13,7 @@ import Subheading from "../../Components/Subheading/Subheading";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import NoReviews from "../../Assets/no-reviews.png";
 import FormDropdown from "../../Components/FormDropdown/FormDropdown";
+import FormSlider from '../../Components/FormSlider/FormSlider';
 
 class Profile extends Component {
 
@@ -23,7 +24,8 @@ class Profile extends Component {
 			loading: true,
 			yes: 0,
 			no: 0,
-			filter_course: ''
+			filter_course: '',
+			filter_rating: 0,
 		};
 	}
 
@@ -52,6 +54,18 @@ class Profile extends Component {
 	filterCourses = (course) => {
 		this.setState({
 			filter_course: course === "" ? "" : course,
+		})
+	}
+
+	filterRatings = (rating) => {
+		this.setState({
+			filter_rating: rating,
+		})
+	}
+
+	filterRatingsType = (type) => {
+		this.setState({
+			filter_rating_type: type,
 		})
 	}
 
@@ -158,6 +172,16 @@ class Profile extends Component {
 										uppercase={true}
 									/>
 								</div>
+								<div>
+									<span>Rating</span>
+									<FormSlider
+										min={0}
+										max={10}
+										step={1}
+										onChange={this.filterRatings}
+										value={this.state.filter_rating}
+									/>
+								</div>
 							</div>
 
 							{this.state.tutor.reviews.length === 0 ?
@@ -168,7 +192,11 @@ class Profile extends Component {
 									</h3>
 								</div>
 								:
-								<ReviewCard tutor={this.state.tutor} filter_course={this.state.filter_course}/>
+								<ReviewCard
+									tutor={this.state.tutor}
+									filter_course={this.state.filter_course}
+									filter_rating={this.state.filter_rating}
+								/>
 							}
 						</div>
 					)}
