@@ -1,11 +1,25 @@
 .ratingcard-component {
-  -webkit-box-shadow: 0px 5px 16px 0px rgba(226, 230, 245, 0.8);
-  -moz-box-shadow: 0px 5px 16px 0px rgba(226, 230, 245, 0.8);
-  box-shadow: 0px 5px 16px 0px rgba(226, 230, 245, 0.8);
-  color: #777777;
-  box-sizing: border-box;
-  padding: 30px 50px;
-  border-radius: 7px;
-  font-size: 1.2em;
-  text-align: center;
+	-webkit-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	-moz-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	border: 1px solid #ececec;
+	color: #33558b;
+	box-sizing: border-box;
+	padding: 25px 35px;
+	border-radius: 7px;
+	font-size: 1.5em;
+	text-align: center;
+	position: relative;
+}
+
+.ratingcard-component h1,
+.ratingcard-component p {
+	margin: 0;
+}
+
+.ratingcard-component img {
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	height: 50px;
 }
