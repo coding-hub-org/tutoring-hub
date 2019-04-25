@@ -47,9 +47,9 @@
 }
 
 .Tutor-Card-Partial-Component .content .bio .tooltip {
-	-webkit-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
+	/* -webkit-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
 	-moz-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
-	box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
+	box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5); */
 	background-color: #fc6472;
 	text-align: center;
 	color: white;

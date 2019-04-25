@@ -1,78 +1,83 @@
 .Filters {
-    margin: 1em 0;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+	margin: 1em 0;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.section--wrapper .section--wrapper-title {
+	display: flex;
+	align-items: center;
 }
 
 .Filters select {
-    background-color: #ffffff;
-    border: 1px solid #b9c6e0;
-    caret-color: #b9c6e0;
+	background-color: #ffffff;
+	border: 1px solid #b9c6e0;
+	caret-color: #b9c6e0;
 
-    /* margin: 0 1em; */
-    padding: 0.5em 1em;
-    width: 200px;
+	/* margin: 0 1em; */
+	padding: 0.5em 1em;
+	width: 200px;
 
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .Filters select:focus {
-    outline: none;
+	outline: none;
 }
 
 .Filters span {
-    margin: 1em;
+	margin: 1em;
 }
 
 .Filters * {
-    display: inline-block;
+	display: inline-block;
 }
 
 .Filters > div:nth-child(2n + 2) {
-    width: 850px;
+	width: 850px;
 }
 
 .review-website-button {
-    width: fit-content;
-    margin: 40px 0 auto auto;
+	width: fit-content;
+	margin: 40px 0 auto auto;
 }
 
 @media (max-width: 1700px) {
-    .Filters > div:nth-child(2n + 2) {
-        width: 600px;
-    }
+	.Filters > div:nth-child(2n + 2) {
+		width: 600px;
+	}
 }
 
 @media (max-width: 1350px) {
-    .Filters > div:nth-child(2n + 2) {
-        width: 400px;
-    }
+	.Filters > div:nth-child(2n + 2) {
+		width: 400px;
+	}
 }
 
 @media (max-width: 1150px) {
-    .Filters > div:nth-child(2n + 2) {
-        width: 700px;
-    }
+	.Filters > div:nth-child(2n + 2) {
+		width: 700px;
+	}
 
-    .Filters {
-        flex-direction: column;
-        text-align: left;
-    }
+	.Filters {
+		flex-direction: column;
+		text-align: left;
+	}
 
-    .Filters > div {
-        display: block;
-    }
+	.Filters > div {
+		display: block;
+	}
 }
 
 @media (max-width: 850px) {
-    .Filters > div:nth-child(2n + 2) {
-        width: 500px;
-    }
+	.Filters > div:nth-child(2n + 2) {
+		width: 500px;
+	}
 }
 
 @media (max-width: 600px) {
-    .Filters > div:nth-child(2n + 2) {
-        width: 350px;
-    }
+	.Filters > div:nth-child(2n + 2) {
+		width: 350px;
+	}
 }

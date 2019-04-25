@@ -1,17 +1,17 @@
 .title-component {
-  font-size: 3.5em;
-  font-weight: 500;
-  color: #777777;
+	font-size: 3em;
+	font-weight: bold;
+	color: #06255d;
 }
 
 @media (max-width: 550px) {
-  .title-component {
-    font-size: 2.5em;
-  }
+	.title-component {
+		font-size: 2.5em;
+	}
 }
 
 @media (max-width: 800px) {
-  .title-component {
-    text-align: center;
-  }
+	.title-component {
+		text-align: center;
+	}
 }

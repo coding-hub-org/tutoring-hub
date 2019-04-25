@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Tutors.css";
+import titleImg from "../../Assets/title-img.svg";
 
 // Import components
 import NavBar from "../../Components/NavBar/NavBar";
@@ -120,7 +121,10 @@ class Tutors extends Component {
 					sticky={true}
 				/>
 				<div className="section--wrapper">
-					<Title title={this.state.title.toUpperCase()} />
+					<div className="section--wrapper-title">
+						<img src={titleImg} alt="title icon" />{" "}
+						<Title title={this.state.title.toUpperCase()} />
+					</div>
 
 					<div className="Filters">
 						<div>
