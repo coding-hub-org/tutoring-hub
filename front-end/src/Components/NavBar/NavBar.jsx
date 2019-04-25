@@ -9,7 +9,7 @@ import tutoringHubLogo from "../../Assets/tutoring-hub-logo.png";
 
 const NavBar = (props) => {
   return (
-    <nav id={"navbar"} className={"navbar-component"}>
+    <nav id={"navbar"} className={"navbar-component " + (props.sticky ? 'sticky' : '')}>
       <div className={"navbar-component--wrapper"}>
         <Link to="/">
           <img src={tutoringHubLogo} alt="Tutoring Hub Logo" />
@@ -19,7 +19,7 @@ const NavBar = (props) => {
         }
         <Contact />
       </div>
-    </nav>
+    </nav >
   );
 };
 

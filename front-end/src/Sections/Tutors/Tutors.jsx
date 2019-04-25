@@ -58,7 +58,7 @@ class Tutors extends Component {
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
-					courses: _.sortBy(data, function(course) {
+					courses: _.sortBy(data, function (course) {
 						return course;
 					})
 				});
@@ -114,7 +114,11 @@ class Tutors extends Component {
 	render() {
 		return (
 			<div className="section">
-				<NavBar searchable={true} handleSearch={this.handleSearch} />
+				<NavBar
+					searchable={true}
+					handleSearch={this.handleSearch}
+					sticky={true}
+				/>
 				<div className="section--wrapper">
 					<Title title={this.state.title.toUpperCase()} />
 
@@ -152,12 +156,12 @@ class Tutors extends Component {
 							filterName={this.state.filterName}
 						/>
 					) : (
-						<TutorCards tutors={this.state.tutors} />
-					)}
+							<TutorCards tutors={this.state.tutors} />
+						)}
 
 
 					<div className='review-website-button'>
-						<ReviewWebsiteButton/>
+						<ReviewWebsiteButton />
 					</div>
 
 					{/* <AddTutorBox /> */}
