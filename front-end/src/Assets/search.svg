@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288.153 261.88">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #616161;
-        stroke-width: 10px;
-      }
-    </style>
-  </defs>
-  <path id="search" class="cls-1" d="M168.5,162.5l112,91ZM.5,96.5a96,96,0,1,1,96,96A96,96,0,0,1,.5,96.5Z" transform="translate(4.5 4.5)"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="22.914" height="23.914" viewBox="0 0 22.914 23.914"><g transform="translate(-692.086 -25)"><g transform="translate(697 25)" fill="none" stroke="#1b2437" stroke-width="2"><circle cx="9" cy="9" r="9" stroke="none"/><circle cx="9" cy="9" r="8" fill="none"/></g><line y1="7" x2="7" transform="translate(693.5 40.5)" fill="none" stroke="#1b2437" stroke-linecap="round" stroke-width="2"/></g></svg>

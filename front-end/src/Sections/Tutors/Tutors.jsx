@@ -114,7 +114,11 @@ class Tutors extends Component {
 	render() {
 		return (
 			<div className="section">
-				<NavBar searchable={true} handleSearch={this.handleSearch} />
+				<NavBar
+					searchable={true}
+					handleSearch={this.handleSearch}
+					sticky={true}
+				/>
 				<div className="section--wrapper">
 					<Title title={this.state.title.toUpperCase()} />
 

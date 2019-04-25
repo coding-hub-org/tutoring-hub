@@ -7,6 +7,16 @@
 	--grid-gap: 3.8rem;
 }
 
+.section--wrapper {
+	margin-top: 75px;
+}
+
 html {
 	scroll-behavior: smooth;
+}
+
+@media (max-width: 550px) {
+	.section--wrapper {
+		margin-top: 175px;
+	}
 }

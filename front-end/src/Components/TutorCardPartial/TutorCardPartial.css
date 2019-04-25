@@ -98,7 +98,8 @@
 	padding: 5px;
 	top: 0;
 	left: 120%;
-	border: 1px black solid;
+	color: #06255d;
+	/* border: 1px black solid; */
 	box-shadow: 3px 3px 8px #ccc;
 	opacity: 0;
 	transition: 0.8s;
