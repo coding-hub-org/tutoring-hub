@@ -1,25 +1,22 @@
 .Form-Button-Component button {
-    background-color: #FF5E84;
-    border: #FF5E84 1px solid;
-    color: white;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-transform: uppercase;
-
-    padding: 0 40px;
-    /* height: 2.5em; */
-    height: 40px;
-
-    text-align: center;
-    vertical-align: middle;
-
-    margin: 0 1em;
-
-    font-size: 13px;
-    line-height: 32px;
+	background-color: #fc6472;
+	border: none;
+	color: white;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-transform: uppercase;
+	padding: 0 40px;
+	border-radius: 50px;
+	/* height: 2.5em; */
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0 1em;
+	font-size: 13px;
+	line-height: 32px;
 }
 
 .Form-Button-Component a {
-    color: #FFFFFF;
-    text-decoration: none;
+	color: #ffffff;
+	text-decoration: none;
 }

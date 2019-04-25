@@ -8,7 +8,6 @@ import Review from "./Sections/Review/Review";
 import Tutors from "./Sections/Tutors/Tutors";
 import AddTutor from "./Sections/AddTutor/AddTutor";
 // import ManageTutors from "./Sections/ManageTutors/ManageTutors";
-import Home from "./Sections/Home/Home";
 
 import Footer from "./Components/Footer/Footer";
 import BackToTopButton from "./Components/BackToTopButton/BackToTopButton";

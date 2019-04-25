@@ -58,7 +58,7 @@ class Tutors extends Component {
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
-					courses: _.sortBy(data, function (course) {
+					courses: _.sortBy(data, function(course) {
 						return course;
 					})
 				});
@@ -156,11 +156,10 @@ class Tutors extends Component {
 							filterName={this.state.filterName}
 						/>
 					) : (
-							<TutorCards tutors={this.state.tutors} />
-						)}
+						<TutorCards tutors={this.state.tutors} />
+					)}
 
-
-					<div className='review-website-button'>
+					<div className="review-website-button">
 						<ReviewWebsiteButton />
 					</div>
 
