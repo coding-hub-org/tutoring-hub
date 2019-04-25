@@ -161,7 +161,7 @@ class Profile extends Component {
 								</Link>
 							</div>
 
-							<div className="Filters">
+							<div className="Filters-course">
 								<div>
 									<span>Filters</span>
 									<FormDropdown
