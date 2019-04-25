@@ -1,5 +1,6 @@
 .App {
 	height: 100%;
+	/* background-color: #fdfdff; */
 }
 
 :root {
@@ -13,10 +14,4 @@
 
 html {
 	scroll-behavior: smooth;
-}
-
-@media (max-width: 550px) {
-	.section--wrapper {
-		margin-top: 175px;
-	}
 }

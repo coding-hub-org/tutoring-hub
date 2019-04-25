@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Tutors.css";
+import titleImg from "../../Assets/title-img.svg";
 
 // Import components
 import NavBar from "../../Components/NavBar/NavBar";
@@ -120,11 +121,14 @@ class Tutors extends Component {
 					sticky={true}
 				/>
 				<div className="section--wrapper">
-					<Title title={this.state.title.toUpperCase()} />
+					<div className="section--wrapper-title">
+						<img src={titleImg} alt="title icon" />{" "}
+						<Title title={this.state.title.toUpperCase()} />
+					</div>
 
 					<div className="Filters">
 						<div>
-							<span>Filters</span>
+							<p>Courses</p>
 							<FormDropdown
 								title={"Courses"}
 								options={this.state.courses}
@@ -134,7 +138,7 @@ class Tutors extends Component {
 							/>
 						</div>
 						<div>
-							<span>Rating</span>
+							<p>Rating</p>
 							<FormSlider
 								min={0}
 								max={10}
@@ -143,7 +147,7 @@ class Tutors extends Component {
 								value={this.state.filterRating}
 							/>
 						</div>
-						<div>
+						<div id="filter-submit">
 							<FormButton title={"Reset Filters"} action={this.resetFilters} />
 						</div>
 					</div>

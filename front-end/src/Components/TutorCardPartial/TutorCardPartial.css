@@ -6,12 +6,12 @@
 	box-sizing: border-box;
 	max-width: 350px;
 	padding-bottom: 1em;
+	border: 1px solid #ececec;
 }
 
 .Tutor-Card-Partial-Component > img {
-	height: 250px;
-	width: 250px;
-	min-height: 250px;
+	height: 200px;
+	width: 200px;
 	border-radius: 100%;
 	object-fit: cover;
 	display: block;
@@ -47,11 +47,13 @@
 }
 
 .Tutor-Card-Partial-Component .content .bio .tooltip {
-	-webkit-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
+	/* -webkit-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
 	-moz-box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
-	box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5);
+	box-shadow: 0px 5px 10px 0px rgba(252, 100, 114, 0.5); */
 	background-color: #fc6472;
 	text-align: center;
+	width: 50px;
+	margin-left: 10px;
 	color: white;
 }
 
@@ -108,4 +110,17 @@
 .tooltip:hover .tooltip-content {
 	visibility: visible;
 	opacity: 1;
+}
+
+@media (max-width: 1227px) {
+	.Tutor-Card-Partial-Component {
+		max-width: 400px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 550px) {
+	.Tutor-Card-Partial-Component {
+		max-width: 100%;
+	}
 }

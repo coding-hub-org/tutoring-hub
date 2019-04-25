@@ -1,121 +1,179 @@
 .reviewcard-component {
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
-    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
-    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.28);
-    box-sizing: border-box;
-    padding: 20px 50px;
-    width: 85%;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    color: #777777;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	-moz-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+	border: 1px solid #ececec;
+	box-sizing: border-box;
+	padding: 20px 50px;
+	width: 70%;
+	margin: 0 auto;
+	margin-bottom: 40px;
+	color: #777777;
 }
 
 .reviewcard-component .reviewcard-component--wrapper {
-    display: grid;
-    grid-template-columns: 130px auto;
+	display: grid;
+	grid-template-columns: 130px auto;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__description
+	section {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
-    font-weight: 500;
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__description
+	h1 {
+	font-weight: 500;
+	color: #06255d;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3{
-    margin: 0;
-    font-weight: 500;
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__description
+	section
+	h3 {
+	margin: 0;
+	font-weight: 500;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating {  
-    display: flex;
-    justify-content: center;
-    flex-direction: column;  
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__rating {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p {
-    color: #FF5E84;
-    margin: 0;
-    font-size: 1.2em;
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__rating
+	p {
+	color: #ff5e84;
+	margin: 0;
+	font-size: 1.2em;
 }
 
-.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating h1 {
-    font-size: 3.5em;
-    margin: 0;
-    font-weight: 500;
+.reviewcard-component
+	.reviewcard-component--wrapper
+	.reviewcard-component--wrapper__rating
+	h1 {
+	font-size: 3.5em;
+	margin: 0;
+	font-weight: 500;
 }
 
-@media(max-width:1200px){
-    .reviewcard-component{
-        padding: 20px 40px;
-    }
+@media (max-width: 1200px) {
+	.reviewcard-component {
+		padding: 20px 40px;
+	}
 }
 
-
-@media(max-width:900px){
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3, .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p {
-        font-size: 1em;
-    }
-    .reviewcard-component--wrapper__description > p {
-        font-size: 0.9em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
-        font-size: 1.4em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating h1{
-        font-size: 2.5em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper {
-        grid-template-columns: 100px auto;
-    }
+@media (max-width: 900px) {
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		section
+		h3,
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating
+		p {
+		font-size: 1em;
+	}
+	.reviewcard-component--wrapper__description > p {
+		font-size: 0.9em;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		h1 {
+		font-size: 1.4em;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating
+		h1 {
+		font-size: 2.5em;
+	}
+	.reviewcard-component .reviewcard-component--wrapper {
+		grid-template-columns: 100px auto;
+	}
 }
 
-@media(max-width:650px){
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3, .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p {
-        font-size: 0.8em;
-    }
-    .reviewcard-component--wrapper__description > p {
-        font-size: 0.7em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
-        font-size: 1.1em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating h1{
-        font-size: 2.1em;
-    }
-    .reviewcard-component .reviewcard-component--wrapper {
-        grid-template-columns: 80px auto;
-    }
+@media (max-width: 650px) {
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		section
+		h3,
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating
+		p {
+		font-size: 0.8em;
+	}
+	.reviewcard-component--wrapper__description > p {
+		font-size: 0.7em;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		h1 {
+		font-size: 1.1em;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating
+		h1 {
+		font-size: 2.1em;
+	}
+	.reviewcard-component .reviewcard-component--wrapper {
+		grid-template-columns: 80px auto;
+	}
 }
 
-@media(max-width:500px){
-    /* .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
+@media (max-width: 500px) {
+	/* .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
         flex-direction: column;
     } */
 
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3, .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating p{
-        padding-bottom: 10px;
-    }
-    .reviewcard-component {
-        padding: 20px 30px;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__rating{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        grid-area: rating;
-    }
-    .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description {
-        grid-area: description;
-    }
-    .reviewcard-component .reviewcard-component--wrapper {
-        grid-template-columns: auto;
-        grid-template-areas: 'rating' 'description';
-    }
-    
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		section
+		h3,
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating
+		p {
+		padding-bottom: 10px;
+	}
+	.reviewcard-component {
+		padding: 20px 30px;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__rating {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		grid-area: rating;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description {
+		grid-area: description;
+	}
+	.reviewcard-component .reviewcard-component--wrapper {
+		grid-template-columns: auto;
+		grid-template-areas: "rating" "description";
+	}
 }
