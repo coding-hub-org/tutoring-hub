@@ -155,9 +155,8 @@ class Tutors extends Component {
 						<TutorCards tutors={this.state.tutors} />
 					)}
 
-
-					<div className='review-website-button'>
-						<ReviewWebsiteButton/>
+					<div className="review-website-button">
+						<ReviewWebsiteButton />
 					</div>
 
 					{/* <AddTutorBox /> */}

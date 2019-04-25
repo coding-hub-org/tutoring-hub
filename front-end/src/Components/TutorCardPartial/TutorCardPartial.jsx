@@ -3,6 +3,7 @@ import "./TutorCardPartial.css";
 
 import { Link } from "react-router-dom";
 import starRating from "../../Assets/rating-star.svg";
+import moreImg from "../../Assets/more-img.svg";
 
 class TutorCardPartial extends Component {
 	getFullName() {
@@ -31,16 +32,19 @@ class TutorCardPartial extends Component {
 	};
 
 	render() {
-		console.log(this.props.tutor);
+		// console.log(this.props.tutor);
 		const courses_list = this.props.tutor.courses
 			.slice(0, 7)
 			.map(course => <li>{course}</li>);
 
-		const tooltip_courses_list = this.props.tutor.courses
-			.slice(7, this.props.tutor.courses.length)
-			.map((course, i, j) => (
-				<span>{i < j.length - 1 ? course + ", " : course}</span>
-			));
+		const tooltip_courses_list =
+			this.props.tutor.courses.length > 7
+				? this.props.tutor.courses
+						.slice(7, this.props.tutor.courses.length)
+						.map((course, i, j) => (
+							<span>{i < j.length - 1 ? course + ", " : course}</span>
+						))
+				: null;
 
 		return (
 			<div className={"Tutor-Card-Partial-Component"}>
@@ -53,25 +57,30 @@ class TutorCardPartial extends Component {
 					<p className="full-name">{this.getFullName()}</p>
 					<div className="bio">
 						{courses_list}
-						<span className="tooltip">
-							{this.props.tutor.courses.length > 7
-								? "+" + (this.props.tutor.courses.length - 7).toString()
-								: ""}
-							<div div className="tooltip-content">
-								{tooltip_courses_list}
-							</div>
-						</span>
+						{tooltip_courses_list ? (
+							<li className="tooltip">
+								{this.props.tutor.courses.length > 7
+									? "+ " + (this.props.tutor.courses.length - 7).toString()
+									: ""}
+								<div div className="tooltip-content">
+									{tooltip_courses_list}
+								</div>
+							</li>
+						) : null}
 					</div>
 
 					<div className="bottom">
-						<Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
 						<span className="rating">
+							<img src={starRating} alt="star rating" />
 							{this.getAvg(this.props.tutor.reviews) === -1 ? (
 								<span>N/A</span>
 							) : (
 								<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
 							)}
-							<img src={starRating} alt="star rating" />
+						</span>
+						<span className="more">
+							<img src={moreImg} alt="more icon" />
+							<Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
 						</span>
 					</div>
 				</div>
