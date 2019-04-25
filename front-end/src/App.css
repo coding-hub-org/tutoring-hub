@@ -6,3 +6,7 @@
 	--content-max-width: 90rem;
 	--grid-gap: 3.8rem;
 }
+
+html {
+	scroll-behavior: smooth;
+}
