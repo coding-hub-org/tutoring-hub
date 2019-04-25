@@ -45,7 +45,6 @@
 
 @media (max-width: 550px) {
 	.searchbar-component {
-		margin-top: 20px;
 		width: 100%;
 	}
 }

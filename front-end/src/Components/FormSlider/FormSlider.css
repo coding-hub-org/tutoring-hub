@@ -1,11 +1,12 @@
 .Form-Slider-Component {
 	margin-bottom: 1em;
 	vertical-align: top;
+	width: 100%;
 }
 
 .Form-Slider-Component .slider {
 	-webkit-appearance: none;
-	width: 750px;
+	width: 100%;
 	border-radius: 50px;
 	background: #ececec;
 	outline: none;
@@ -57,7 +58,7 @@
 	margin: 0;
 }
 
-@media (max-width: 1700px) {
+/* @media (max-width: 1700px) {
 	.Form-Slider-Component .slider {
 		width: 500px;
 	}
@@ -114,5 +115,11 @@
 		box-shadow: 24px 0 0 #ff5e84, 48px 0 0 #ff5e84, 72px 0 0 #ff5e84,
 			96px 0 0 #ff5e84, 120px 0 0 #ff5e84, 144px 0 0 #ff5e84, 168px 0 0 #ff5e84,
 			192px 0 0 #ff5e84, 216px 0 0 #ff5e84;
+	}
+} */
+
+@media (max-width: 1150px) {
+	.Form-Slider-Component .slider {
+		width: 100%;
 	}
 }

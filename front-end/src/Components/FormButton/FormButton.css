@@ -23,3 +23,9 @@
 	color: #ffffff;
 	text-decoration: none;
 }
+
+@media (max-width: 850px) {
+	.Form-Button-Component button {
+		margin-bottom: 20px;
+	}
+}
