@@ -11,20 +11,15 @@ import CourseInput from "../../Components/CourseInput/CourseInput";
 // import Course from '../../Components/Course/Course';
 
 class Review extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			loading: true,
 			tutor: undefined,
-
 			author: "Anonymous",
-
 			course: undefined,
-
 			content: undefined,
-
 			methodology: undefined,
 			organization: undefined,
 			preparation: undefined,
@@ -50,7 +45,7 @@ class Review extends React.Component {
 			.then(data => {
 				this.setState({
 					tutor: data,
-					loading: false,
+					loading: false
 				});
 			})
 			.catch(error => {
@@ -58,43 +53,41 @@ class Review extends React.Component {
 			});
 	}
 
-
 	validateForm(callback) {
-
 		if (!this.state.course) {
-			let msg = (`The course tutored must be selected!`);
+			let msg = `The course tutored must be selected!`;
 			callback(msg);
 			return;
 		}
 
 		if (!this.state.methodology) {
-			let msg = (`A rating for methodology must be given!`);
+			let msg = `A rating for methodology must be given!`;
 			callback(msg);
 			return;
 		}
 		if (!this.state.organization) {
-			let msg = (`A rating for organization must be given!`);
+			let msg = `A rating for organization must be given!`;
 			callback(msg);
 			return;
 		}
 		if (!this.state.preparation) {
-			let msg = (`A rating for preparation must be given!`);
+			let msg = `A rating for preparation must be given!`;
 			callback(msg);
 			return;
 		}
 		if (!this.state.clarity) {
-			let msg = (`A rating for clarity must be given!`);
+			let msg = `A rating for clarity must be given!`;
 			callback(msg);
 			return;
 		}
 		if (!this.state.knowledge) {
-			let msg = (`A rating for knowledge must be given!`);
+			let msg = `A rating for knowledge must be given!`;
 			callback(msg);
 			return;
 		}
 
 		if (this.state.bookAgain === undefined) {
-			let msg = (`A selection for booking again must be given!`);
+			let msg = `A selection for booking again must be given!`;
 			callback(msg);
 			return;
 		}
@@ -102,10 +95,9 @@ class Review extends React.Component {
 		callback();
 	}
 
-
 	handleSubmit = () => {
 		let self = this;
-		this.validateForm(function (err) {
+		this.validateForm(function(err) {
 			if (err) {
 				alert(err);
 				return;
@@ -128,24 +120,27 @@ class Review extends React.Component {
 			let updatedTutor = self.state.tutor;
 			updatedTutor.reviews.push(data);
 
-			self.setState({
-				tutor: updatedTutor
-			}, function () {
-				fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
-					method: "PUT",
-					body: JSON.stringify(self.state.tutor),
-					headers: {
-						"Content-Type": "application/json"
-					}
-				})
-					.then(res => res.json())
-					.then(response => {
-						console.debug("Success");
-						document.getElementById("navbar").scrollIntoView();
-						window.location.href = "/";
+			self.setState(
+				{
+					tutor: updatedTutor
+				},
+				function() {
+					fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
+						method: "PUT",
+						body: JSON.stringify(self.state.tutor),
+						headers: {
+							"Content-Type": "application/json"
+						}
 					})
-					.catch(error => console.error("Error:", error));
-			});
+						.then(res => res.json())
+						.then(response => {
+							console.debug("Success");
+							document.getElementById("navbar").scrollIntoView();
+							window.location.href = "/";
+						})
+						.catch(error => console.error("Error:", error));
+				}
+			);
 		});
 	};
 
@@ -188,8 +183,7 @@ class Review extends React.Component {
 			this.setState({
 				bookAgain: value
 			});
-		}
-		else {
+		} else {
 			this.setState({
 				bookAgain: undefined
 			});
@@ -202,8 +196,7 @@ class Review extends React.Component {
 			this.setState({
 				course: elementName
 			});
-		}
-		else {
+		} else {
 			this.setState({
 				course: undefined
 			});
@@ -230,14 +223,14 @@ class Review extends React.Component {
 				<div className={"tutors-component--loading"}>
 					<img src={loadingIcon} alt="" />
 				</div>
-			)
+			);
 		}
 
 		return (
 			<div className={"review-section"}>
 				<NavBar />
 
-				{this.state.loading ?
+				{this.state.loading ? (
 					<div className="review-section--wrapper">
 						<div className="review-section--wrapper-load">
 							<img
@@ -247,7 +240,7 @@ class Review extends React.Component {
 							/>
 						</div>
 					</div>
-					:
+				) : (
 					<div className={"review-section--wrapper"}>
 						<Title title={"Rate " + this.state.tutor.firstName} />
 
@@ -305,7 +298,7 @@ class Review extends React.Component {
 
 						<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
 					</div>
-				}
+				)}
 			</div>
 		);
 	}
