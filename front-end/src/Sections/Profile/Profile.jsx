@@ -12,6 +12,7 @@ import RatingCard from "../../Components/RatingCard/RatingCard";
 import Subheading from "../../Components/Subheading/Subheading";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import NoReviews from "../../Assets/no-reviews.png";
+import FormDropdown from "../../Components/FormDropdown/FormDropdown";
 
 class Profile extends Component {
 
@@ -21,7 +22,8 @@ class Profile extends Component {
 			name: "",
 			loading: true,
 			yes: 0,
-			no: 0
+			no: 0,
+			filter_course: ''
 		};
 	}
 
@@ -46,6 +48,12 @@ class Profile extends Component {
 			return 100 / (book.length / filtered.length);
 		}
 	};
+
+	filterCourses = (course) => {
+		this.setState({
+			filter_course: course === "" ? "" : course,
+		})
+	}
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
@@ -138,6 +146,20 @@ class Profile extends Component {
 									REVIEW {this.getName().toUpperCase()}
 								</Link>
 							</div>
+
+							<div className="Filters">
+								<div>
+									<span>Filters</span>
+									<FormDropdown
+										title={"Courses"}
+										options={this.state.tutor.courses}
+										onChange={this.filterCourses}
+										value={this.state.filterCourse}
+										uppercase={true}
+									/>
+								</div>
+							</div>
+
 							{this.state.tutor.reviews.length === 0 ?
 								<div className={"profile-section--wrapper__no-reviews"}>
 									<img src={NoReviews} alt="" />
@@ -146,7 +168,7 @@ class Profile extends Component {
 									</h3>
 								</div>
 								:
-								<ReviewCard tutor={this.state.tutor} />
+								<ReviewCard tutor={this.state.tutor} filter_course={this.state.filter_course}/>
 							}
 						</div>
 					)}

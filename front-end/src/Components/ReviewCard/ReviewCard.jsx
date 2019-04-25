@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import './ReviewCard.css';
 
+import NoReviews from "../../Assets/no-reviews.png";
+
 class ReviewCard extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,16 @@ class ReviewCard extends Component {
     }
 
     render() {
-        const reviewList = this.props.tutor.reviews.map(review => {
+        console.log(this.props);
+        const course_filter_reviews = this.props.filter_course === '' ?
+            this.props.tutor.reviews
+            :
+            this.props.tutor.reviews.filter(review => {
+                return review.course === this.props.filter_course;
+            });
+
+        console.log(course_filter_reviews);
+        const reviewList = course_filter_reviews.map(review => {
             let obj = review.statistics;
             let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
 
@@ -34,6 +45,16 @@ class ReviewCard extends Component {
                 </div>
             )
         });
+
+        if (reviewList.length === 0)
+            return (
+                <div className={"profile-section--wrapper__no-reviews"}>
+                    <img src={NoReviews} alt="" />
+                    <h3>
+                        {this.props.tutor.firstName} doesn't have any reviews yet. Be the first to review
+                    </h3>
+                </div>
+            )
 
         return (
             <div>
