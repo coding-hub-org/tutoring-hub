@@ -19,7 +19,7 @@ import Subheading from "../../Components/Subheading/Subheading";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import NoReviews from "../../Assets/no-reviews.png";
 import FormDropdown from "../../Components/FormDropdown/FormDropdown";
-import FormSlider from '../../Components/FormSlider/FormSlider';
+import FormSlider from "../../Components/FormSlider/FormSlider";
 
 class Profile extends Component {
 	constructor(props) {
@@ -29,8 +29,8 @@ class Profile extends Component {
 			loading: true,
 			yes: 0,
 			no: 0,
-			filter_course: '',
-			filter_rating: 0,
+			filter_course: "",
+			filter_rating: 0
 		};
 		this.getName = this.getName.bind(this);
 	}
@@ -57,23 +57,23 @@ class Profile extends Component {
 		}
 	};
 
-	filterCourses = (course) => {
+	filterCourses = course => {
 		this.setState({
-			filter_course: course === "" ? "" : course,
-		})
-	}
+			filter_course: course === "" ? "" : course
+		});
+	};
 
-	filterRatings = (rating) => {
+	filterRatings = rating => {
 		this.setState({
-			filter_rating: rating,
-		})
-	}
+			filter_rating: rating
+		});
+	};
 
-	filterRatingsType = (type) => {
+	filterRatingsType = type => {
 		this.setState({
-			filter_rating_type: type,
-		})
-	}
+			filter_rating_type: type
+		});
+	};
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
@@ -170,14 +170,6 @@ class Profile extends Component {
 						<Stats reviews={this.state.tutor.reviews} />
 						<div className={"profile-section--wrapper__reviews"}>
 							<Subheading title={"Reviews"} />
-							<Link
-								to={`/tutors/${this.state.tutor._id}/rate`}
-								onClick={() => {
-									document.getElementById("navbar").scrollIntoView();
-								}}
-							>
-								REVIEW {this.getName().toUpperCase()}
-							</Link>
 						</div>
 						<div className="Filters-course">
 							<div>
@@ -190,6 +182,14 @@ class Profile extends Component {
 									uppercase={true}
 								/>
 							</div>
+							<Link
+								to={`/tutors/${this.state.tutor._id}/rate`}
+								onClick={() => {
+									document.getElementById("navbar").scrollIntoView();
+								}}
+							>
+								REVIEW {this.getName().toUpperCase()}
+							</Link>
 						</div>
 						{this.state.tutor.reviews.length === 0 ? (
 							<div className={"profile-section--wrapper__no-reviews"}>
