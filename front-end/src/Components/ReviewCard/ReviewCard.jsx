@@ -13,7 +13,7 @@ class ReviewCard extends Component {
     }
 
     render() {
-        console.log(this.props);
+        console.debug(this.props);
         const course_filter_reviews = this.props.filter_course === '' ?
             this.props.tutor.reviews
             :
@@ -26,15 +26,15 @@ class ReviewCard extends Component {
         //     :
         //     course_filter_reviews.filter(review => {
         //         let obj = review.statistics;
-        //         let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+        //         let total = (obj.methodology + obj.organization + obj.preparation + obj.knowledge + obj.clarity) / 5;
         //         return total >= this.props.filter_rating;
         //     })
 
         const filtered_review = course_filter_reviews;
-        console.log(filtered_review);
+        console.debug(filtered_review);
         const reviewList = filtered_review.map(review => {
             let obj = review.statistics;
-            let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+            let total = (obj.methodology + obj.organization + obj.preparation + obj.knowledge + obj.clarity) / 5;
 
             return (
                 <div className={"reviewcard-component"} key={review._id}>

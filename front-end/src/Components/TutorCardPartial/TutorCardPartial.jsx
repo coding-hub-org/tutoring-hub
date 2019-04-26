@@ -22,7 +22,7 @@ class TutorCardPartial extends Component {
 				(obj.methodology +
 					obj.organization +
 					obj.preparation +
-					obj.knowlege +
+					obj.knowledge +
 					obj.clarity) /
 				5;
 			rating += total;
