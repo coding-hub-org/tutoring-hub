@@ -8,15 +8,16 @@ import Review from "./Sections/Review/Review";
 import Tutors from "./Sections/Tutors/Tutors";
 import AddTutor from "./Sections/AddTutor/AddTutor";
 // import ManageTutors from "./Sections/ManageTutors/ManageTutors";
-import Home from "./Sections/Home/Home";
 
 import Footer from "./Components/Footer/Footer";
+import BackToTopButton from "./Components/BackToTopButton/BackToTopButton";
 
 class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
 				<div className="App">
+					<BackToTopButton minScrollAmt={25} />
 					<Route exact path="/" component={Tutors} />
 					<Switch>
 						<Route exact path="/tutors" component={Tutors} />

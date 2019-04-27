@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Tutors.css";
+import titleImg from "../../Assets/title-img.svg";
 
 // Import components
 import NavBar from "../../Components/NavBar/NavBar";
@@ -10,6 +11,7 @@ import FormDropdown from "../../Components/FormDropdown/FormDropdown";
 import FormSlider from "../../Components/FormSlider/FormSlider";
 import FormButton from "../../Components/FormButton/FormButton";
 import AddTutorBox from "../../Components/AddTutorBox/AddTutorBox";
+import ReviewWebsiteButton from "../../Components/ReviewWebsite/ReviewWebsite";
 
 const _ = require("underscore");
 
@@ -113,13 +115,20 @@ class Tutors extends Component {
 	render() {
 		return (
 			<div className="section">
-				<NavBar searchable={true} handleSearch={this.handleSearch} />
+				<NavBar
+					searchable={true}
+					handleSearch={this.handleSearch}
+					sticky={true}
+				/>
 				<div className="section--wrapper">
-					<Title title={this.state.title.toUpperCase()} />
+					<div className="section--wrapper-title">
+						<img src={titleImg} alt="title icon" />{" "}
+						<Title title={this.state.title.toUpperCase()} />
+					</div>
 
 					<div className="Filters">
 						<div>
-							<span>Filters</span>
+							<p>Courses</p>
 							<FormDropdown
 								title={"Courses"}
 								options={this.state.courses}
@@ -129,7 +138,7 @@ class Tutors extends Component {
 							/>
 						</div>
 						<div>
-							<span>Rating</span>
+							<p>Rating</p>
 							<FormSlider
 								min={0}
 								max={10}
@@ -138,7 +147,7 @@ class Tutors extends Component {
 								value={this.state.filterRating}
 							/>
 						</div>
-						<div>
+						<div id="filter-submit">
 							<FormButton title={"Reset Filters"} action={this.resetFilters} />
 						</div>
 					</div>
@@ -153,6 +162,10 @@ class Tutors extends Component {
 					) : (
 						<TutorCards tutors={this.state.tutors} />
 					)}
+
+					<div className="review-website-button">
+						<ReviewWebsiteButton />
+					</div>
 
 					{/* <AddTutorBox /> */}
 				</div>

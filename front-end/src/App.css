@@ -1,8 +1,17 @@
 .App {
 	height: 100%;
+	/* background-color: #fdfdff; */
 }
 
 :root {
 	--content-max-width: 90rem;
 	--grid-gap: 3.8rem;
+}
+
+.section--wrapper {
+	margin-top: 75px;
+}
+
+html {
+	scroll-behavior: smooth;
 }
