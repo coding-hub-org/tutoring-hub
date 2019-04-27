@@ -6,6 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Contact from "../Contact/Contact";
 
 import tutoringHubLogo from "../../Assets/tutoring-hub-logo.png";
+import tutoringHubLogoNoText from "../../Assets/logo-no-text.svg";
 
 const NavBar = props => {
 	return (
@@ -15,6 +16,11 @@ const NavBar = props => {
 		>
 			<div className={"navbar-component--wrapper"}>
 				<Link to="/">
+					<img
+						src={tutoringHubLogoNoText}
+						className="logo-notext"
+						alt="Tutoring Hub Logo"
+					/>{" "}
 					<img src={tutoringHubLogo} alt="Tutoring Hub Logo" />
 				</Link>
 				{props.searchable && <SearchBar handleSearch={props.handleSearch} />}
