@@ -116,14 +116,7 @@ class Profile extends Component {
 							<div className={"profile-section--wrapper__upper--center"}>
 								<Title title={this.getName()} />
 								<p className="profile-major">{this.state.tutor.major}</p>
-								{/* <p>
-									<span>MAJOR: </span>
-									{this.state.tutor.major}
-								</p> */}
-								{/* <p>
-									<span>TUTOR SINCE: </span>
-									{this.state.tutor.since}
-								</p> */}
+
 								<div className={"tutor-since"}>
 									<img src={tutorSince} alt="tutor since" />
 									<p>Tutor since {this.state.tutor.since}</p>
@@ -173,7 +166,7 @@ class Profile extends Component {
 						</div>
 						<div className="Filters-course">
 							<div>
-								<span>Filters by course</span>
+								<span>Filters review</span>
 								<FormDropdown
 									title={"Courses"}
 									options={this.state.tutor.courses}

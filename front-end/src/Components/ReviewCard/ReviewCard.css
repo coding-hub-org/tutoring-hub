@@ -80,32 +80,37 @@
 	width: 35px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
 	.reviewcard-component {
 		padding: 20px 40px;
+		width: 85%;
 	}
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
 	.reviewcard-component
 		.reviewcard-component--wrapper
 		.reviewcard-component--wrapper__description
 		section
 		h3 {
-		font-size: 1em;
+		font-size: 1.1em;
 	}
 	.reviewcard-component--wrapper__description > p {
-		font-size: 0.9em;
+		font-size: 1.2em;
 	}
 	.reviewcard-component
 		.reviewcard-component--wrapper
 		.reviewcard-component--wrapper__description
 		h1 {
-		font-size: 1.4em;
+		font-size: 1.5em;
+	}
+	.reviewcard-component {
+		padding: 20px 30px;
+		width: 100%;
 	}
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
 	.reviewcard-component
 		.reviewcard-component--wrapper
 		.reviewcard-component--wrapper__description
@@ -114,7 +119,7 @@
 		font-size: 0.8em;
 	}
 	.reviewcard-component--wrapper__description > p {
-		font-size: 0.7em;
+		font-size: 0.9em;
 	}
 	.reviewcard-component
 		.reviewcard-component--wrapper
@@ -124,25 +129,40 @@
 	}
 }
 
-@media (max-width: 500px) {
-	/* .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section{
-        flex-direction: column;
-    } */
-
+@media (max-width: 450px) {
 	.reviewcard-component
 		.reviewcard-component--wrapper
 		.reviewcard-component--wrapper__description
-		section
-		h3 {
-		padding-bottom: 10px;
+		section {
+		margin-top: 10px;
 	}
-	.reviewcard-component {
-		padding: 20px 30px;
-	}
-
 	.reviewcard-component
 		.reviewcard-component--wrapper
-		.reviewcard-component--wrapper__description {
-		grid-area: description;
+		.reviewcard-component--wrapper__description
+		.review-title {
+		align-items: flex-start;
+	}
+	.reviewcard-component {
+		padding: 10px 20px;
+	}
+	.reviewcard-component
+		.reviewcard-component--wrapper
+		.reviewcard-component--wrapper__description
+		.review-title
+		div:first-child {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.reviewcard-component--wrapper__description .review-title div h3 {
+		font-size: 1em;
+		margin: 0;
+	}
+	.reviewcard-component--wrapper__description .review-title div img {
+		width: 20px;
+	}
+	.reviewcard-component--wrapper__description .review-title div p {
+		margin: 0 0 0 10px;
+		font-size: 1.5em;
 	}
 }

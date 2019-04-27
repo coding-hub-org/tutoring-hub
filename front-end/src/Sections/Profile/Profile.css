@@ -17,7 +17,7 @@
 }
 .profile-section .profile-section--wrapper .profile-section--wrapper__upper {
 	display: grid;
-	grid-template-columns: 1fr 10fr 0.5fr; /* justify-content: space-between; */
+	grid-template-columns: 1fr 10fr 1fr; /* justify-content: space-between; */
 	margin: 5em 0 2em 0;
 }
 
@@ -37,11 +37,6 @@
 	border-radius: 35px;
 }
 
-.profile-section
-	.profile-section--wrapper
-	.profile-section--wrapper__upper--center {
-	padding-left: 25px;
-}
 .profile-section
 	.profile-section--wrapper
 	.profile-section--wrapper__upper--center
@@ -82,7 +77,6 @@
 	display: flex;
 	align-items: center;
 	width: 30%;
-	border-right: 2px solid #d9d9d9;
 }
 .profile-section
 	.profile-section--wrapper
@@ -144,6 +138,33 @@
 	font-weight: 400;
 }
 
+.profile-section
+	.profile-section--wrapper
+	.profile-section--wrapper__upper--center
+	.tutor-rating-stats
+	p {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.profile-section
+	.profile-section--wrapper
+	.profile-section--wrapper__upper--center
+	.tutor-rating-stats
+	span {
+	font-size: 30px;
+	font-weight: 500;
+}
+
+.profile-section
+	.profile-section--wrapper
+	.profile-section--wrapper__upper--center
+	.tutor-rating-stats
+	img {
+	width: 60px;
+}
+
 /* Standard syntax */
 @keyframes mymove {
 	0%,
@@ -154,12 +175,40 @@
 		opacity: 1;
 	}
 }
-@media (max-width: 1100px) {
+
+@media (max-width: 1450px) {
 	.profile-section
 		.profile-section--wrapper
-		.profile-section--wrapper__upper--center {
-		grid-area: b;
+		.profile-section--wrapper__upper--left
+		> img {
+		height: 240px;
+		width: 240px;
 	}
+
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-rating-stats
+		img {
+		width: 45px;
+	}
+
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-rating-stats
+		div {
+		border: none;
+	}
+}
+
+@media (max-width: 1200px) {
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--left {
+		height: 250px;
+	}
+
 	.profile-section
 		.profile-section--wrapper
 		.profile-section--wrapper__upper--right {
@@ -177,60 +226,34 @@
 		width: 250px;
 		height: 250px;
 	}
-	.profile-section .profile-section--wrapper .profile-section--wrapper__upper {
-		grid-template-columns: auto;
-		grid-column-gap: 50px;
-		grid-template-areas: "a b" "c b";
-	}
-}
 
-@media (max-width: 800px) {
+	.profile-section .profile-section--wrapper .profile-section--wrapper__upper {
+		display: block;
+	}
+
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-rating-stats
+		div {
+		flex-direction: column;
+		border: none;
+	}
+
 	.profile-section
 		.profile-section--wrapper
 		.profile-section--wrapper__upper--center {
-		padding-left: 0;
-	}
-	.profile-section .profile-section--wrapper .profile-section--wrapper__upper {
-		grid-template-areas: "a" "c" "b";
-		justify-items: center;
-		grid-row-gap: 20px;
-	}
-	.profile-section
-		.profile-section--wrapper
-		.profile-section--wrapper__upper--left {
-		display: grid;
-		justify-content: center;
-		align-items: center;
-	}
-	.profile-section .profile-section--wrapper .Filters-course {
-		justify-content: center;
-		flex-direction: column;
-	}
-	.profile-section
-		.profile-section--wrapper
-		.profile-section--wrapper__reviews
-		> a {
-		align-self: flex-end;
-		margin-bottom: 20px;
+		padding: 0;
 	}
 	.profile-section
 		.profile-section--wrapper
 		.profile-section--wrapper__upper--center
-		> p {
-		width: 250px;
-		margin-left: auto;
-		margin-right: auto;
-		/* text-align: center; */
+		.tutor-rating-stats
+		div
+		img {
+		width: 50px;
+		margin: 0;
 	}
-
-	.profile-section
-		.profile-section--wrapper
-		.profile-section--wrapper__reviews
-		a {
-		font-size: 11px;
-	}
-}
-@media (max-width: 500px) {
 	.profile-section
 		.profile-section--wrapper
 		.profile-section--wrapper__upper--left
@@ -238,8 +261,40 @@
 		height: 220px;
 		width: 220px;
 	}
+	.profile-section--wrapper .profile-major,
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		h1 {
+		text-align: center;
+	}
+
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-since {
+		justify-content: center;
+	}
 }
 
+@media (max-width: 600px) {
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-rating-stats
+		p
+		span {
+		font-size: 20px;
+	}
+
+	.profile-section
+		.profile-section--wrapper
+		.profile-section--wrapper__upper--center
+		.tutor-rating-stats
+		p {
+		font-size: 15px;
+	}
+}
 @media (max-width: 400px) {
 	.profile-section
 		.profile-section--wrapper
@@ -285,41 +340,12 @@
 	width: 850px;
 }
 
-@media (max-width: 1700px) {
-	.Filters-course > div:nth-child(2n + 2) {
-		width: 600px;
-	}
-}
-
-@media (max-width: 1350px) {
-	.Filters-course > div:nth-child(2n + 2) {
-		width: 400px;
-	}
-}
-
-@media (max-width: 1150px) {
-	.Filters-course > div:nth-child(2n + 2) {
-		width: 700px;
-	}
-
-	.Filters-course {
-		flex-direction: column;
-		text-align: left;
-	}
-
-	.Filters-course > div {
+@media (max-width: 740px) {
+	.profile-section .profile-section--wrapper .Filters-course {
 		display: block;
 	}
-}
-
-@media (max-width: 850px) {
-	.Filters-course > div:nth-child(2n + 2) {
-		width: 500px;
-	}
-}
-
-@media (max-width: 600px) {
-	.Filters-course > div:nth-child(2n + 2) {
-		width: 350px;
+	.profile-section .profile-section--wrapper .Filters-course select {
+		width: 100%;
+		margin-bottom: 30px;
 	}
 }
