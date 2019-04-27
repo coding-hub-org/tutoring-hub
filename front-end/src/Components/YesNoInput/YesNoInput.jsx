@@ -2,12 +2,11 @@ import React, { Fragment } from "react";
 import "./YesNoInput.css";
 
 class YesNoInput extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			selectedElementName: undefined,
+			selectedElementName: undefined
 		};
 
 		this.onChange = this.onChange.bind(this);
@@ -23,17 +22,15 @@ class YesNoInput extends React.Component {
 		this.clear();
 	}
 
-
 	triggerChange(elementName) {
 		if (elementName) {
 			this.setState({
-				selectedElementName: elementName,
+				selectedElementName: elementName
 			});
 			this.props.onChange(elementName);
-		}
-		else {
+		} else {
 			this.setState({
-				selectedElementName: undefined,
+				selectedElementName: undefined
 			});
 			this.props.onChange(undefined);
 		}
@@ -48,26 +45,21 @@ class YesNoInput extends React.Component {
 	}
 
 	render() {
-
-		const inputs = this.props.choices.map(function (value, index) {
+		const inputs = this.props.choices.map(function(value, index) {
 			return (
-				<Fragment
-					key={value + "-" + index}
-				>
-					<input
-						type="radio"
-						className={"option-input radio"}
-						value={value}
-						name={value}
-						onChange={this.onChange}
-						onContextMenu={this.onRightClick}
-						checked={this.isChecked(value)}
-					/>
-					<label
-						htmlFor={value}
-					>
-						{value}
-					</label>
+				<Fragment key={value + "-" + index}>
+					<div className="YesNoInput-component--wrapper-container">
+						<input
+							type="radio"
+							className={"option-input radio"}
+							value={value}
+							name={value}
+							onChange={this.onChange}
+							onContextMenu={this.onRightClick}
+							checked={this.isChecked(value)}
+						/>
+						<label htmlFor={value}>{value}</label>
+					</div>
 				</Fragment>
 			);
 		}, this);
@@ -75,11 +67,7 @@ class YesNoInput extends React.Component {
 		return (
 			<div className={"YesNoInput-component"}>
 				<p>{this.props.parameter}</p>
-				<div
-					className={"YesNoInput-component--wrapper"}
-				>
-					{inputs}
-				</div>
+				<div className={"YesNoInput-component--wrapper"}>{inputs}</div>
 			</div>
 		);
 	}
