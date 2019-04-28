@@ -9,3 +9,9 @@
 	grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
 	grid-gap: 2.2rem;
 }
+
+@media (max-width: 400px) {
+	.Tutor-Cards-Component {
+		grid-template-columns: 1fr;
+	}
+}
