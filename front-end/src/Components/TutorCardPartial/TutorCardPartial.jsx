@@ -35,15 +35,15 @@ class TutorCardPartial extends Component {
 		// console.log(this.props.tutor);
 		const courses_list = this.props.tutor.courses
 			.slice(0, 7)
-			.map(course => <li>{course}</li>);
+			.map((course, index) => <li key={index}>{course}</li>);
 
 		const tooltip_courses_list =
 			this.props.tutor.courses.length > 7
 				? this.props.tutor.courses
-						.slice(7, this.props.tutor.courses.length)
-						.map((course, i, j) => (
-							<span>{i < j.length - 1 ? course + ", " : course}</span>
-						))
+					.slice(7, this.props.tutor.courses.length)
+					.map((course, index, j) => (
+						<span key={index}>{index < j.length - 1 ? course + ", " : course}</span>
+					))
 				: null;
 
 		return (
@@ -62,7 +62,7 @@ class TutorCardPartial extends Component {
 								{this.props.tutor.courses.length > 7
 									? "+ " + (this.props.tutor.courses.length - 7).toString()
 									: ""}
-								<div div className="tooltip-content">
+								<div className="tooltip-content">
 									{tooltip_courses_list}
 								</div>
 							</li>
@@ -75,8 +75,8 @@ class TutorCardPartial extends Component {
 							{this.getAvg(this.props.tutor.reviews) === -1 ? (
 								<span>N/A</span>
 							) : (
-								<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
-							)}
+									<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
+								)}
 						</span>
 						<span className="more">
 							<img src={moreImg} alt="more icon" />
