@@ -25,7 +25,7 @@ class ReviewCard extends Component {
 		//     :
 		//     course_filter_reviews.filter(review => {
 		//         let obj = review.statistics;
-		//         let total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+		//         let total = (obj.methodology + obj.organization + obj.preparation + obj.knowledge + obj.clarity) / 5;
 		//         return total >= this.props.filter_rating;
 		//     })
 
@@ -37,7 +37,7 @@ class ReviewCard extends Component {
 				(obj.methodology +
 					obj.organization +
 					obj.preparation +
-					obj.knowlege +
+					obj.knowledge +
 					obj.clarity) /
 				5;
 

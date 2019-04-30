@@ -18,6 +18,7 @@ class Review extends React.Component {
 			loading: true,
 			tutor: undefined,
 			author: "Anonymous",
+
 			course: undefined,
 			content: undefined,
 			methodology: undefined,
@@ -97,6 +98,7 @@ class Review extends React.Component {
 
 	handleSubmit = () => {
 		let self = this;
+
 		this.validateForm(function(err) {
 			if (err) {
 				alert(err);
@@ -145,6 +147,7 @@ class Review extends React.Component {
 	};
 
 	onStatUpdate(elementName, value) {
+		console.debug(`Updated ${elementName} to ${value}`);
 		switch (elementName.toLowerCase()) {
 			default:
 				break;
