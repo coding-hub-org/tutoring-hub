@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import SearchBar from "../SearchBar/SearchBar";
 import Contact from "../Contact/Contact";
+import UserBox from "../UserBox/UserBox";
 
 import tutoringHubLogo from "../../Assets/tutoring-hub-logo.png";
 import tutoringHubLogoNoText from "../../Assets/logo-no-text.svg";
