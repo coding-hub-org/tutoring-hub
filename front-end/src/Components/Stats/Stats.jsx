@@ -3,7 +3,7 @@ import "./Stats.css";
 
 // Import components
 
-const Stats = ({ reviews }) => {
+const Stats = ({ reviews, currentCourse }) => {
     let stats = {
         methodology: 0,
         organization: 0,
@@ -11,19 +11,24 @@ const Stats = ({ reviews }) => {
         clarity: 0,
         knowledge: 0
     };
-
+    console.log(stats);
     const getStats = () => {
+        let count=0;
         reviews.forEach(review => {
+            if (currentCourse !== "NA") 
+                if (review.course !== currentCourse) return;
+            count+=1;
             stats.methodology += review.statistics.methodology;
             stats.organization += review.statistics.organization;
             stats.preparation += review.statistics.preparation;
             stats.clarity += review.statistics.clarity;
             stats.knowledge += review.statistics.knowledge;
         });
-
+        if (count!==0)
         for (let key in stats) {
-            stats[key] = ((stats[key] / reviews.length).toFixed(2) * 100) / 10;
+            stats[key] = ((stats[key] / count).toFixed(2) * 100) / 10;
         }
+        console.log(stats);
     };
 
     getStats();

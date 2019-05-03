@@ -11,7 +11,7 @@ class FormDropdown extends Component {
 	onChange(event) {
 		this.props.onChange(
 			event.target.value === "-- " + this.props.title + "--"
-				? ""
+				? "NA"
 				: event.target.value
 		);
 	}

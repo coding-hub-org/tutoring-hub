@@ -29,8 +29,7 @@ class Profile extends Component {
 			loading: true,
 			yes: 0,
 			no: 0,
-			filter_course: "",
-			filter_rating: 0
+			filter_course: "NA"
 		};
 		this.getName = this.getName.bind(this);
 	}
@@ -59,25 +58,13 @@ class Profile extends Component {
 
 	filterCourses = course => {
 		this.setState({
-			filter_course: course === "" ? "" : course
+			filter_course: course === "NA" ? "NA" : course
 		});
 	};
 
-	filterRatings = rating => {
-		this.setState({
-			filter_rating: rating
-		});
-	};
-
-	filterRatingsType = type => {
-		this.setState({
-			filter_rating_type: type
-		});
-	};
-
+	
 	componentDidMount() {
 		window.scrollTo(0, 0);
-
 		fetch(`/api/v1${window.location.pathname}`)
 			.then(response => response.json())
 			.then(data => {
@@ -94,6 +81,7 @@ class Profile extends Component {
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="profile-section">
 				<NavBar />
@@ -160,7 +148,7 @@ class Profile extends Component {
 						<Subheading title={"Courses"} />
 						<Course courses={this.state.tutor.courses} />
 						<Subheading title={"Stats"} />
-						<Stats reviews={this.state.tutor.reviews} />
+						<Stats reviews={this.state.tutor.reviews} currentCourse={this.state.filter_course}/>
 						<div className={"profile-section--wrapper__reviews"}>
 							<Subheading title={"Reviews"} />
 						</div>
