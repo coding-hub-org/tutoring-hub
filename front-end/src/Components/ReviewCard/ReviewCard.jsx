@@ -14,7 +14,7 @@ class ReviewCard extends Component {
 	render() {
 		console.log(this.props);
 		const course_filter_reviews =
-			this.props.filter_course === ""
+			this.props.filter_course === "NA"
 				? this.props.tutor.reviews
 				: this.props.tutor.reviews.filter(review => {
 						return review.course === this.props.filter_course;

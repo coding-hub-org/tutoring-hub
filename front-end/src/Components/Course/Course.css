@@ -12,6 +12,9 @@
 	margin-bottom: 10px;
 }
 
+.active{
+	border: #06255d;
+}
 @media (max-width: 1400px) {
 	.course-component {
 		padding: 0 20px;

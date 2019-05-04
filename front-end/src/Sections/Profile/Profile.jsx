@@ -62,6 +62,14 @@ class Profile extends Component {
 		});
 	};
 
+	toogleCourse = course => {
+		this.setState(prev=>
+			{
+				return {
+					filter_course: prev.filter_course===course?"NA":course
+				}
+			})
+	}
 	
 	componentDidMount() {
 		window.scrollTo(0, 0);
@@ -104,7 +112,6 @@ class Profile extends Component {
 							<div className={"profile-section--wrapper__upper--center"}>
 								<Title title={this.getName()} />
 								<p className="profile-major">{this.state.tutor.major}</p>
-
 								<div className={"tutor-since"}>
 									<img src={tutorSince} alt="tutor since" />
 									<p>Tutor since {this.state.tutor.since}</p>
@@ -146,7 +153,7 @@ class Profile extends Component {
 							</div>
 						</div>
 						<Subheading title={"Courses"} />
-						<Course courses={this.state.tutor.courses} />
+						<Course courses={this.state.tutor.courses} func={this.toogleCourse}/>
 						<Subheading title={"Stats"} />
 						<Stats reviews={this.state.tutor.reviews} currentCourse={this.state.filter_course}/>
 						<div className={"profile-section--wrapper__reviews"}>
