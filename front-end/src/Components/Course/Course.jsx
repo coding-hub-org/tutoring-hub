@@ -1,6 +1,5 @@
 import React from 'react';
 import './Course.css';
-let currentE = null;
 const Course = ({courses, func}) => {
     
     const onClickFunc = (course) =>
