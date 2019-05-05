@@ -29,7 +29,7 @@ class Profile extends Component {
 			loading: true,
 			yes: 0,
 			no: 0,
-			filter_course: "NA"
+			filter_course: "N/A"
 		};
 		this.getName = this.getName.bind(this);
 	}
@@ -58,7 +58,7 @@ class Profile extends Component {
 
 	filterCourses = course => {
 		this.setState({
-			filter_course: course === "NA" ? "NA" : course
+			filter_course: course === "N/A" ? "N/A" : course
 		});
 	};
 
@@ -66,7 +66,7 @@ class Profile extends Component {
 		this.setState(prev=>
 			{
 				return {
-					filter_course: prev.filter_course===course?"NA":course
+					filter_course: prev.filter_course===course?"N/A":course
 				}
 			})
 	}

@@ -15,7 +15,7 @@ const Stats = ({ reviews, currentCourse }) => {
     const getStats = () => {
         let count=0;
         reviews.forEach(review => {
-            if (currentCourse !== "NA") 
+            if (currentCourse !== "N/A") 
                 if (review.course !== currentCourse) return;
             count+=1;
             stats.methodology += review.statistics.methodology;
