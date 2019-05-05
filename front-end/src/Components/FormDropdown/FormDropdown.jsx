@@ -14,6 +14,24 @@ class FormDropdown extends Component {
 				? "N/A"
 				: event.target.value
 		);
+		if (event.target.value === "-- " + this.props.title + "--")
+		{
+			this.props.onChange("N/A");
+			let getActive = document.querySelector('.active');
+			if (getActive===null) return;
+			getActive.classList.toggle("active");
+		}
+		else
+		{
+			let course= event.target.value;
+			this.props.onChange(course);
+			let getClick = document.querySelector(`.js-${course}`);
+			let getActive = document.querySelector('.active');
+			if (getActive!==null) 
+				getActive.classList.toggle("active");
+			if (getClick !==null)
+				getClick.classList.toggle("active");
+		}
 	}
 
 	render() {
