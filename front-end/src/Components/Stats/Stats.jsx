@@ -11,7 +11,7 @@ const Stats = ({ reviews, currentCourse }) => {
         clarity: 0,
         knowledge: 0
     };
-    console.log(stats);
+    
     const getStats = () => {
         let count=0;
         reviews.forEach(review => {
@@ -28,7 +28,7 @@ const Stats = ({ reviews, currentCourse }) => {
         for (let key in stats) {
             stats[key] = ((stats[key] / count).toFixed(2) * 100) / 10;
         }
-        console.log(stats);
+        
     };
 
     getStats();
