@@ -9,11 +9,6 @@ class FormDropdown extends Component {
 	}
 
 	onChange(event) {
-		this.props.onChange(
-			event.target.value === "-- " + this.props.title + "--"
-				? "N/A"
-				: event.target.value
-		);
 		if (event.target.value === "-- " + this.props.title + "--")
 		{
 			this.props.onChange("N/A");
