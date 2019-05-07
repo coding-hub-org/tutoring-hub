@@ -4,6 +4,8 @@ import ratingStar from "../../Assets/rating-star.svg";
 
 import NoReviews from "../../Assets/no-reviews.png";
 
+var Underscore = require('underscore');
+
 class ReviewCard extends Component {
 	constructor(props) {
 		super(props);
@@ -31,6 +33,8 @@ class ReviewCard extends Component {
 
 		const filtered_review = course_filter_reviews;
 		console.log(filtered_review);
+
+		Underscore.sortBy(filtered_review, 'date');
 		const reviewList = filtered_review.map(review => {
 			let obj = review.statistics;
 			let total =

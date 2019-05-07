@@ -138,7 +138,7 @@ class Review extends React.Component {
 						.then(response => {
 							console.debug("Success");
 							document.getElementById("navbar").scrollIntoView();
-							window.location.href = "/";
+							window.location.href = window.location.pathname.replace("/rate", "");
 						})
 						.catch(error => console.error("Error:", error));
 				}
