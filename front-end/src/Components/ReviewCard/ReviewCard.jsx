@@ -35,6 +35,7 @@ class ReviewCard extends Component {
 		console.log(filtered_review);
 
 		Underscore.sortBy(filtered_review, 'date');
+		filtered_review.reverse();
 		const reviewList = filtered_review.map(review => {
 			let obj = review.statistics;
 			let total =
