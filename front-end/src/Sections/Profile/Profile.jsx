@@ -94,6 +94,7 @@ class Profile extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className="profile-section">
 				<NavBar />
@@ -119,7 +120,10 @@ class Profile extends Component {
 
 								<div className={"tutor-since"}>
 									<img src={tutorSince} alt="tutor since" />
-									<p>Tutor since {this.state.tutor.since}</p>
+									<p>Tutor since {this.state.tutor.since.substr(5) +
+										" " +
+										this.state.tutor.since.substr(0, 4)}
+									</p>
 								</div>
 								<section className={"tutor-rating-stats"}>
 									<div className={"tutor-rating-stats--reviews"}>
