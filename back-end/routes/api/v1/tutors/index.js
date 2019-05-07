@@ -15,13 +15,13 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// router.post('/create', function (req, res) {
-//     Tutor.create(req.body).then(
-//         (tutor) => {
-//             res.send(tutor);
-//         }
-//     );
-// });
+router.post('/create', function (req, res) {
+    Tutor.create(req.body).then(
+        (tutor) => {
+            res.send(tutor);
+        }
+    );
+});
 
 // router.get('/create', function (req, res) {
 //     res.send("Creating a tutor requires a POST request, not a GET request");

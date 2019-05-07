@@ -5,8 +5,10 @@
 	border-radius: 7px;
 	box-sizing: border-box;
 	max-width: 350px;
-	padding-bottom: 1em;
+	padding-bottom: 3em;
 	border: 1px solid #ececec;
+
+	position: relative;
 }
 
 .Tutor-Card-Partial-Component > img {
@@ -61,7 +63,13 @@
 	display: flex;
 	justify-content: space-between;
 	margin-top: 10px;
+
+	position: absolute;
+	bottom: 20px;
+
+	width: 90%;
 }
+
 .Tutor-Card-Partial-Component .bottom a {
 	text-decoration: none;
 
@@ -77,6 +85,11 @@
 .Tutor-Card-Partial-Component .more {
 	display: flex;
 	align-items: center;
+}
+
+.Tutor-Card-Partial-Component .more {
+	position: relative;
+	right: 0;
 }
 
 .Tutor-Card-Partial-Component .rating span,
@@ -114,13 +127,13 @@
 
 @media (max-width: 1227px) {
 	.Tutor-Card-Partial-Component {
-		max-width: 400px;
+		width: 400px;
 		margin: 0 auto;
 	}
 }
 
 @media (max-width: 550px) {
 	.Tutor-Card-Partial-Component {
-		max-width: 100%;
+		width: 100%;
 	}
 }
