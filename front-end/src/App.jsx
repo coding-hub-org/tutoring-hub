@@ -14,6 +14,7 @@ import BackToTopButton from "./Components/BackToTopButton/BackToTopButton";
 
 class App extends Component {
 	render() {
+		console.log("Test github with discord");
 		return (
 			<BrowserRouter>
 				<div className="App">
