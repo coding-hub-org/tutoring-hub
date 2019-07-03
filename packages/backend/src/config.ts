@@ -1,12 +1,12 @@
 var fs = require('fs');
 
-async function create(fileName, defaultObj) {
+export async function createConfig(fileName: string, defaultObj: any): Promise<any> {
     return new Promise((resolve, reject) => {
-        if (!fs.exists(fileName, function (exists) {
+        if (!fs.exists(fileName, function (exists: any) {
             if (exists) {
                 return resolve(false);
             }
-            fs.writeFile(fileName, JSON.stringify(defaultObj, null, "\t"), (err) => {
+            fs.writeFile(fileName, JSON.stringify(defaultObj, null, "\t"), (err: any) => {
                 if (err) {
                     console.error(err);
                     return reject(err);
@@ -16,11 +16,10 @@ async function create(fileName, defaultObj) {
         }));
     });
 }
-exports.create = create;
 
-async function load(fileName) {
+export async function loadConfig(fileName: string): Promise<any> {
     return new Promise((resolve, reject) => {
-        fs.readFile(fileName, function (err, data) {
+        fs.readFile(fileName, function (err: any, data: string) {
             var config = JSON.parse(data);
             if (!config || err) {
                 console.log(err);
@@ -30,4 +29,3 @@ async function load(fileName) {
         });
     });
 }
-exports.load = load;

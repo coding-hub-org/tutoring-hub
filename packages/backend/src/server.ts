@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+import expressApp, { app } from './app';
+
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
 var debug = require('debug')('back-end:server');
 var http = require('http');
 
@@ -13,13 +14,13 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '3001');
-app.set('port', port);
+expressApp.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer(expressApp);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -88,3 +89,6 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+app.initialize();
