@@ -1,0 +1,14 @@
+{
+    "name": "tutoring-hub",
+    "description": "An online platform, similar to rate my professor, to review and search for Peer Tutors",
+    "authors": "CodingHub",
+    "private": true,
+    "version": "1.0.0",
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "start:backend": "cd packages/backend && yarn start",
+        "start:frontend": "cd packages/frontend && yarn start"
+    }
+}
