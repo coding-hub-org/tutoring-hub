@@ -114,62 +114,64 @@ class Tutors extends Component {
 
 	render() {
 		return (
-			<div className="section">
+			<>
 				<NavBar
 					searchable={true}
 					handleSearch={this.handleSearch}
 					sticky={true}
 				/>
-				<div className="section--wrapper">
-					<div className="section--wrapper-title">
-						<img src={titleImg} alt="title icon" />{" "}
-						<Title title={this.state.title.toUpperCase()} />
-					</div>
+				<section id="section-tutors">
+					<div className="wrapper">
+						<div className="section-title">
+							<img src={titleImg} alt="title icon" />{" "}
+							<Title title={this.state.title.toUpperCase()} />
+						</div>
 
-					<div className="Filters">
-						<div>
-							<p>Courses</p>
-							<FormDropdown
-								title={"Courses"}
-								options={this.state.courses}
-								onChange={this.filterCourses}
-								value={this.state.filterCourse}
-								uppercase={true}
+						<div className="filters">
+							<div className="filter">
+								<p className="title">Courses</p>
+								<FormDropdown
+									title={"Courses"}
+									options={this.state.courses}
+									onChange={this.filterCourses}
+									value={this.state.filterCourse}
+									uppercase={true}
+								/>
+							</div>
+							<div className="filter">
+								<p className="title">Rating</p>
+								<FormSlider
+									min={0}
+									max={10}
+									step={1}
+									onChange={this.filterRatings}
+									value={this.state.filterRating}
+								/>
+							</div>
+							<div className="filter" id="filter-submit">
+								<FormButton title={"Reset Filters"} action={this.resetFilters} />
+							</div>
+						</div>
+
+						{this.isFiltering() ? (
+							<TutorCardsFilterable
+								tutors={this.state.tutors}
+								filterCourse={this.state.filterCourse}
+								filterRating={this.state.filterRating}
+								filterName={this.state.filterName}
 							/>
+						) : (
+								<TutorCards tutors={this.state.tutors} />
+							)}
+
+						<div className="review-website-button">
+							<ReviewWebsiteButton />
 						</div>
-						<div>
-							<p>Rating</p>
-							<FormSlider
-								min={0}
-								max={10}
-								step={1}
-								onChange={this.filterRatings}
-								value={this.state.filterRating}
-							/>
-						</div>
-						<div id="filter-submit">
-							<FormButton title={"Reset Filters"} action={this.resetFilters} />
-						</div>
+
+						{/* <AddTutorBox /> */}
 					</div>
-
-					{this.isFiltering() ? (
-						<TutorCardsFilterable
-							tutors={this.state.tutors}
-							filterCourse={this.state.filterCourse}
-							filterRating={this.state.filterRating}
-							filterName={this.state.filterName}
-						/>
-					) : (
-							<TutorCards tutors={this.state.tutors} />
-						)}
-
-					<div className="review-website-button">
-						<ReviewWebsiteButton />
-					</div>
-
-					{/* <AddTutorBox /> */}
-				</div>
-			</div>
+				</section>
+			</>
 		);
 	}
 }

@@ -1,37 +1,60 @@
-.Filters {
-  margin: 1em 0;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
+#section-tutors {
+  height: 75vh;
 
-  #filter-submit {
-    display: flex;
-    align-items: center;
-  }
+  .wrapper {
+    grid-column: 2;
 
-  select {
-    background-color: #ffffff;
-    border: 2px solid #ececec;
-    caret-color: #b9c6e0;
-    border-radius: 5px;
-    height: 40px;
-    /* margin: 0 1em; */
-    padding: 0.5em 1em;
-    width: 300px;
-
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
+    .section-title {
+      display: flex;
+      align-items: center;
     }
   }
 
-  span {
-    margin: 1em;
-  }
+  padding-top: 100px;
+  width: 90rem;
+  margin: 0 auto;
 
-  div:nth-child(2n + 2) {
-    width: 850px;
+  .filters {
+    display: flex;
+    justify-content: space-between;
+
+    .filter {
+      .title {
+        padding: 1em 0 1em 0;
+        text-align: center;
+      }
+    }
+
+    #filter-submit {
+      padding-top: 1em;
+      display: flex;
+      align-items: center;
+    }
+
+    select {
+      background-color: #ffffff;
+      border: 2px solid #ececec;
+      caret-color: #b9c6e0;
+      border-radius: 5px;
+      height: 40px;
+      /* margin: 0 1em; */
+      padding: 0.5em 1em;
+      width: 300px;
+
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    span {
+      margin: 1em;
+    }
+
+    div:nth-child(2n + 2) {
+      width: 850px;
+    }
   }
 }
 
@@ -46,45 +69,45 @@
 }
 
 @media (max-width: 1790px) {
-  .Filters > div:nth-child(2n + 2) {
+  .filters > div:nth-child(2n + 2) {
     width: 600px;
   }
 }
 
 @media (max-width: 1460px) {
-  .Filters > div:nth-child(2n + 2) {
+  .filters > div:nth-child(2n + 2) {
     width: 400px;
   }
 }
 
 @media (max-width: 1180px) {
-  .Filters {
+  .filters {
     flex-wrap: wrap;
   }
 
-  .Filters #filter-submit {
+  .filters #filter-submit {
     width: 100%;
     justify-content: flex-end;
   }
 }
 
 @media (max-width: 950px) {
-  .Filters > div:nth-child(2n + 2) {
+  .filters > div:nth-child(2n + 2) {
     width: 350px;
   }
 }
 
 @media (max-width: 850px) {
-  .Filters > div:nth-child(2n + 2) {
+  .filters > div:nth-child(2n + 2) {
     width: 100%;
   }
 
-  .Filters > div,
-  .Filters select {
+  .filters > div,
+  .filters select {
     width: 100%;
   }
 
-  .Filters > div {
+  .filters > div {
     justify-content: center;
   }
 
@@ -96,7 +119,7 @@
     justify-content: center;
   }
 
-  .Filters #filter-submit {
+  .filters #filter-submit {
     justify-content: center;
   }
 }
