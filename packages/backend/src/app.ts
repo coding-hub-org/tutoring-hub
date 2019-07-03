@@ -4,11 +4,13 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import cloudinary from 'cloudinary';
+import express, { NextFunction, Application } from 'express';
+import fetch from "node-fetch";
 
 import indexRoute from "./routes/index";
 
 import { createConfig, loadConfig } from "./config";
-import express, { NextFunction, Application } from 'express';
+
 
 
 class App {
