@@ -18,6 +18,7 @@ class Review extends React.Component {
 			loading: true,
 			tutor: undefined,
 			author: "Anonymous",
+
 			course: undefined,
 			content: undefined,
 			methodology: undefined,
@@ -97,6 +98,7 @@ class Review extends React.Component {
 
 	handleSubmit = () => {
 		let self = this;
+
 		this.validateForm(function(err) {
 			if (err) {
 				alert(err);
@@ -107,7 +109,7 @@ class Review extends React.Component {
 				author: self.state.author,
 				course: self.state.course,
 				content: self.state.content,
-				bookAgain: self.state.ookAgain,
+				bookAgain: self.state.bookAgain,
 				statistics: {
 					methodology: self.state.methodology,
 					organization: self.state.organization,
@@ -136,7 +138,7 @@ class Review extends React.Component {
 						.then(response => {
 							console.debug("Success");
 							document.getElementById("navbar").scrollIntoView();
-							window.location.href = "/";
+							window.location.href = window.location.pathname.replace("/rate", "");
 						})
 						.catch(error => console.error("Error:", error));
 				}
@@ -145,6 +147,7 @@ class Review extends React.Component {
 	};
 
 	onStatUpdate(elementName, value) {
+		console.debug(`Updated ${elementName} to ${value}`);
 		switch (elementName.toLowerCase()) {
 			default:
 				break;

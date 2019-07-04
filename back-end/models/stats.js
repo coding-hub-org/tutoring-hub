@@ -19,7 +19,7 @@ const StatSchema = new Schema({
         type: Number,
         default: 0
     },
-    knowlege: {
+    knowledge: {
         type: Number,
         default: 0
     }

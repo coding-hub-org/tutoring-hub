@@ -15,7 +15,7 @@ const RatingCard = ({ reviews }) => {
 				(obj.methodology +
 					obj.organization +
 					obj.preparation +
-					obj.knowlege +
+					obj.knowledge +
 					obj.clarity) /
 				5;
 			rating += total;

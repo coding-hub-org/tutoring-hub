@@ -17,6 +17,12 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+.navbar-component .navbar-component--wrapper .logo-notext {
+	display: none;
 }
 
 .navbar-component .navbar-component--wrapper {
@@ -25,12 +31,16 @@
 
 @media (max-width: 550px) {
 	.navbar-component .navbar-component--wrapper {
-		justify-content: flex-start;
-		flex-direction: column;
+		justify-content: space-between;
+		flex-direction: row;
 	}
 
-	.navbar-component .navbar-component--wrapper a {
+	.navbar-component .navbar-component--wrapper a img {
 		display: none;
+	}
+
+	.navbar-component .navbar-component--wrapper .logo-notext {
+		display: block;
 	}
 }
 

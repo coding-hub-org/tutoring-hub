@@ -13,7 +13,7 @@ class TutorCardsFilterable extends Component {
         if (ratings.length === 0) return -1;
         ratings.forEach(review => {
             obj = review.statistics;
-            total = (obj.methodology + obj.organization + obj.preparation + obj.knowlege + obj.clarity) / 5;
+            total = (obj.methodology + obj.organization + obj.preparation + obj.knowledge + obj.clarity) / 5;
             rating += total;
         });
 
