@@ -109,7 +109,6 @@ class App {
             "API_SECRET": self.configManager.imageConfig.cloudinaryAPISecret,
             "CLOUD_NAME": self.configManager.imageConfig.cloudinaryCloudName,
           });
-          console.log("Successfully connected to the Image CDN");
           return resolve();
         }
         else {
