@@ -2,13 +2,10 @@ import path from 'path';
 import createError from 'http-errors';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from 'mongoose';
-import cloudinary from 'cloudinary';
 import express, { NextFunction, Application } from 'express';
-import fetch from "node-fetch";
 
 import indexRoute from "./routes/index";
-import { ConfigManager, DatabaseConfig } from './config';
+import { ConfigManager } from './config';
 
 
 class App {
@@ -18,19 +15,22 @@ class App {
     // ------------------------------------------------------ \\
 
     public expressApp: Application = express();
+    private configManager!: ConfigManager;
 
     constructor() {
     }
 
     public async initialize(): Promise<void> {
+        return new Promise(async () => {
+            // Setup express stuff
+            console.debug("Setting up express server...");
+            this.setupExpress();
+            console.debug("Finished setting up express server.");
 
-        // Setup express stuff
-        console.debug("Setting up express server...");
-        this.setupExpress();
-        console.debug("Finished setting up express server.");
-
-        // database configuration
-        await new ConfigManager().initialize();
+            // configurations
+            this.configManager = new ConfigManager();
+            await this.configManager.initialize();
+        });
     }
 
     public setupExpress(): void {

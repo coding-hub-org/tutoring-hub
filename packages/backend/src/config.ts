@@ -7,6 +7,7 @@ interface Serializable<T> {
 export class ConfigManager {
 
     private databaseConfig!: DatabaseConfig;
+    private imageConfig!: ImageConfig;
 
     constructor() {
     }
@@ -31,8 +32,21 @@ export class ConfigManager {
                     return reject(err);
                 });
 
-
-            console.log(this.databaseConfig.url);
+            // Create image config
+            await ConfigManager.createIfNotExistsAndLoad<ImageConfig>(
+                'images.config.json',
+                ImageConfig,
+                ['images.config.json']
+            )
+                .then(function (resultObj: any) {
+                    if (resultObj.created) {
+                        console.log("Created images config!");
+                    }
+                    self.imageConfig = resultObj.loaded;
+                    console.log("Loaded images config");
+                }).catch(function (err) {
+                    return reject(err);
+                });
 
             return resolve();
         });
@@ -104,7 +118,14 @@ abstract class ConfigBase implements Serializable<ConfigBase> {
         this.configPath = configPath;
     }
 
-    public abstract deserialize(input: any): ConfigBase;
+    // public abstract deserialize(input: any): ConfigBase;
+
+    public deserialize(input: any): ConfigBase {
+        Object.keys(input).forEach(key => {
+            this[key] = input[key];
+        });
+        return this;
+    }
 
     public async save(): Promise<void> {
         let self = this;
@@ -120,18 +141,17 @@ abstract class ConfigBase implements Serializable<ConfigBase> {
     }
 }
 
-
 export class DatabaseConfig extends ConfigBase {
     public username: string = "";
     public password: string = "";
     public url: string = "mongodb://localhost/tutoring-hub";
     public useNewUrlParser: boolean = true;
+}
 
-    public deserialize(input: any): DatabaseConfig {
-        Object.keys(input).forEach(key => {
-            console.log(key);
-            this[key] = input[key];
-        });
-        return this;
-    }
+export class ImageConfig extends ConfigBase {
+    public useCloudinary: boolean = true;
+    public cloudinaryAPIKey: string = "CLOUDINARY_API_KEY";
+    public cloudinaryAPISecret: string = "CLOUDINARY_API_SECRET";
+    public cloudinaryCloudName: string = "CLOUDINARY_CLOUD_NAME";
+
 }
