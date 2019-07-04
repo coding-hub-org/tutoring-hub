@@ -23,3 +23,29 @@
 	right: -20px;
 	height: 50px;
 }
+
+@media (max-width: 1200px) {
+	.ratingcard-component {
+		width: 40%;
+		margin: auto;
+	}
+}
+
+@media (max-width: 1000px) {
+	.ratingcard-component {
+		width: 50%;
+		margin: auto;
+	}
+}
+
+@media (max-width: 700px) {
+	.ratingcard-component {
+		width: 70%;
+	}
+}
+
+@media (max-width: 540px) {
+	.ratingcard-component {
+		width: 80%;
+	}
+}

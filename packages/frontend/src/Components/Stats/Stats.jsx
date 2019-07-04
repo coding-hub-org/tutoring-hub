@@ -9,7 +9,7 @@ const Stats = ({ reviews }) => {
         organization: 0,
         preparation: 0,
         clarity: 0,
-        knowlege: 0
+        knowledge: 0
     };
 
     const getStats = () => {
@@ -18,7 +18,7 @@ const Stats = ({ reviews }) => {
             stats.organization += review.statistics.organization;
             stats.preparation += review.statistics.preparation;
             stats.clarity += review.statistics.clarity;
-            stats.knowlege += review.statistics.knowlege;
+            stats.knowledge += review.statistics.knowledge;
         });
 
         for (let key in stats) {
@@ -44,8 +44,8 @@ const Stats = ({ reviews }) => {
         width: `${stats.clarity}%`
     };
 
-    let knowlegeBar = {
-        width: `${stats.knowlege}%`
+    let knowledgeBar = {
+        width: `${stats.knowledge}%`
     };
 
     return (
@@ -91,14 +91,14 @@ const Stats = ({ reviews }) => {
                 <span>{(stats.clarity / 10).toFixed(1)}</span>
             </div>
             <div className={"stats-component--feature"}>
-                <p>Knowlege: </p>
+                <p>knowledge: </p>
                 <div className={"stats-component--feature__wrapper"}>
                     <div
-                        style={knowlegeBar}
+                        style={knowledgeBar}
                         className={"stats-component--feature__progress"}
                     />
                 </div>
-                <span>{(stats.knowlege / 10).toFixed(1)}</span>
+                <span>{(stats.knowledge / 10).toFixed(1)}</span>
             </div>
         </div>
     );
