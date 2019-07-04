@@ -6,8 +6,8 @@ interface Serializable<T> {
 
 export class ConfigManager {
 
-    private databaseConfig!: DatabaseConfig;
-    private imageConfig!: ImageConfig;
+    public databaseConfig!: DatabaseConfig;
+    public imageConfig!: ImageConfig;
 
     constructor() {
     }

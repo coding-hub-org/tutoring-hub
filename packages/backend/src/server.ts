@@ -91,4 +91,11 @@ function onListening() {
 }
 
 
-app.initialize();
+console.log("Initializing application...");
+app.initialize()
+  .then(function () {
+    console.info("Application initialized!");
+  })
+  .catch(function (err: Error) {
+    console.error(err);
+  });
