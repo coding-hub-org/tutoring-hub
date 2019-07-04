@@ -8,7 +8,7 @@
         "packages/*"
     ],
     "scripts": {
-        "start:backend": "cd packages/backend && yarn start",
+        "start:backend": "cd packages/backend && yarn dev",
         "start:frontend": "cd packages/frontend && yarn start"
     }
 }
