@@ -24,100 +24,84 @@ class App {
   }
 
   public async initialize(): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      // Setup express stuff
-      console.debug("Setting up express server...");
-      this.setupExpress();
-      console.debug("Finished setting up express server.");
+    // Setup express stuff
+    console.debug("Setting up express server...");
+    this.setupExpress();
+    console.debug("Finished setting up express server.");
 
-      // configurations
+    // initialize configuration manager
+    try {
       this.configManager = new ConfigManager();
-      await this.configManager.initialize()
-        .then(function () {
+      await this.configManager.initialize();
+      console.log("Initialized the configuration manager");
+    } catch (error) {
+      console.error("Could not initialize the configuration manager");
+      throw error;
+    }
 
-        })
-        .catch(function (err: Error) {
-          console.error(err);
-          return reject("There was an error intiializing the configuration manager");
-        });
+    // test Mongoose database connection
+    try {
+      await this.testMongooseConnection();
+      console.log("Successfully connected to the database");
+    } catch (error) {
+      console.error("Could not connect to the database");
+      throw error;
+    }
+
+    // Test Cloudinary connection
+    if (this.configManager.imageConfig.useCloudinary) {
+      try {
+        await this.testCloudinaryConnection();
+        console.log("Successfully connected to the Cloudinary CDN");
+      } catch (error) {
+        console.error("Could not connect to the Cloudinary CDN");
+        throw error;
+      }
+    }
+  }
 
 
-      // test Mongoose database connection
-      await this.testMongooseConnection()
-        .then(function () {
-          console.log("Successfully connected to the database");
-        })
-        .catch(function (err) {
-          console.error(err);
-          return reject("Could not connect to the database");
-        });
+  public async testMongooseConnection(): Promise<void> {
+    const dbUsername = this.configManager.databaseConfig.username;
+    const dbPassword = this.configManager.databaseConfig.password;
+    const databaseURL = this.configManager.databaseConfig.url
+      .replace("{username}", dbUsername)
+      .replace("{password}", dbPassword);
+    const useNewUrlParser = this.configManager.databaseConfig.useNewUrlParser;
 
-      // Test Cloudinary connection
-      if (this.configManager.imageConfig.useCloudinary) {
-        await this.testCloudinaryConnection()
-          .then(function () {
-            console.log("Successfully connected to the Cloudinary CDN");
-          })
-          .catch(function (err) {
-            console.error(err);
-            return reject("Could not connect to the Cloudinary CDN");
-          });
+    try {
+      await mongoose.connect(databaseURL, {
+        useNewUrlParser: useNewUrlParser
+      });
+      mongoose.Promise = global.Promise;
+      const db = mongoose.connection;
+      //Bind connection to error event (to get notification of connection errors)
+      db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async testCloudinaryConnection(): Promise<void> {
+    const url = "https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image"
+      .replace("API_KEY", this.configManager.imageConfig.cloudinaryAPIKey)
+      .replace("API_SECRET", this.configManager.imageConfig.cloudinaryAPISecret)
+      .replace("CLOUD_NAME", this.configManager.imageConfig.cloudinaryCloudName);
+
+    try {
+      const value = await fetch(url);
+      if (value.status !== 200) {
+        throw new Error(`Cloudinary API returned bad status code: ${value.status}`);
       }
 
-      return resolve();
-    });
-  }
-
-
-  public async testMongooseConnection() {
-    return new Promise((resolve, reject) => {
-      let dbUsername = this.configManager.databaseConfig.username;
-      let dbPassword = this.configManager.databaseConfig.password;
-      let databaseURL = this.configManager.databaseConfig.url
-        .replace("{username}", dbUsername)
-        .replace("{password}", dbPassword);
-      let useNewUrlParser = this.configManager.databaseConfig.useNewUrlParser;
-
-      mongoose.connect(databaseURL, {
-        useNewUrlParser: useNewUrlParser
-      }).then(function () {
-        mongoose.Promise = global.Promise;
-
-        var db = mongoose.connection;
-
-        //Bind connection to error event (to get notification of connection errors)
-        db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-        return resolve();
-      }).catch(function (err) {
-        return reject(err);
+      cloudinary.config({
+        "API_KEY": this.configManager.imageConfig.cloudinaryAPIKey,
+        "API_SECRET": this.configManager.imageConfig.cloudinaryAPISecret,
+        "CLOUD_NAME": this.configManager.imageConfig.cloudinaryCloudName,
       });
-    });
-  }
-
-  public async testCloudinaryConnection() {
-    return new Promise((resolve, reject) => {
-      let url = "https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image"
-        .replace("API_KEY", this.configManager.imageConfig.cloudinaryAPIKey)
-        .replace("API_SECRET", this.configManager.imageConfig.cloudinaryAPISecret)
-        .replace("CLOUD_NAME", this.configManager.imageConfig.cloudinaryCloudName);
-
-      let self = this;
-      fetch(url).then(function (value) {
-        if (value.status == 200) {
-          cloudinary.config({
-            "API_KEY": self.configManager.imageConfig.cloudinaryAPIKey,
-            "API_SECRET": self.configManager.imageConfig.cloudinaryAPISecret,
-            "CLOUD_NAME": self.configManager.imageConfig.cloudinaryCloudName,
-          });
-          return resolve();
-        }
-        else {
-          return reject(new Error("Cloudinary API returned bad status code: " + value.status));
-        }
-      }).catch(function (err) {
-        return reject(err);
-      });
-    });
+    } catch (error) {
+      throw error;
+    }
   }
 
 
