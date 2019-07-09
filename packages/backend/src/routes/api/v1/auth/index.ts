@@ -28,7 +28,7 @@ async function verifyLogin(idToken) {
 }
 
 router.post('/google', async (req: Request, res: Response, next: NextFunction) => {
-    var user = req.body;
+    const user = req.body;
 
     try {
         await verifyLogin(user.idToken);

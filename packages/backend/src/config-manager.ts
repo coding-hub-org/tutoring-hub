@@ -27,8 +27,8 @@ export class ConfigUtils {
             const rawData = await fs.promises.readFile(path, {
                 encoding: 'utf8'
             });
-            let data = JSON.parse(rawData);
-            let deserialized: ConfigBase = new base(...baseArgs).deserialize(data);
+            const data = JSON.parse(rawData);
+            const deserialized: ConfigBase = new base(...baseArgs).deserialize(data);
             return deserialized;
         } catch (error) {
             throw error;
@@ -76,7 +76,7 @@ export class ConfigManager {
     public async initialize(): Promise<void> {
         // Create database config
         try {
-            let result = await ConfigUtils.createIfNotExistsAndLoad<DatabaseConfig>(
+            const result = await ConfigUtils.createIfNotExistsAndLoad<DatabaseConfig>(
                 'database.config.json',
                 DatabaseConfig,
                 ['database.config.json']
@@ -92,7 +92,7 @@ export class ConfigManager {
 
         // Create image config
         try {
-            let result = await ConfigUtils.createIfNotExistsAndLoad<ImageConfig>(
+            const result = await ConfigUtils.createIfNotExistsAndLoad<ImageConfig>(
                 'images.config.json',
                 ImageConfig,
                 ['images.config.json']
