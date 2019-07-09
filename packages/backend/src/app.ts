@@ -7,7 +7,7 @@ import cloudinary from 'cloudinary';
 import mongoose from 'mongoose';
 import fetch from 'node-fetch';
 
-import indexRoute from "./routes/index";
+import indexRoute from "./routes";
 import { ConfigManager } from './config-manager';
 
 
@@ -58,6 +58,8 @@ class App {
         throw error;
       }
     }
+
+    console.log("Server finished initialization");
   }
 
 
@@ -116,14 +118,10 @@ class App {
     this.setupMiddleware();
 
     console.debug("Setting up static directories");
-    this.expressApp.use('/images', express.static("public/images"));
-    this.expressApp.use(express.static(path.join(__dirname, 'dist')));
+    this.expressApp.use(express.static(path.join(__dirname, '../public')));
 
     console.debug("Setting up routes");
     this.expressApp.use('/', indexRoute);
-
-    console.debug("Setting up static files to serve");
-    this.expressApp.use('*', (_req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
 
     console.debug("Setting up error handling");
     this.setupErrorHandling();

@@ -1,9 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const Stat = require('./stats');
+import mongoose, { Schema } from 'mongoose';
+import { Stat } from './stats';
 
-// Create review schema and model
-const ReviewSchema = new Schema({
+export const ReviewSchema = new Schema({
     author: {
         type: String,
         default: "Anonymous"
@@ -25,6 +23,4 @@ const ReviewSchema = new Schema({
     }
 });
 
-const Review = mongoose.model('review', ReviewSchema);
-
-module.exports = Review;
+export const Review = mongoose.model('review', ReviewSchema);

@@ -1,18 +1,19 @@
-var express = require("express");
-var router = express.Router();
-var cloudinary = require("cloudinary");
-var multer = require("multer"); // handling multipart/form-data
-var cloudinaryStorage = require("multer-storage-cloudinary");
+import { Router } from 'express';
+import cloudinary from 'cloudinary';
+import multer from 'multer';
+import cloudinaryStorage from 'multer-storage-cloudinary';
+
+const router: Router = Router();
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-var storage = cloudinaryStorage({
+const storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "tutoring-hub/tutor-profile/",
   allowedFormats: ["jpg", "png"]
 });
 
-var parser = multer({
+const parser = multer({
   storage: storage
 }).single("image");
 
@@ -20,7 +21,7 @@ router.get("/", function (req, res) {
   res.send("Main route for cloudinary");
 });
 
-router.post("/upload", parser, function (req, res) {
+router.post("/upload", parser, function (req: any, res) {
   res.json(req.file);
 });
 
@@ -36,4 +37,4 @@ router.delete("/delete", function (req, res) {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-module.exports = router;
+export default router;

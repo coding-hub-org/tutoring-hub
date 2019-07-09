@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router({
+import { Router } from 'express';
+import { Tutor } from '../../../../models/tutors';
+
+const router: Router = Router({
     mergeParams: true
 });
-
-var Tutor = require('../../../../models/tutors');
 
 router.get('/', (req, res, next) => {
     Tutor.find({}, function (err, tutors) {
@@ -55,5 +55,4 @@ router.put('/:tutorID', (req, res, next) => {
     });
 });
 
-
-module.exports = router;
+export default router;

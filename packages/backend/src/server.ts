@@ -92,7 +92,7 @@ function onListening() {
 
 
 try {
-  console.log("Initializing application...");
+  console.log("Initializing server...");
   app.initialize();
 } catch (error) {
   console.error(error);

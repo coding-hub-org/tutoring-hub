@@ -1,8 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose, { Schema } from 'mongoose';
 
-// Create stats shema and model
-const StatSchema = new Schema({
+export const StatSchema = new Schema({
     methodology: {
         type: Number,
         default: 0
@@ -25,6 +23,4 @@ const StatSchema = new Schema({
     }
 });
 
-const Stat = mongoose.model("stat", StatSchema);
-
-module.exports = Stat;
+export const Stat = mongoose.model("stat", StatSchema);

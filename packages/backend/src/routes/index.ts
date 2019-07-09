@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express';
+import apiRoute from './api';
 
 
-router.use('/api/v1', require('./api/v1'));
-// router.use('/api/v2', require('./api/v2'));
+const router: Router = Router();
+
+router.use('/api', apiRoute);
 
 
 /* GET home page. */
@@ -15,5 +16,4 @@ router.post('/', function (req, res, next) {
   res.json(req.body);
 });
 
-
-module.exports = router;
+export default router;
