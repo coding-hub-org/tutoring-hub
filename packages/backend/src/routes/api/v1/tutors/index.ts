@@ -1,11 +1,11 @@
-import { Router } from 'express';
+import { Request, Response, Router, NextFunction } from 'express';
 import { Tutor } from '../../../../models/tutors';
 
 const router: Router = Router({
     mergeParams: true
 });
 
-router.get('/', (req, res, next) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
     Tutor.find({}, function (err, tutors) {
         if (err) {
             console.log(err);
@@ -43,13 +43,13 @@ router.get('/', (req, res, next) => {
 //     res.send("Removing a tutor requires a POST request, not a GET request");
 // });
 
-router.get('/:tutorID', (req, res, next) => {
+router.get('/:tutorID', (req: Request, res: Response, next: NextFunction) => {
     Tutor.findById(req.params.tutorID, function (err, result) {
         res.json(err ? [] : result);
     });
 });
 
-router.put('/:tutorID', (req, res, next) => {
+router.put('/:tutorID', (req: Request, res: Response, next: NextFunction) => {
     Tutor.findByIdAndUpdate(req.params.tutorID, req.body, function (err, result) {
         res.json(err ? [] : result);
     });

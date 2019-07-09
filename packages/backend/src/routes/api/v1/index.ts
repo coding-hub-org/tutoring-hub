@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Request, Response, Router, NextFunction } from 'express';
 import tutorsRoute from './tutors';
 import coursesRoute from './courses';
 import cloudinaryRoute from './cloudinary';
@@ -13,7 +13,7 @@ router.use('/cloudinary', cloudinaryRoute);
 
 router.use('/auth', authRoute);
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req: Request, res: Response, next: NextFunction) {
     res.send("This is the main API v1 page.");
 });
 

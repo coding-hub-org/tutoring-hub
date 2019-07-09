@@ -1,13 +1,12 @@
-import { Router } from 'express';
+import { Request, Response, Router, NextFunction } from 'express';
+import { Tutor } from '../../../../models/tutors';
 
 const router: Router = Router({
     mergeParams: true
 });
 
 
-const Tutor = require('../../../../models/tutors');
-
-router.get('/', (req, res, next) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
     let result: any[] = [];
     Tutor.find({}, function (err, tutors: any[]) {
         if (err) {

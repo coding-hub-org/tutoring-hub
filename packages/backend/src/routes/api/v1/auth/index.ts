@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Request, Response, Router, NextFunction } from 'express';
 import { OAuth2Client } from 'google-auth-library';
 
 const router: Router = Router({
@@ -27,7 +27,7 @@ async function verifyLogin(idToken) {
     console.log(domain);
 }
 
-router.post('/google', async (req, res, next) => {
+router.post('/google', async (req: Request, res: Response, next: NextFunction) => {
     var user = req.body;
 
     try {
