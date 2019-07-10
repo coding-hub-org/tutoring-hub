@@ -33,6 +33,7 @@
   ],
   "proxy": "http://localhost:3001/",
   "devDependencies": {
-    "@types/react-router-dom": "^4.3.4"
+    "@types/react-router-dom": "^4.3.4",
+    "@types/underscore": "^1.9.2"
   }
 }

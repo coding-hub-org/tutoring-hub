@@ -3,14 +3,14 @@ import "./App.scss";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Profile from "./Sections/Profile/Profile";
-import Review from "./Sections/Review/Review";
-import Tutors from "./Sections/Tutors/Tutors";
-import AddTutor from "./Sections/AddTutor/AddTutor";
+import Profile from "./Sections/Profile";
+import Review from "./Sections/Review";
+import Tutors from "./Sections/Tutors";
+// import AddTutor from "./Sections/AddTutor";
 // import ManageTutors from "./Sections/ManageTutors/ManageTutors";
 
-import Footer from "./Components/Footer/Footer";
-import BackToTopButton from "./Components/BackToTopButton/BackToTopButton";
+import Footer from "./Components/Footer";
+import BackToTopButton from "./Components/BackToTopButton";
 
 class App extends Component {
 	render() {

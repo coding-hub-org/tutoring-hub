@@ -1,0 +1,14 @@
+.contact-component {
+  grid-column: 2;
+
+  img {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 910px) {
+  .contact-component {
+    display: none;
+  }
+}
