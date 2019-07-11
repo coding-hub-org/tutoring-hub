@@ -1,0 +1,20 @@
+.filter-component {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr) 2fr;
+  grid-column-gap: 5em;
+  margin-bottom: 3em;
+  max-height: 65px;
+  position: relative;
+  background-color: white;
+
+  button {
+    background-color: #ff5e84;
+    border: #ff5e84 1px solid;
+    color: white;
+    box-sizing: border-box;
+    padding: 0 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    max-height: 45px;
+  }
+}

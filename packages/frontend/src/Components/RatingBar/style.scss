@@ -1,0 +1,14 @@
+#rating-bar {
+  height: 10px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+.options {
+  justify-content: center;
+}
+#rating-bar input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  justify-content: center;
+}
