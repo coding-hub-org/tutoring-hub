@@ -1,0 +1,129 @@
+.reviewcard-component {
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+  padding: 20px 50px;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  color: #33558b;
+}
+
+.reviewcard-component .reviewcard-component--wrapper,
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description .review-title,
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description .review-title div {
+  display: flex;
+  align-items: center;
+}
+
+.reviewcard-component--wrapper__description {
+  width: 100%;
+}
+.reviewcard-component--wrapper .reviewcard-component--wrapper__description .review-title {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
+  font-weight: bold;
+  color: #06255d;
+}
+
+.reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.reviewcard-component--wrapper__description .review-title div h3,
+.reviewcard-component--wrapper__description .reviewcard-component--details h3 {
+  margin-left: 20px;
+  color: #94969a;
+  font-weight: 500;
+}
+
+.reviewcard-component--wrapper__description .review-title div p {
+  font-size: 2em;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #06255d;
+}
+
+.reviewcard-component--wrapper__description .review-title div img {
+  width: 35px;
+}
+
+@media (max-width: 1300px) {
+  .reviewcard-component {
+    padding: 20px 40px;
+    width: 85%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3 {
+    font-size: 1.1em;
+  }
+  .reviewcard-component--wrapper__description > p {
+    font-size: 1.2em;
+  }
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
+    font-size: 1.5em;
+  }
+  .reviewcard-component {
+    padding: 20px 30px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section h3 {
+    font-size: 0.8em;
+  }
+  .reviewcard-component--wrapper__description > p {
+    font-size: 0.9em;
+  }
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description h1 {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 450px) {
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description section {
+    margin-top: 10px;
+  }
+  .reviewcard-component .reviewcard-component--wrapper .reviewcard-component--wrapper__description .review-title {
+    align-items: flex-start;
+  }
+  .reviewcard-component {
+    padding: 10px 20px;
+  }
+  .reviewcard-component
+    .reviewcard-component--wrapper
+    .reviewcard-component--wrapper__description
+    .review-title
+    div:first-child {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reviewcard-component--wrapper__description .review-title div h3 {
+    font-size: 1em;
+    margin: 0;
+  }
+  .reviewcard-component--wrapper__description .review-title div img {
+    width: 20px;
+  }
+  .reviewcard-component--wrapper__description .review-title div p {
+    margin: 0 0 0 10px;
+    font-size: 1.5em;
+  }
+}

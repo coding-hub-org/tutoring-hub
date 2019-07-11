@@ -1,0 +1,50 @@
+{
+    "exclude": [
+        "node_modules",
+        "dist",
+        "lib",
+        "__tests__",
+        "**/*.test*",
+        "**/*.spec*"
+    ],
+    "files": [],
+    "compilerOptions": {
+        "skipLibCheck": false,
+        "target": "es6",
+        "module": "commonjs",
+        "lib": [
+            "dom",
+            "es6"
+        ],
+        "jsx": "react",
+        "declaration": true,
+        "declarationMap": true,
+        "downlevelIteration": true,
+        "strict": true,
+        "removeComments": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": false,
+        "baseUrl": ".",
+        "paths": {
+            "@ccss-support-manual/*": [
+                "packages/*/src"
+            ]
+        },
+        "composite": true
+    },
+    "references": [
+        {
+            "path": "packages/backend",
+        },
+        {
+            "path": "packages/frontend",
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+.form-list-wrapper {
+  .add {
+    text-decoration: none;
+    color: #000000;
+    i {
+      color: green;
+    }
+  }
+
+  .remove {
+    text-decoration: none;
+    color: #000000;
+    i {
+      color: red;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    span {
+      font-size: 13px;
+      line-height: 32px;
+      /* color: #FFFFFF; */
+    }
+  }
+}
+
+.form-list {
+  padding: 0;
+  margin: 0.5em 0;
+}
+
+.form-list-item {
+  margin: 0.5em auto;
+  list-style-type: none;
+
+  input {
+    margin: auto 0.25em auto auto;
+  }
+}

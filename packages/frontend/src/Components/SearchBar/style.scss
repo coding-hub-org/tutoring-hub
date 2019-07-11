@@ -1,0 +1,51 @@
+.searchbar-component .searchbar-component--icon > img {
+  width: 15px;
+  padding-right: 10px;
+  border-right: 2px solid #e8edf5;
+}
+
+.searchbar-component {
+  display: flex;
+  align-items: center;
+  width: 350px;
+  padding: 0 20px;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+}
+
+.searchbar-component .searchbar-component--description {
+  font-size: 14px;
+  width: 100%;
+  color: gray;
+}
+
+.searchbar-component .searchbar-component--description > input {
+  border: 0px;
+  width: 100%;
+  padding: 10px;
+  color: gray;
+  margin: 5px 0;
+}
+
+.searchbar-component .searchbar-component--description > input:focus {
+  outline: none;
+}
+
+@media (max-width: 1200px) {
+  .searchbar-component {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .searchbar-component {
+    width: 200px;
+  }
+}
+
+@media (max-width: 550px) {
+  .searchbar-component {
+    width: 100%;
+    margin-left: 40px;
+  }
+}

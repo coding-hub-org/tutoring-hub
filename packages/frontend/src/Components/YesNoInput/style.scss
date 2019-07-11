@@ -1,0 +1,18 @@
+.YesNoInput-component {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.YesNoInput-component .YesNoInput-component--wrapper-container {
+  display: flex;
+  align-items: center;
+}
+
+.YesNoInput-component .YesNoInput-component--wrapper-container label {
+  margin: 0 30px 0 10px;
+}
+
+.YesNoInput-component .YesNoInput-component--wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
