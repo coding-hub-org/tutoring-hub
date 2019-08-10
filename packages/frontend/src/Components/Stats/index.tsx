@@ -88,7 +88,7 @@ export default function Stats(props: Props) {
 				<span>{(stats.clarity / 10).toFixed(1)}</span>
 			</div>
 			<div className={'stats-component--feature'}>
-				<p>knowledge: </p>
+				<p>Knowledge: </p>
 				<div className={'stats-component--feature__wrapper'}>
 					<div style={knowledgeBar} className={'stats-component--feature__progress'} />
 				</div>
