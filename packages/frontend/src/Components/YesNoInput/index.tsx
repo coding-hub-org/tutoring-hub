@@ -57,24 +57,22 @@ export default class YesNoInput extends React.Component<Props, State> {
 	render() {
 		let self = this;
 
-		const inputs = this.props.choices.map(function(value, index) {
-			return (
-				<Fragment key={value + '-' + index}>
-					<div className="YesNoInput-component--wrapper-container">
-						<input
-							type="radio"
-							className={'option-input radio'}
-							value={value}
-							name={value}
-							onChange={self.onChange}
-							onContextMenu={self.onRightClick}
-							checked={self.isChecked(value)}
-						/>
-						<label htmlFor={value}>{value}</label>
-					</div>
-				</Fragment>
-			);
-		}, this);
+		const inputs = this.props.choices.map((value, index) => (
+			<Fragment key={value + '-' + index}>
+				<div className="YesNoInput-component--wrapper-container">
+					<input
+						type="radio"
+						className={'option-input radio'}
+						value={value}
+						name={value}
+						onChange={self.onChange}
+						onContextMenu={self.onRightClick}
+						checked={self.isChecked(value)}
+					/>
+					<label htmlFor={value}>{value}</label>
+				</div>
+			</Fragment>
+		));
 
 		return (
 			<div className={'YesNoInput-component'}>
