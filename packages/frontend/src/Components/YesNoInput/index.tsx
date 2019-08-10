@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import "./style.scss";
+import React, { Fragment } from 'react';
+import './style.scss';
 
 interface Props {
 	onChange: any;
@@ -8,13 +8,16 @@ interface Props {
 }
 
 interface State {
-	selectedElementName?: string;
+	selectedElementName?: string | null;
 }
 
 export default class YesNoInput extends React.Component<Props, State> {
-
 	constructor(props: Props) {
 		super(props);
+
+		this.state = {
+			selectedElementName: null
+		};
 
 		this.onChange = this.onChange.bind(this);
 		this.onRightClick = this.onRightClick.bind(this);
@@ -29,7 +32,7 @@ export default class YesNoInput extends React.Component<Props, State> {
 		this.clear();
 	}
 
-	triggerChange(elementName?: string) {
+	triggerChange(elementName?: string | null) {
 		if (elementName) {
 			this.setState({
 				selectedElementName: elementName
@@ -37,14 +40,14 @@ export default class YesNoInput extends React.Component<Props, State> {
 			this.props.onChange(elementName);
 		} else {
 			this.setState({
-				selectedElementName: undefined
+				selectedElementName: null
 			});
 			this.props.onChange(undefined);
 		}
 	}
 
 	clear() {
-		this.triggerChange(undefined);
+		this.triggerChange(null);
 	}
 
 	isChecked(name: string) {
@@ -52,16 +55,15 @@ export default class YesNoInput extends React.Component<Props, State> {
 	}
 
 	render() {
-
 		let self = this;
 
-		const inputs = this.props.choices.map(function (value, index) {
+		const inputs = this.props.choices.map(function(value, index) {
 			return (
-				<Fragment key={value + "-" + index}>
+				<Fragment key={value + '-' + index}>
 					<div className="YesNoInput-component--wrapper-container">
 						<input
 							type="radio"
-							className={"option-input radio"}
+							className={'option-input radio'}
 							value={value}
 							name={value}
 							onChange={self.onChange}
@@ -75,9 +77,9 @@ export default class YesNoInput extends React.Component<Props, State> {
 		}, this);
 
 		return (
-			<div className={"YesNoInput-component"}>
+			<div className={'YesNoInput-component'}>
 				<p>{this.props.parameter}</p>
-				<div className={"YesNoInput-component--wrapper"}>{inputs}</div>
+				<div className={'YesNoInput-component--wrapper'}>{inputs}</div>
 			</div>
 		);
 	}
