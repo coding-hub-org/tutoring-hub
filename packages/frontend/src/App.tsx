@@ -19,7 +19,7 @@ class App extends Component {
 				<div className="App">
 					<BackToTopButton minScrollAmt={25} />
 					<Switch>
-						<Route exact path="/" component={Tutors} />
+						<Route exact path="/" render={() => <Tutors />} />
 						{/* <Route path="/tutors/manage" component={ManageTutors} /> */}
 						{/* <Route path="/tutors/add" component={AddTutor} /> */}
 						<Route exact path="/tutors/:id" component={Profile} />
