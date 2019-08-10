@@ -13,11 +13,12 @@ import FormButton from "../../Components/FormButton";
 import AddTutorBox from "../../Components/AddTutorBox";
 import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
-import _ from 'underscore';
+import { connect } from "react-redux";
 
+import _ from "underscore";
 
 interface Props {
-
+	title: string;
 }
 
 interface State {
@@ -30,8 +31,7 @@ interface State {
 	filterRating: number;
 }
 
-export default class Tutors extends Component<Props, State> {
-
+class Tutors extends Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 
@@ -75,7 +75,7 @@ export default class Tutors extends Component<Props, State> {
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
-					courses: _.sortBy(data, function (course) {
+					courses: _.sortBy(data, function(course) {
 						return course;
 					})
 				});
@@ -140,7 +140,7 @@ export default class Tutors extends Component<Props, State> {
 					<div className="wrapper">
 						<div className="section-title">
 							<img src={titleImg} alt="title icon" />{" "}
-							<Title title={this.state.title.toUpperCase()} />
+							<Title title={this.props.title.toUpperCase()} />
 						</div>
 
 						<div className="filters">
@@ -165,7 +165,10 @@ export default class Tutors extends Component<Props, State> {
 								/>
 							</div>
 							<div className="filter" id="filter-submit">
-								<FormButton title={"Reset Filters"} action={this.resetFilters} />
+								<FormButton
+									title={"Reset Filters"}
+									action={this.resetFilters}
+								/>
 							</div>
 						</div>
 
@@ -177,8 +180,8 @@ export default class Tutors extends Component<Props, State> {
 								filterName={this.state.filterName}
 							/>
 						) : (
-								<TutorCards tutors={this.state.tutors} />
-							)}
+							<TutorCards tutors={this.state.tutors} />
+						)}
 
 						<div className="review-website-button">
 							<ReviewWebsiteButton />
@@ -191,3 +194,11 @@ export default class Tutors extends Component<Props, State> {
 		);
 	}
 }
+
+const mapStateToProps = (state: any) => {
+	return {
+		title: state.title
+	};
+};
+
+export default connect(mapStateToProps)(Tutors);
