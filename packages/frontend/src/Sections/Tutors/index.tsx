@@ -13,12 +13,17 @@ import FormButton from "../../Components/FormButton";
 import AddTutorBox from "../../Components/AddTutorBox";
 import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
+// Redux
 import { connect } from "react-redux";
+import { getTutors } from "../../actions/homeActions";
 
 import _ from "underscore";
 
 interface Props {
 	title: string;
+	tutors: any[];
+	getTutors: any;
+	isLoading: boolean;
 }
 
 interface State {
@@ -52,8 +57,10 @@ class Tutors extends Component<Props, State> {
 	}
 
 	componentDidMount() {
-		this.fetchTutors();
-		this.fetchCourses();
+		this.props.getTutors();
+
+		// this.fetchTutors();
+		// this.fetchCourses();
 	}
 
 	fetchTutors() {
@@ -129,6 +136,7 @@ class Tutors extends Component<Props, State> {
 	}
 
 	render() {
+		console.log("PROPS", this.props);
 		return (
 			<>
 				<NavBar
@@ -174,13 +182,13 @@ class Tutors extends Component<Props, State> {
 
 						{this.isFiltering() ? (
 							<TutorCardsFilterable
-								tutors={this.state.tutors}
+								tutors={this.props.tutors}
 								filterCourse={this.state.filterCourse}
 								filterRating={this.state.filterRating}
 								filterName={this.state.filterName}
 							/>
 						) : (
-							<TutorCards tutors={this.state.tutors} />
+							<TutorCards tutors={this.props.tutors} />
 						)}
 
 						<div className="review-website-button">
@@ -197,8 +205,19 @@ class Tutors extends Component<Props, State> {
 
 const mapStateToProps = (state: any) => {
 	return {
-		title: state.title
+		title: state.home.title,
+		tutors: state.home.tutors,
+		isLoading: false
 	};
 };
 
-export default connect(mapStateToProps)(Tutors);
+const mapDispatchToProps = (dispath: Function) => {
+	return {
+		getTutors: () => dispath(getTutors())
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Tutors);
