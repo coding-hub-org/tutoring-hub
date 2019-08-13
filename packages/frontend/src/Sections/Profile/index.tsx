@@ -28,8 +28,6 @@ import {
 
 interface Props {
 	tutor: any;
-	yes: number;
-	no: number;
 	loading: boolean;
 	filterCourse: string;
 	getTutorInfo: Function;
@@ -39,29 +37,27 @@ interface Props {
 class Profile extends Component<Props> {
 	constructor(props: Props) {
 		super(props);
-		this.getName = this.getName.bind(this);
 	}
 
-	getName() {
+	getName = () => {
 		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
-	}
+	};
 
-	getBookAgain = (reviews: any[], answer: any) => {
-		let filtered;
-		const book = reviews.map(review => {
+	getBookAgainPercentages = (reviews: any[]) => {
+		let yes = 0;
+		let no = 0;
+		const wouldBook = reviews.map(review => {
 			return review.bookAgain;
 		});
-		if (answer === 1) {
-			filtered = book.filter(b => {
-				return b === true;
-			});
-			return 100 / (book.length / filtered.length);
-		} else {
-			filtered = book.filter(b => {
-				return b === false;
-			});
-			return 100 / (book.length / filtered.length);
-		}
+
+		wouldBook.forEach(answer => {
+			answer ? yes++ : no++;
+		});
+
+		yes = (yes * 100) / wouldBook.length;
+		no = (no * 100) / wouldBook.length;
+
+		return { yes, no };
 	};
 
 	filterCourses = (course: string) => {
@@ -116,23 +112,35 @@ class Profile extends Component<Props> {
 									</div>
 									<div className={"tutor-rating-stats--positive"}>
 										<img src={reviesPositive} alt="positive reviews" />
-										{!this.props.yes ? (
+										{!this.getBookAgainPercentages(this.props.tutor.reviews)
+											.yes ? (
 											<p>N/A</p>
 										) : (
 											<p>
-												<span>{this.props.yes.toFixed(1)} % </span>would book
-												again
+												<span>
+													{this.getBookAgainPercentages(
+														this.props.tutor.reviews
+													).yes.toFixed(1)}{" "}
+													%{" "}
+												</span>
+												would book again
 											</p>
 										)}
 									</div>
 									<div className={"tutor-rating-stats--negative"}>
 										<img src={reviewsNegative} alt="negative reviews" />
-										{!this.props.no ? (
+										{!this.getBookAgainPercentages(this.props.tutor.reviews)
+											.no ? (
 											<p>N/A</p>
 										) : (
 											<p>
-												<span>{this.props.no.toFixed(1)} % </span>wouldn't book
-												again
+												<span>
+													{this.getBookAgainPercentages(
+														this.props.tutor.reviews
+													).no.toFixed(1)}
+													%
+												</span>
+												wouldn't book again
 											</p>
 										)}
 									</div>
@@ -193,8 +201,6 @@ class Profile extends Component<Props> {
 const mapStateToProps = (state: any) => {
 	return {
 		tutor: state.tutor.tutor,
-		yes: state.tutor.yes,
-		no: state.tutor.no,
 		filterCourse: state.tutor.filterCourse,
 		loading: state.tutor.loading
 	};
