@@ -20,208 +20,200 @@ import ReviewCard from "../../Components/ReviewCard";
 import NoReviews from "../../Assets/no-reviews.png";
 import FormDropdown from "../../Components/FormDropdown";
 import FormSlider from "../../Components/FormSlider";
-
+import { connect } from "react-redux";
+import {
+	getTutorInfo,
+	filterReviewsByCourse
+} from "../../actions/tutorActions";
 
 interface Props {
-
-}
-
-interface State {
 	tutor: any;
 	loading: boolean;
-	yes: number;
-	no: number;
 	filterCourse: string;
-	filterRating: number;
-	filterRatingType: string;
+	getTutorInfo: Function;
+	filterReviewsByCourse: Function;
 }
 
-export default class Profile extends Component<Props, State> {
-
+class Profile extends Component<Props> {
 	constructor(props: Props) {
 		super(props);
-		this.state = {
-			tutor: {},
-			loading: true,
-			yes: 0,
-			no: 0,
-			filterCourse: "",
-			filterRating: 0,
-			filterRatingType: "",
-		};
-		this.getName = this.getName.bind(this);
 	}
 
-	getName() {
-		return this.state.tutor.firstName + " " + this.state.tutor.lastName;
-	}
+	getName = () => {
+		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
+	};
 
-	getBookAgain = (reviews: any[], answer: any) => {
-		let filtered;
-		const book = reviews.map(review => {
+	getBookAgainPercentages = (reviews: any[]) => {
+		let yes = 0;
+		let no = 0;
+		const wouldBook = reviews.map(review => {
 			return review.bookAgain;
 		});
-		if (answer === 1) {
-			filtered = book.filter(b => {
-				return b === true;
-			});
-			return 100 / (book.length / filtered.length);
-		} else {
-			filtered = book.filter(b => {
-				return b === false;
-			});
-			return 100 / (book.length / filtered.length);
-		}
+
+		wouldBook.forEach(answer => {
+			answer ? yes++ : no++;
+		});
+
+		yes = (yes * 100) / wouldBook.length;
+		no = (no * 100) / wouldBook.length;
+
+		return { yes, no };
 	};
 
-	filterCourses = (course: any) => {
-		this.setState({
-			filterCourse: course === "" ? "" : course
-		});
-	};
-
-	filterRatings = (rating: number) => {
-		this.setState({
-			filterRating: rating
-		});
-	};
-
-	filterRatingsType = (type: string) => {
-		this.setState({
-			filterRatingType: type
-		});
+	filterCourses = (course: string) => {
+		this.props.filterReviewsByCourse(course);
 	};
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
-
-		fetch(`/api/v1${window.location.pathname}`)
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					tutor: data,
-					yes: this.getBookAgain(data.reviews, 1),
-					no: this.getBookAgain(data.reviews, 0),
-					loading: false
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		this.props.getTutorInfo(window.location.pathname);
 	}
 
 	render() {
-
 		return (
 			<div className="profile-section">
 				<NavBar />
-				{this.state.loading ? (
+				{this.props.loading ? (
 					<div className="profile-section--wrapper">
 						<div className="profile-section--wrapper-load">
 							<img
 								className={"profile-section--wrapper__loading"}
 								src={loadingIcon}
-								alt=""
+								alt="Loading Tutoring Hub"
 							/>
 						</div>
 					</div>
 				) : (
-						<div className="profile-section--wrapper">
-							<div className="profile-section--wrapper__upper">
-								<div className={"profile-section--wrapper__upper--left"}>
-									<img src={this.state.tutor.imageUrl} alt="" />
-								</div>
-								<div className={"profile-section--wrapper__upper--center"}>
-									<Title title={this.getName()} />
-									<p className="profile-major">{this.state.tutor.major}</p>
+					<div className="profile-section--wrapper">
+						<div className="profile-section--wrapper__upper">
+							<div className={"profile-section--wrapper__upper--left"}>
+								<img src={this.props.tutor.imageUrl} alt="" />
+							</div>
+							<div className={"profile-section--wrapper__upper--center"}>
+								<Title title={this.getName()} />
+								<p className="profile-major">{this.props.tutor.major}</p>
 
-									<div className={"tutor-since"}>
-										<img src={tutorSince} alt="tutor since" />
-										<p>Tutor since {this.state.tutor.since.substr(5) +
+								<div className={"tutor-since"}>
+									<img src={tutorSince} alt="tutor since" />
+									<p>
+										Tutor since{" "}
+										{this.props.tutor.since.substr(5) +
 											" " +
-											this.state.tutor.since.substr(0, 4)}
+											this.props.tutor.since.substr(0, 4)}
+									</p>
+								</div>
+								<section className={"tutor-rating-stats"}>
+									<div className={"tutor-rating-stats--reviews"}>
+										<img src={reviewsCount} alt="total reviews" />
+										<p>
+											<span>{this.props.tutor.reviews.length} </span>Total
+											Reviews
 										</p>
 									</div>
-									<section className={"tutor-rating-stats"}>
-										<div className={"tutor-rating-stats--reviews"}>
-											<img src={reviewsCount} alt="total reviews" />
+									<div className={"tutor-rating-stats--positive"}>
+										<img src={reviesPositive} alt="positive reviews" />
+										{!this.getBookAgainPercentages(this.props.tutor.reviews)
+											.yes ? (
+											<p>N/A</p>
+										) : (
 											<p>
-												<span>{this.state.tutor.reviews.length} </span>Total
-												Reviews
-										</p>
-										</div>
-										<div className={"tutor-rating-stats--positive"}>
-											<img src={reviesPositive} alt="positive reviews" />
-											{isNaN(parseFloat(this.state.yes.toFixed(1))) ? (
-												<p>N/A</p>
-											) : (
-													<p>
-														<span>{this.state.yes.toFixed(1)} % </span>would book
-														again
+												<span>
+													{this.getBookAgainPercentages(
+														this.props.tutor.reviews
+													).yes.toFixed(1)}{" "}
+													%{" "}
+												</span>
+												would book again
 											</p>
-												)}
-										</div>
-										<div className={"tutor-rating-stats--negative"}>
-											<img src={reviewsNegative} alt="negative reviews" />
-											{isNaN(parseFloat(this.state.no.toFixed(1))) ? (
-												<p>N/A</p>
-											) : (
-													<p>
-														<span>{this.state.no.toFixed(1)} % </span>wouldn't book
-														again
+										)}
+									</div>
+									<div className={"tutor-rating-stats--negative"}>
+										<img src={reviewsNegative} alt="negative reviews" />
+										{!this.getBookAgainPercentages(this.props.tutor.reviews)
+											.no ? (
+											<p>N/A</p>
+										) : (
+											<p>
+												<span>
+													{this.getBookAgainPercentages(
+														this.props.tutor.reviews
+													).no.toFixed(1)}
+													%
+												</span>
+												wouldn't book again
 											</p>
-												)}
-										</div>
-									</section>
-								</div>
-								<div className={"profile-section--wrapper__upper--right"}>
-									<RatingCard reviews={this.state.tutor.reviews} />
-								</div>
+										)}
+									</div>
+								</section>
 							</div>
-							<Subheading title={"Courses"} />
-							<Course courses={this.state.tutor.courses} />
-							<Subheading title={"Stats"} />
-							<Stats reviews={this.state.tutor.reviews} />
-							<div className={"profile-section--wrapper__reviews"}>
-								<Subheading title={"Reviews"} />
+							<div className={"profile-section--wrapper__upper--right"}>
+								<RatingCard reviews={this.props.tutor.reviews} />
 							</div>
-							<div className="Filters-course">
-								<div>
-									<span>Filters review</span>
-									<FormDropdown
-										title={"Courses"}
-										options={this.state.tutor.courses}
-										onChange={this.filterCourses}
-										value={this.state.filterCourse}
-										uppercase={true}
-									/>
-								</div>
-								<Link
-									to={`/tutors/${this.state.tutor._id}/rate`}
-									onClick={() => {
-										document.getElementById("navbar")!.scrollIntoView();
-									}}
-								>
-									REVIEW {this.getName().toUpperCase()}
-								</Link>
-							</div>
-							{this.state.tutor.reviews.length === 0 ? (
-								<div className={"profile-section--wrapper__no-reviews"}>
-									<img src={NoReviews} alt="" />
-									<h3>
-										{this.state.tutor.firstName} doesn't have any reviews yet. Be
-										the first to review
-								</h3>
-								</div>
-							) : (
-									<ReviewCard
-										tutor={this.state.tutor}
-										filterCourse={this.state.filterCourse}
-									/>
-								)}
 						</div>
-					)}
+						<Subheading title={"Courses"} />
+						<Course courses={this.props.tutor.courses} />
+						<Subheading title={"Stats"} />
+						<Stats reviews={this.props.tutor.reviews} />
+						<div className={"profile-section--wrapper__reviews"}>
+							<Subheading title={"Reviews"} />
+						</div>
+						<div className="Filters-course">
+							<div>
+								<span>Filters review</span>
+								<FormDropdown
+									title={"Courses"}
+									options={this.props.tutor.courses}
+									onChange={this.filterCourses}
+									value={this.props.filterCourse}
+									uppercase={true}
+								/>
+							</div>
+							<Link
+								to={`/tutors/${this.props.tutor._id}/review`}
+								onClick={() => {
+									document.getElementById("navbar")!.scrollIntoView();
+								}}
+							>
+								REVIEW {this.getName().toUpperCase()}
+							</Link>
+						</div>
+						{this.props.tutor.reviews.length === 0 ? (
+							<div className={"profile-section--wrapper__no-reviews"}>
+								<img src={NoReviews} alt="" />
+								<h3>
+									{this.props.tutor.firstName} doesn't have any reviews yet. Be
+									the first to review
+								</h3>
+							</div>
+						) : (
+							<ReviewCard
+								tutor={this.props.tutor}
+								filterCourse={this.props.filterCourse}
+							/>
+						)}
+					</div>
+				)}
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state: any) => {
+	return {
+		tutor: state.tutor.tutor,
+		filterCourse: state.tutor.filterCourse,
+		loading: state.tutor.loading
+	};
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		getTutorInfo: (url: string) => dispatch(getTutorInfo(url)),
+		filterReviewsByCourse: (course: string) =>
+			dispatch(filterReviewsByCourse(course))
+	};
+};
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Profile);

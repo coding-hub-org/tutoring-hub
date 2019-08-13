@@ -24,8 +24,6 @@ import {
 	filterTutorsByRating
 } from "../../actions/homeActions";
 
-import _ from "underscore";
-
 interface TutorsProps {
 	courses: string[];
 	filterName: string;
@@ -94,7 +92,7 @@ class Tutors extends Component<TutorsProps> {
 				<section id="section-tutors">
 					<div className="wrapper">
 						<div className="section-title">
-							<img src={titleImg} alt="title icon" />{" "}
+							<img src={titleImg} alt="title icon" />
 							<Title title={this.props.title.toUpperCase()} />
 						</div>
 

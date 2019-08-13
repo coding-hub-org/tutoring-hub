@@ -54,9 +54,8 @@ const homeReducer = (state = initState, action: any) => {
 				filterName: action.payload
 			};
 		default:
-			break;
+			return state;
 	}
-	return state;
 };
 
 export default homeReducer;
