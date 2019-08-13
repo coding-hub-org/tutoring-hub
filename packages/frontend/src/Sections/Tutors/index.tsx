@@ -13,38 +13,38 @@ import FormButton from "../../Components/FormButton";
 import AddTutorBox from "../../Components/AddTutorBox";
 import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
+// Redux
 import { connect } from "react-redux";
+import {
+	getTutors,
+	getCourses,
+	resetFilters,
+	filterTutorsByCourse,
+	searchTutor,
+	filterTutorsByRating
+} from "../../actions/homeActions";
 
 import _ from "underscore";
 
-interface Props {
-	title: string;
-}
-
-interface State {
-	title: string;
-	isLoading: boolean;
-	tutors: any[];
+interface TutorsProps {
 	courses: string[];
 	filterName: string;
 	filterCourse: string;
 	filterRating: number;
+	filterTutorsByCourse: Function;
+	filterTutorsByRating: Function;
+	getCourses: Function;
+	getTutors: Function;
+	resetFilters: Function;
+	searchTutor: Function;
+	isLoading: boolean;
+	title: string;
+	tutors: any[];
 }
 
-class Tutors extends Component<Props, State> {
-	constructor(props: Props) {
+class Tutors extends Component<TutorsProps> {
+	constructor(props: TutorsProps) {
 		super(props);
-
-		this.state = {
-			title: "All Tutors",
-			isLoading: true,
-			tutors: [],
-			courses: [],
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		};
-
 		this.handleSearch = this.handleSearch.bind(this);
 		this.resetFilters = this.resetFilters.bind(this);
 		this.filterCourses = this.filterCourses.bind(this);
@@ -52,79 +52,34 @@ class Tutors extends Component<Props, State> {
 	}
 
 	componentDidMount() {
-		this.fetchTutors();
-		this.fetchCourses();
-	}
-
-	fetchTutors() {
-		fetch("/api/v1/tutors")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					tutors: _.sortBy(data, "lastName"),
-					isLoading: false
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	fetchCourses() {
-		fetch("/api/v1/courses")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					courses: _.sortBy(data, function(course) {
-						return course;
-					})
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		this.props.getTutors();
+		this.props.getCourses();
 	}
 
 	handleSearch(e: any) {
-		var value = e.currentTarget.value;
-		this.setState({
-			filterName: value
-		});
+		let name = e.currentTarget.value;
+		this.props.searchTutor(name);
 	}
 
 	resetFilters(e: any) {
 		e.preventDefault();
 		//TODO reset HTML for elements
-		this.setState({
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		});
+		this.props.resetFilters();
 	}
 
 	filterCourses(course: string) {
-		this.setState({
-			filterCourse: course === "" ? "" : course
-		});
+		this.props.filterTutorsByCourse(course);
 	}
 
 	filterRatings(rating: number) {
-		if (rating <= 0) {
-			this.setState({
-				filterRating: 0
-			});
-		} else {
-			this.setState({
-				filterRating: rating
-			});
-		}
+		this.props.filterTutorsByRating(rating);
 	}
 
 	isFiltering() {
 		return (
-			this.state.filterCourse !== "" ||
-			this.state.filterRating !== 0 ||
-			this.state.filterName !== ""
+			this.props.filterCourse !== "" ||
+			this.props.filterRating !== 0 ||
+			this.props.filterName !== ""
 		);
 	}
 
@@ -148,9 +103,9 @@ class Tutors extends Component<Props, State> {
 								<p className="title">Courses</p>
 								<FormDropdown
 									title={"Courses"}
-									options={this.state.courses}
+									options={this.props.courses}
 									onChange={this.filterCourses}
-									value={this.state.filterCourse}
+									value={this.props.filterCourse}
 									uppercase={true}
 								/>
 							</div>
@@ -161,7 +116,7 @@ class Tutors extends Component<Props, State> {
 									max={10}
 									step={1}
 									onChange={this.filterRatings}
-									value={this.state.filterRating}
+									value={this.props.filterRating}
 								/>
 							</div>
 							<div className="filter" id="filter-submit">
@@ -174,13 +129,13 @@ class Tutors extends Component<Props, State> {
 
 						{this.isFiltering() ? (
 							<TutorCardsFilterable
-								tutors={this.state.tutors}
-								filterCourse={this.state.filterCourse}
-								filterRating={this.state.filterRating}
-								filterName={this.state.filterName}
+								tutors={this.props.tutors}
+								filterCourse={this.props.filterCourse}
+								filterRating={this.props.filterRating}
+								filterName={this.props.filterName}
 							/>
 						) : (
-							<TutorCards tutors={this.state.tutors} />
+							<TutorCards tutors={this.props.tutors} />
 						)}
 
 						<div className="review-website-button">
@@ -197,8 +152,30 @@ class Tutors extends Component<Props, State> {
 
 const mapStateToProps = (state: any) => {
 	return {
-		title: state.title
+		title: state.home.title,
+		tutors: state.home.tutors,
+		isLoading: state.home.isLoading,
+		courses: state.home.courses,
+		filterName: state.home.filterName,
+		filterCourse: state.home.filterCourse,
+		filterRating: state.home.filterRating
 	};
 };
 
-export default connect(mapStateToProps)(Tutors);
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		getTutors: () => dispatch(getTutors()),
+		getCourses: () => dispatch(getCourses()),
+		resetFilters: () => dispatch(resetFilters()),
+		filterTutorsByCourse: (course: string) =>
+			dispatch(filterTutorsByCourse(course)),
+		filterTutorsByRating: (rating: number) =>
+			dispatch(filterTutorsByRating(rating)),
+		searchTutor: (name: string) => dispatch(searchTutor(name))
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Tutors);
