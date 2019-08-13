@@ -1,4 +1,4 @@
-import { GET_TUTORS } from "../actions/constants/homeConstants";
+import { GET_TUTORS, GET_COURSES } from "../actions/constants/homeConstants";
 
 const initState = {
 	title: "All Tutors",
@@ -14,9 +14,15 @@ const homeReducer = (state = initState, action: any) => {
 	switch (action.type) {
 		case GET_TUTORS:
 			return {
-				...initState,
+				...state,
 				tutors: action.payload,
 				isLoading: false
+			};
+
+		case GET_COURSES:
+			return {
+				...state,
+				courses: action.payload
 			};
 		default:
 			break;

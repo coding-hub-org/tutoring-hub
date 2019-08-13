@@ -1,2 +1,4 @@
 export const FILTER_TUTORS_BY_COURSE = "FILTER_TUTORS_BY_COURSE";
 export const GET_TUTORS = "GET_TUTORS";
+export const GET_COURSES = "GET_COURSES";
+export const RESET_FILTERS = "RESET_FILTERS";

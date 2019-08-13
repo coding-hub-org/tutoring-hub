@@ -15,20 +15,20 @@ import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
 // Redux
 import { connect } from "react-redux";
-import { getTutors } from "../../actions/homeActions";
+import { getTutors, getCourses } from "../../actions/homeActions";
 
 import _ from "underscore";
 
 interface Props {
+	courses: string[];
+	getCourses: Function;
+	getTutors: Function;
+	isLoading: boolean;
 	title: string;
 	tutors: any[];
-	getTutors: any;
-	isLoading: boolean;
 }
 
 interface State {
-	title: string;
-	isLoading: boolean;
 	tutors: any[];
 	courses: string[];
 	filterName: string;
@@ -41,8 +41,6 @@ class Tutors extends Component<Props, State> {
 		super(props);
 
 		this.state = {
-			title: "All Tutors",
-			isLoading: true,
 			tutors: [],
 			courses: [],
 			filterName: "",
@@ -58,6 +56,7 @@ class Tutors extends Component<Props, State> {
 
 	componentDidMount() {
 		this.props.getTutors();
+		this.props.getCourses();
 
 		// this.fetchTutors();
 		// this.fetchCourses();
@@ -68,8 +67,7 @@ class Tutors extends Component<Props, State> {
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
-					tutors: _.sortBy(data, "lastName"),
-					isLoading: false
+					tutors: _.sortBy(data, "lastName")
 				});
 			})
 			.catch(error => {
@@ -156,7 +154,7 @@ class Tutors extends Component<Props, State> {
 								<p className="title">Courses</p>
 								<FormDropdown
 									title={"Courses"}
-									options={this.state.courses}
+									options={this.props.courses}
 									onChange={this.filterCourses}
 									value={this.state.filterCourse}
 									uppercase={true}
@@ -207,13 +205,15 @@ const mapStateToProps = (state: any) => {
 	return {
 		title: state.home.title,
 		tutors: state.home.tutors,
-		isLoading: false
+		isLoading: state.home.isLoading,
+		courses: state.home.courses
 	};
 };
 
 const mapDispatchToProps = (dispath: Function) => {
 	return {
-		getTutors: () => dispath(getTutors())
+		getTutors: () => dispath(getTutors()),
+		getCourses: () => dispath(getCourses())
 	};
 };
 
