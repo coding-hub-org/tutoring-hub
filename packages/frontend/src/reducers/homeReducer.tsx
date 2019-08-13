@@ -1,7 +1,10 @@
 import {
 	GET_TUTORS,
 	GET_COURSES,
-	RESET_FILTERS
+	RESET_FILTERS,
+	FILTER_TUTORS_BY_COURSE,
+	SEARCH_TUTOR,
+	FILTER_TUTORS_BY_RATING
 } from "../actions/constants/homeConstants";
 
 const initState = {
@@ -16,6 +19,16 @@ const initState = {
 
 const homeReducer = (state = initState, action: any) => {
 	switch (action.type) {
+		case FILTER_TUTORS_BY_COURSE:
+			return {
+				...state,
+				filterCourse: action.payload ? action.payload : ""
+			};
+		case FILTER_TUTORS_BY_RATING:
+			return {
+				...state,
+				filterRating: action.payload <= 0 ? 0 : action.payload
+			};
 		case GET_TUTORS:
 			return {
 				...state,
@@ -34,6 +47,11 @@ const homeReducer = (state = initState, action: any) => {
 				filterName: "",
 				filterCourse: "",
 				filterRating: 0
+			};
+		case SEARCH_TUTOR:
+			return {
+				...state,
+				filterName: action.payload
 			};
 		default:
 			break;

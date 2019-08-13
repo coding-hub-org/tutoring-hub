@@ -15,40 +15,36 @@ import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
 // Redux
 import { connect } from "react-redux";
-import { getTutors, getCourses, resetFilters } from "../../actions/homeActions";
+import {
+	getTutors,
+	getCourses,
+	resetFilters,
+	filterTutorsByCourse,
+	searchTutor,
+	filterTutorsByRating
+} from "../../actions/homeActions";
 
 import _ from "underscore";
 
-interface Props {
+interface TutorsProps {
 	courses: string[];
+	filterName: string;
+	filterCourse: string;
+	filterRating: number;
+	filterTutorsByCourse: Function;
+	filterTutorsByRating: Function;
 	getCourses: Function;
 	getTutors: Function;
 	resetFilters: Function;
+	searchTutor: Function;
 	isLoading: boolean;
 	title: string;
 	tutors: any[];
 }
 
-interface State {
-	tutors: any[];
-	courses: string[];
-	filterName: string;
-	filterCourse: string;
-	filterRating: number;
-}
-
-class Tutors extends Component<Props, State> {
-	constructor(props: Props) {
+class Tutors extends Component<TutorsProps> {
+	constructor(props: TutorsProps) {
 		super(props);
-
-		this.state = {
-			tutors: [],
-			courses: [],
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		};
-
 		this.handleSearch = this.handleSearch.bind(this);
 		this.resetFilters = this.resetFilters.bind(this);
 		this.filterCourses = this.filterCourses.bind(this);
@@ -61,10 +57,8 @@ class Tutors extends Component<Props, State> {
 	}
 
 	handleSearch(e: any) {
-		let value = e.currentTarget.value;
-		this.setState({
-			filterName: value
-		});
+		let name = e.currentTarget.value;
+		this.props.searchTutor(name);
 	}
 
 	resetFilters(e: any) {
@@ -74,33 +68,22 @@ class Tutors extends Component<Props, State> {
 	}
 
 	filterCourses(course: string) {
-		this.setState({
-			filterCourse: course === "" ? "" : course
-		});
+		this.props.filterTutorsByCourse(course);
 	}
 
 	filterRatings(rating: number) {
-		if (rating <= 0) {
-			this.setState({
-				filterRating: 0
-			});
-		} else {
-			this.setState({
-				filterRating: rating
-			});
-		}
+		this.props.filterTutorsByRating(rating);
 	}
 
 	isFiltering() {
 		return (
-			this.state.filterCourse !== "" ||
-			this.state.filterRating !== 0 ||
-			this.state.filterName !== ""
+			this.props.filterCourse !== "" ||
+			this.props.filterRating !== 0 ||
+			this.props.filterName !== ""
 		);
 	}
 
 	render() {
-		console.log("PROPS", this.props);
 		return (
 			<>
 				<NavBar
@@ -122,7 +105,7 @@ class Tutors extends Component<Props, State> {
 									title={"Courses"}
 									options={this.props.courses}
 									onChange={this.filterCourses}
-									value={this.state.filterCourse}
+									value={this.props.filterCourse}
 									uppercase={true}
 								/>
 							</div>
@@ -133,7 +116,7 @@ class Tutors extends Component<Props, State> {
 									max={10}
 									step={1}
 									onChange={this.filterRatings}
-									value={this.state.filterRating}
+									value={this.props.filterRating}
 								/>
 							</div>
 							<div className="filter" id="filter-submit">
@@ -147,9 +130,9 @@ class Tutors extends Component<Props, State> {
 						{this.isFiltering() ? (
 							<TutorCardsFilterable
 								tutors={this.props.tutors}
-								filterCourse={this.state.filterCourse}
-								filterRating={this.state.filterRating}
-								filterName={this.state.filterName}
+								filterCourse={this.props.filterCourse}
+								filterRating={this.props.filterRating}
+								filterName={this.props.filterName}
 							/>
 						) : (
 							<TutorCards tutors={this.props.tutors} />
@@ -172,15 +155,23 @@ const mapStateToProps = (state: any) => {
 		title: state.home.title,
 		tutors: state.home.tutors,
 		isLoading: state.home.isLoading,
-		courses: state.home.courses
+		courses: state.home.courses,
+		filterName: state.home.filterName,
+		filterCourse: state.home.filterCourse,
+		filterRating: state.home.filterRating
 	};
 };
 
-const mapDispatchToProps = (dispath: Function) => {
+const mapDispatchToProps = (dispatch: Function) => {
 	return {
-		getTutors: () => dispath(getTutors()),
-		getCourses: () => dispath(getCourses()),
-		resetFilters: () => dispath(resetFilters())
+		getTutors: () => dispatch(getTutors()),
+		getCourses: () => dispatch(getCourses()),
+		resetFilters: () => dispatch(resetFilters()),
+		filterTutorsByCourse: (course: string) =>
+			dispatch(filterTutorsByCourse(course)),
+		filterTutorsByRating: (rating: number) =>
+			dispatch(filterTutorsByRating(rating)),
+		searchTutor: (name: string) => dispatch(searchTutor(name))
 	};
 };
 

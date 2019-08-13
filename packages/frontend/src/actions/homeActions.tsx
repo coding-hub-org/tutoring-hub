@@ -2,7 +2,9 @@ import {
 	FILTER_TUTORS_BY_COURSE,
 	GET_TUTORS,
 	GET_COURSES,
-	RESET_FILTERS
+	RESET_FILTERS,
+	SEARCH_TUTOR,
+	FILTER_TUTORS_BY_RATING
 } from "./constants/homeConstants";
 
 import { sortBy } from "lodash";
@@ -10,7 +12,21 @@ import { sortBy } from "lodash";
 export const filterTutorsByCourse = (course: string) => {
 	return {
 		type: FILTER_TUTORS_BY_COURSE,
-		course
+		payload: course
+	};
+};
+
+export const filterTutorsByRating = (rating: number) => {
+	return {
+		type: FILTER_TUTORS_BY_RATING,
+		payload: rating
+	};
+};
+
+export const searchTutor = (name: string) => {
+	return {
+		type: SEARCH_TUTOR,
+		payload: name
 	};
 };
 
