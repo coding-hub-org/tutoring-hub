@@ -15,7 +15,7 @@ import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
 // Redux
 import { connect } from "react-redux";
-import { getTutors, getCourses } from "../../actions/homeActions";
+import { getTutors, getCourses, resetFilters } from "../../actions/homeActions";
 
 import _ from "underscore";
 
@@ -23,6 +23,7 @@ interface Props {
 	courses: string[];
 	getCourses: Function;
 	getTutors: Function;
+	resetFilters: Function;
 	isLoading: boolean;
 	title: string;
 	tutors: any[];
@@ -57,41 +58,10 @@ class Tutors extends Component<Props, State> {
 	componentDidMount() {
 		this.props.getTutors();
 		this.props.getCourses();
-
-		// this.fetchTutors();
-		// this.fetchCourses();
-	}
-
-	fetchTutors() {
-		fetch("/api/v1/tutors")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					tutors: _.sortBy(data, "lastName")
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	fetchCourses() {
-		fetch("/api/v1/courses")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					courses: _.sortBy(data, function(course) {
-						return course;
-					})
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
 	}
 
 	handleSearch(e: any) {
-		var value = e.currentTarget.value;
+		let value = e.currentTarget.value;
 		this.setState({
 			filterName: value
 		});
@@ -100,11 +70,7 @@ class Tutors extends Component<Props, State> {
 	resetFilters(e: any) {
 		e.preventDefault();
 		//TODO reset HTML for elements
-		this.setState({
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		});
+		this.props.resetFilters();
 	}
 
 	filterCourses(course: string) {
@@ -213,7 +179,8 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispath: Function) => {
 	return {
 		getTutors: () => dispath(getTutors()),
-		getCourses: () => dispath(getCourses())
+		getCourses: () => dispath(getCourses()),
+		resetFilters: () => dispath(resetFilters())
 	};
 };
 

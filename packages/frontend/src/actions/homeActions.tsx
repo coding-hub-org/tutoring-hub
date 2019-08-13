@@ -1,8 +1,11 @@
 import {
 	FILTER_TUTORS_BY_COURSE,
 	GET_TUTORS,
-	GET_COURSES
+	GET_COURSES,
+	RESET_FILTERS
 } from "./constants/homeConstants";
+
+import { sortBy } from "lodash";
 
 export const filterTutorsByCourse = (course: string) => {
 	return {
@@ -11,15 +14,20 @@ export const filterTutorsByCourse = (course: string) => {
 	};
 };
 
+export const resetFilters = () => {
+	return {
+		type: RESET_FILTERS
+	};
+};
+
 export const getTutors = () => {
 	return async (
-		dispatch: (arg: { type: string; payload: unknown[] }) => void,
-		getState: any
+		dispatch: (arg: { type: string; payload: unknown[] }) => void
 	) => {
 		try {
 			const response = await fetch("/api/v1/tutors");
 			const data = await response.json();
-			dispatch({ type: GET_TUTORS, payload: data });
+			dispatch({ type: GET_TUTORS, payload: sortBy(data, "lastName") });
 		} catch (error) {
 			console.log(error);
 		}
@@ -28,13 +36,12 @@ export const getTutors = () => {
 
 export const getCourses = () => {
 	return async (
-		dispatch: (arg: { type: string; payload: unknown[] }) => void,
-		getState: any
+		dispatch: (arg: { type: string; payload: unknown[] }) => void
 	) => {
 		try {
 			const response = await fetch("/api/v1/courses");
 			const data = await response.json();
-			dispatch({ type: GET_COURSES, payload: data });
+			dispatch({ type: GET_COURSES, payload: sortBy(data, course => course) });
 		} catch (error) {
 			console.log(error);
 		}

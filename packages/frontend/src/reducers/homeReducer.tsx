@@ -1,4 +1,8 @@
-import { GET_TUTORS, GET_COURSES } from "../actions/constants/homeConstants";
+import {
+	GET_TUTORS,
+	GET_COURSES,
+	RESET_FILTERS
+} from "../actions/constants/homeConstants";
 
 const initState = {
 	title: "All Tutors",
@@ -23,6 +27,13 @@ const homeReducer = (state = initState, action: any) => {
 			return {
 				...state,
 				courses: action.payload
+			};
+		case RESET_FILTERS:
+			return {
+				...state,
+				filterName: "",
+				filterCourse: "",
+				filterRating: 0
 			};
 		default:
 			break;
