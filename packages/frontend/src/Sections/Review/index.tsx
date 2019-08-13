@@ -9,10 +9,7 @@ import YesNoInput from "../../Components/YesNoInput";
 import Subheading from "../../Components/Subheading";
 import CourseInput from "../../Components/CourseInput";
 
-
-interface Props {
-
-}
+interface Props {}
 
 interface State {
 	loading: boolean;
@@ -62,7 +59,7 @@ class Review extends React.Component<Props, State> {
 	componentDidMount() {
 		window.scrollTo(0, 0);
 
-		fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""))
+		fetch(`/api/v1${window.location.pathname}`.replace("/review", ""))
 			.then(response => response.json())
 			.then(data => {
 				this.setState({
@@ -120,7 +117,7 @@ class Review extends React.Component<Props, State> {
 	handleSubmit = () => {
 		let self = this;
 
-		this.validateForm(function (err: Error) {
+		this.validateForm(function(err: Error) {
 			if (err) {
 				alert(err);
 				return;
@@ -147,7 +144,7 @@ class Review extends React.Component<Props, State> {
 				{
 					tutor: updatedTutor
 				},
-				function () {
+				function() {
 					fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
 						method: "PUT",
 						body: JSON.stringify(self.state.tutor),
@@ -159,7 +156,10 @@ class Review extends React.Component<Props, State> {
 						.then(() => {
 							console.debug("Success");
 							document.getElementById("navbar")!.scrollIntoView();
-							window.location.href = window.location.pathname.replace("/rate", "");
+							window.location.href = window.location.pathname.replace(
+								"/rate",
+								""
+							);
 						})
 						.catch(error => console.error("Error:", error));
 				}
@@ -258,64 +258,64 @@ class Review extends React.Component<Props, State> {
 						</div>
 					</div>
 				) : (
-						<div className={"review-section--wrapper"}>
-							<Title title={"Rate " + this.state.tutor.firstName} />
+					<div className={"review-section--wrapper"}>
+						<Title title={"Rate " + this.state.tutor.firstName} />
 
-							<ScaleInput
-								parameter={"methodology"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"organization"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"preparation"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"clarity"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"knowledge"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
+						<ScaleInput
+							parameter={"methodology"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
+						<ScaleInput
+							parameter={"organization"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
+						<ScaleInput
+							parameter={"preparation"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
+						<ScaleInput
+							parameter={"clarity"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
+						<ScaleInput
+							parameter={"knowledge"}
+							onChange={this.onStatUpdate}
+							scaleMin={1}
+							scaleMax={10}
+						/>
 
-							<Subheading title={"About your session"} />
-							<div>
-								<p>Would you book this tutor again? </p>
-								<YesNoInput
-									choices={["yes", "no"]}
-									onChange={this.onBookAgainUpdate}
-								/>
-							</div>
-
-							<Subheading title={"Class Tutored"} />
-							<CourseInput
-								choices={this.state.tutor.courses}
-								onChange={this.onCourseTutoredUpdate}
+						<Subheading title={"About your session"} />
+						<div>
+							<p>Would you book this tutor again? </p>
+							<YesNoInput
+								choices={["yes", "no"]}
+								onChange={this.onBookAgainUpdate}
 							/>
-
-							<Subheading title={"Comments"} />
-							<textarea
-								onChange={this.handleComments}
-								placeholder={"How was your session? Help this tutor to improve "}
-							/>
-
-							<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
 						</div>
-					)}
+
+						<Subheading title={"Class Tutored"} />
+						<CourseInput
+							choices={this.state.tutor.courses}
+							onChange={this.onCourseTutoredUpdate}
+						/>
+
+						<Subheading title={"Comments"} />
+						<textarea
+							onChange={this.handleComments}
+							placeholder={"How was your session? Help this tutor to improve "}
+						/>
+
+						<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
+					</div>
+				)}
 			</div>
 		);
 	}

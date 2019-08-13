@@ -7,10 +7,11 @@ import * as serviceWorker from "./serviceWorker";
 import rootReducer from "./reducers";
 import App from "./App";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const middleWares = applyMiddleware(thunk);
 
-const store = createStore(rootReducer, middleWares);
+const store = createStore(rootReducer, composeWithDevTools(middleWares));
 
 ReactDOM.render(
 	<Provider store={store}>
