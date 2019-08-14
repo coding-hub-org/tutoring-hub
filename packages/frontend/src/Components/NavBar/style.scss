@@ -2,7 +2,10 @@
   grid-column: 1/4;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(10vw, 1fr);
+  grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(
+      10vw,
+      1fr
+    );
   box-sizing: border-box;
   padding: 8px 0;
   background-color: #ffffff;

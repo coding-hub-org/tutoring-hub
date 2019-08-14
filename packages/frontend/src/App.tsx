@@ -14,44 +14,44 @@ import BackToTopButton from "./Components/BackToTopButton";
 import { connect } from "react-redux";
 import { getTutors, getCourses } from "./actions/homeActions";
 interface AppProps {
-	getTutors: Function;
-	getCourses: Function;
+  getTutors: Function;
+  getCourses: Function;
 }
 
 class App extends Component<AppProps> {
-	componentDidMount() {
-		this.props.getTutors();
-		this.props.getCourses();
-	}
+  componentDidMount() {
+    this.props.getTutors();
+    this.props.getCourses();
+  }
 
-	render() {
-		console.log("PROPS", this.props);
-		return (
-			<BrowserRouter>
-				<div className="App">
-					<BackToTopButton minScrollAmt={25} />
-					<Switch>
-						<Route exact path="/" render={() => <Tutors />} />
-						{/* <Route path="/tutors/manage" component={ManageTutors} /> */}
-						{/* <Route path="/tutors/add" component={AddTutor} /> */}
-						<Route exact path="/tutors/:id" render={() => <Profile />} />
-						<Route exact path="/tutors/:id/review" render={() => <Review />} />
-					</Switch>
-					<Footer />
-				</div>
-			</BrowserRouter>
-		);
-	}
+  render() {
+    console.log("PROPS", this.props);
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <BackToTopButton minScrollAmt={25} />
+          <Switch>
+            <Route exact path="/" render={() => <Tutors />} />
+            {/* <Route path="/tutors/manage" component={ManageTutors} /> */}
+            {/* <Route path="/tutors/add" component={AddTutor} /> */}
+            <Route exact path="/tutors/:id" render={() => <Profile />} />
+            <Route exact path="/tutors/:id/review" render={() => <Review />} />
+          </Switch>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
-	return {
-		getTutors: () => dispatch(getTutors()),
-		getCourses: () => dispatch(getCourses())
-	};
+  return {
+    getTutors: () => dispatch(getTutors()),
+    getCourses: () => dispatch(getCourses())
+  };
 };
 
 export default connect(
-	null,
-	mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(App);

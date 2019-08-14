@@ -1,51 +1,51 @@
 .ratingcard-component {
-	-webkit-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
-	-moz-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
-	box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
-	border: 1px solid #ececec;
-	color: #33558b;
-	box-sizing: border-box;
-	padding: 25px 35px;
-	border-radius: 7px;
-	font-size: 1.5em;
-	text-align: center;
-	position: relative;
+  -webkit-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  box-shadow: 0px 2px 6px 0px rgba(47, 83, 151, 0.1);
+  border: 1px solid #ececec;
+  color: #33558b;
+  box-sizing: border-box;
+  padding: 25px 35px;
+  border-radius: 7px;
+  font-size: 1.5em;
+  text-align: center;
+  position: relative;
 }
 
 .ratingcard-component h1,
 .ratingcard-component p {
-	margin: 0;
+  margin: 0;
 }
 
 .ratingcard-component img {
-	position: absolute;
-	top: -20px;
-	right: -20px;
-	height: 50px;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  height: 50px;
 }
 
 @media (max-width: 1200px) {
-	.ratingcard-component {
-		width: 40%;
-		margin: auto;
-	}
+  .ratingcard-component {
+    width: 40%;
+    margin: auto;
+  }
 }
 
 @media (max-width: 1000px) {
-	.ratingcard-component {
-		width: 50%;
-		margin: auto;
-	}
+  .ratingcard-component {
+    width: 50%;
+    margin: auto;
+  }
 }
 
 @media (max-width: 700px) {
-	.ratingcard-component {
-		width: 70%;
-	}
+  .ratingcard-component {
+    width: 70%;
+  }
 }
 
 @media (max-width: 540px) {
-	.ratingcard-component {
-		width: 80%;
-	}
+  .ratingcard-component {
+    width: 80%;
+  }
 }

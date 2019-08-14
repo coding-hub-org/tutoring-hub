@@ -7,19 +7,13 @@ import Title from "../../Components/Title";
 import LoadingSplash from "../../Components/LoadingSplash";
 import SimpleTutorCard from "../../Components/SimpleTutorCard";
 
-import _ from 'underscore';
+import _ from "underscore";
 
+interface Props {}
 
-interface Props {
-
-}
-
-interface State {
-
-}
+interface State {}
 
 export default class ManageTutors extends Component<Props, State> {
-
   state = {
     title: "Manage Tutors",
     tutors: [],
@@ -38,34 +32,35 @@ export default class ManageTutors extends Component<Props, State> {
   }
 
   fetchTutors() {
-    fetch('/api/v1/tutors')
+    fetch("/api/v1/tutors")
       .then(response => response.json())
       .then(data => {
         this.setState({
-          tutors: _.sortBy(data, 'lastName'),
-          isLoading: false,
+          tutors: _.sortBy(data, "lastName"),
+          isLoading: false
         });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
   }
 
-  handleSearch() { }
+  handleSearch() {}
 
   render() {
-
     let self = this;
 
     if (this.state.isLoading) {
-      return (
-        <LoadingSplash />
-      );
+      return <LoadingSplash />;
     }
 
-    const tutors = this.state.tutors.map((tutor) =>
-      <SimpleTutorCard tutor={tutor} editable={true} onUpdate={this.fetchTutors} />
-    );
+    const tutors = this.state.tutors.map(tutor => (
+      <SimpleTutorCard
+        tutor={tutor}
+        editable={true}
+        onUpdate={this.fetchTutors}
+      />
+    ));
 
     return (
       <div className="section">
@@ -73,16 +68,17 @@ export default class ManageTutors extends Component<Props, State> {
         <div className="section--wrapper">
           <Title title={this.state.title.toUpperCase()} />
 
-          {
-            tutors.map(function (object, i) {
-              return (
-                <div className={"manage-tutors-item"} key={i} onChange={self.fetchTutors}>
-                  {object}
-                </div>
-              );
-            }, this)
-          }
-
+          {tutors.map(function(object, i) {
+            return (
+              <div
+                className={"manage-tutors-item"}
+                key={i}
+                onChange={self.fetchTutors}
+              >
+                {object}
+              </div>
+            );
+          }, this)}
         </div>
       </div>
     );

@@ -29,6 +29,7 @@
 		"eject": "react-scripts eject",
 		"tslint": " eslint . --cache --cache-location node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx",
 		"prettier": "prettier --check prettier.config.json \"./src/**/*.{js,ts,tsx,jsx,json,scss}\"",
+		"prettier:fix": "prettier --write prettier.config.json \"./src/**/*.{js,ts,tsx,jsx,json,scss}\"",
 		"precommit": "yarn prettier && yarn tslint"
 	},
 	"eslintConfig": {

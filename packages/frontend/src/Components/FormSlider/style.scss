@@ -1,21 +1,21 @@
 .Form-Slider-Component {
-	margin-bottom: 1em;
-	vertical-align: top;
-	width: 100%;
+  margin-bottom: 1em;
+  vertical-align: top;
+  width: 100%;
 }
 
 .Form-Slider-Component .slider {
-	-webkit-appearance: none;
-	width: 100%;
-	border-radius: 50px;
-	background: #ececec;
-	outline: none;
-	height: 40px;
-	-webkit-transition: 0.2s;
-	transition: opacity 0.2s;
-	padding: 0;
-	position: relative;
-	margin: 0;
+  -webkit-appearance: none;
+  width: 100%;
+  border-radius: 50px;
+  background: #ececec;
+  outline: none;
+  height: 40px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  padding: 0;
+  position: relative;
+  margin: 0;
 }
 
 /* 
@@ -32,34 +32,34 @@
 } */
 
 .Form-Slider-Component .slider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #fc6472;
-	cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fc6472;
+  cursor: pointer;
 }
 
 .Form-Slider-Component .slider::-moz-range-thumb {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #fc6472;
-	cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fc6472;
+  cursor: pointer;
 }
 
 .Form-Slider-Component .label {
-	text-align: center;
-	display: block;
+  text-align: center;
+  display: block;
 }
 
 .Form-Slider-Component .label span {
-	margin: 0;
+  margin: 0;
 }
 
 @media (max-width: 1150px) {
-	.Form-Slider-Component .slider {
-		width: 100%;
-	}
+  .Form-Slider-Component .slider {
+    width: 100%;
+  }
 }

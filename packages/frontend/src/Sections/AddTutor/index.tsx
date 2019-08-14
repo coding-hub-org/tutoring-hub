@@ -6,15 +6,13 @@ import Title from "../../Components/Title";
 import AddTutorForm from "../../Components/AddTutorForm";
 
 export default class AddTutor extends Component {
-
   state = {
     title: "Add Tutor"
   };
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
-  handleSearch() { }
+  handleSearch() {}
 
   render() {
     return (

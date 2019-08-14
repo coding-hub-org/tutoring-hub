@@ -1,35 +1,35 @@
 .add-tutor-box-component {
-    margin: 1em auto;
-    float: right;
+  margin: 1em auto;
+  float: right;
 }
 
 .add-tutor-box-component p {
-    margin: 0.25em auto;
-    text-align: center;
+  margin: 0.25em auto;
+  text-align: center;
 }
 
 .add-tutor-box-button {
-    background-color: #FF5E84;
-    border: #FF5E84 1px solid;
-    color: white;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-transform: uppercase;
+  background-color: #ff5e84;
+  border: #ff5e84 1px solid;
+  color: white;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-transform: uppercase;
 
-    padding: 0 40px;
-    /* height: 2.5em; */
-    height: 40px;
+  padding: 0 40px;
+  /* height: 2.5em; */
+  height: 40px;
 
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 
-    margin: 0.5em 0 0 0;
+  margin: 0.5em 0 0 0;
 
-    font-size: 13px;
-    line-height: 32px;
+  font-size: 13px;
+  line-height: 32px;
 }
 
 .add-tutor-box-component a {
-    color: #FFFFFF;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }

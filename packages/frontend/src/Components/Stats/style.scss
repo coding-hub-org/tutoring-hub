@@ -1,39 +1,39 @@
 .stats-component .stats-component--feature {
-	display: grid;
-	grid-template-columns: 1fr 10fr 0.5fr;
-	grid-column-gap: 25px;
-	margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 10fr 0.5fr;
+  grid-column-gap: 25px;
+  margin-bottom: 20px;
 }
 
 .stats-component .stats-component--feature p {
-	margin: 0;
-	width: 120px;
+  margin: 0;
+  width: 120px;
 }
 
 .stats-component .stats-component--feature .stats-component--feature__wrapper {
-	background-color: #f0f2f8;
-	/* width: 90%; */
-	border-radius: 100px;
+  background-color: #f0f2f8;
+  /* width: 90%; */
+  border-radius: 100px;
 }
 
 .stats-component .stats-component--feature .stats-component--feature__progress {
-	background-color: #fc6472;
-	/* width: 20%; */
-	height: 100%;
-	width: 0%;
-	border-radius: 100px;
+  background-color: #fc6472;
+  /* width: 20%; */
+  height: 100%;
+  width: 0%;
+  border-radius: 100px;
 }
 
 @media (max-width: 800px) {
-	.stats-component .stats-component--feature {
-		margin-left: 5%;
-	}
+  .stats-component .stats-component--feature {
+    margin-left: 5%;
+  }
 }
 
 @media (max-width: 500px) {
-	.stats-component .stats-component--feature {
-		grid-template-columns: auto;
-		grid-row-gap: 20px;
-		grid-template-rows: 1fr 1fr;
-	}
+  .stats-component .stats-component--feature {
+    grid-template-columns: auto;
+    grid-row-gap: 20px;
+    grid-template-rows: 1fr 1fr;
+  }
 }

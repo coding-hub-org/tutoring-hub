@@ -1,43 +1,43 @@
 .BackToTopButton-Component {
-    position: fixed;
-    right: 1em;
-    bottom: 1em;
-    z-index: 999;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  z-index: 999;
 }
 
 .BackToTopButton-Component * {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .BackToTopButton-Component *:focus {
-    box-shadow: none;
-    border: none;
-    outline: none;
+  box-shadow: none;
+  border: none;
+  outline: none;
 }
 
 .BackToTopButton-Component button {
-    border: none;
-    background-color: #ff5e84;
-    color: #FFFFFF;
-    border-radius: 100%;
-    width: 50px;
-    height: 50px;
+  border: none;
+  background-color: #ff5e84;
+  color: #ffffff;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
 }
 
 .BackToTopButton-Component label {
-    margin: 0;
-    padding: 0;
-    font-size: 1.5em;
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 .BackToTopButton-Component input {
-    text-align: center;
-    color: #FFFFFF;
-    font-weight: bold;
-    width: 100%;
-    height: 100%;
-    background-color: #9B2743;
-    border-radius: 5px;
-    border: none;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  background-color: #9b2743;
+  border-radius: 5px;
+  border: none;
 }

@@ -7,10 +7,9 @@ interface Props {
 }
 
 export default function SearchBar(props: Props) {
-
   const searchTutor = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.handleSearch(event);
-  }
+  };
 
   return (
     <div className="searchbar-component">
@@ -22,4 +21,4 @@ export default function SearchBar(props: Props) {
       </div>
     </div>
   );
-};
+}

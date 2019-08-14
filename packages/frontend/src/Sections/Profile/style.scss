@@ -1,7 +1,10 @@
 .profile-section {
   display: grid;
   align-items: start;
-  grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(10vw, 1fr);
+  grid-template-columns: minmax(10vw, 1fr) minmax(0, var(--content-max-width)) minmax(
+      10vw,
+      1fr
+    );
   overflow: hidden;
   position: relative;
   min-height: 100vh;
@@ -18,7 +21,9 @@
   margin: 5em 0 2em 0;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--left {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--left {
   height: 300px;
   /* width: 300px;  */
   margin-right: 50px;
@@ -32,7 +37,10 @@
   border-radius: 35px;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center h1 {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  h1 {
   margin: 0;
 }
 
@@ -43,28 +51,46 @@
   font-weight: 500;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-since {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-since {
   display: flex;
   color: #33558b;
   margin-top: 20px;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats div {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats
+  div {
   display: flex;
   align-items: center;
   width: 30%;
 }
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats div:last-child {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats
+  div:last-child {
   border: none;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center div img {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  div
+  img {
   margin-right: 20px;
 }
 .profile-section .profile-section--wrapper .Filters-course {
@@ -112,18 +138,30 @@
   font-weight: 400;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats p {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats
+  p {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats span {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats
+  span {
   font-size: 30px;
   font-weight: 500;
 }
 
-.profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats img {
+.profile-section
+  .profile-section--wrapper
+  .profile-section--wrapper__upper--center
+  .tutor-rating-stats
+  img {
   width: 60px;
 }
 
@@ -139,29 +177,46 @@
 }
 
 @media (max-width: 1450px) {
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left > img {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left
+    > img {
     height: 240px;
     width: 240px;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats img {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    img {
     width: 45px;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats div {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    div {
     border: none;
   }
 }
 
 @media (max-width: 1200px) {
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left {
     height: 250px;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--right {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--right {
     grid-area: c;
   }
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left {
     margin-right: 0px;
     display: grid;
     justify-content: center;
@@ -176,43 +231,75 @@
     display: block;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats div {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    div {
     flex-direction: column;
     border: none;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center {
     padding: 0;
   }
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats div img {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    div
+    img {
     width: 50px;
     margin: 0;
   }
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left > img {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left
+    > img {
     height: 220px;
     width: 220px;
   }
   .profile-section--wrapper .profile-major,
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center h1 {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    h1 {
     text-align: center;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-since {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-since {
     justify-content: center;
   }
 }
 
 @media (max-width: 600px) {
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats p span {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    p
+    span {
     font-size: 20px;
   }
 
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--center .tutor-rating-stats p {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--center
+    .tutor-rating-stats
+    p {
     font-size: 15px;
   }
 }
 @media (max-width: 400px) {
-  .profile-section .profile-section--wrapper .profile-section--wrapper__upper--left > img {
+  .profile-section
+    .profile-section--wrapper
+    .profile-section--wrapper__upper--left
+    > img {
     height: 180px;
     width: 180px;
   }
