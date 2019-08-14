@@ -26,7 +26,7 @@ import {
 	filterReviewsByCourse
 } from "../../actions/tutorActions";
 
-interface Props {
+interface ProfileProps {
 	tutor: any;
 	loading: boolean;
 	filterCourse: string;
@@ -34,8 +34,8 @@ interface Props {
 	filterReviewsByCourse: Function;
 }
 
-class Profile extends Component<Props> {
-	constructor(props: Props) {
+class Profile extends Component<ProfileProps> {
+	constructor(props: ProfileProps) {
 		super(props);
 	}
 
