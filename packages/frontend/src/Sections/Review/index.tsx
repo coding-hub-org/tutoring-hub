@@ -8,10 +8,17 @@ import ScaleInput from "../../Components/ScaleInput";
 import YesNoInput from "../../Components/YesNoInput";
 import Subheading from "../../Components/Subheading";
 import CourseInput from "../../Components/CourseInput";
+import { connect } from "react-redux";
 
-interface Props {}
+interface ReviewProps {
+	loading?: boolean;
+	tutor?: any;
+	author?: string;
+	course?: string;
+	content?: number;
+}
 
-interface State {
+interface ReviewState {
 	loading: boolean;
 	tutor?: any;
 
@@ -28,8 +35,8 @@ interface State {
 	comment?: string;
 }
 
-class Review extends React.Component<Props, State> {
-	constructor(props: Props) {
+class Review extends React.Component<ReviewProps, ReviewState> {
+	constructor(props: ReviewProps) {
 		super(props);
 
 		this.state = {
@@ -242,7 +249,12 @@ class Review extends React.Component<Props, State> {
 				</div>
 			);
 		}
-
+		// {
+		// 	console.log("STATE", this.state);
+		// }
+		// {
+		// 	console.log("PROPS", this.props);
+		// }
 		return (
 			<div className={"review-section"}>
 				<NavBar />
@@ -321,4 +333,15 @@ class Review extends React.Component<Props, State> {
 	}
 }
 
-export default Review;
+const matStateToProps = (state: any) => {
+	return {};
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
+	return {};
+};
+
+export default connect(
+	matStateToProps,
+	mapDispatchToProps
+)(Review);

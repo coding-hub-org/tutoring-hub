@@ -31,8 +31,6 @@ interface TutorsProps {
 	filterRating: number;
 	filterTutorsByCourse: Function;
 	filterTutorsByRating: Function;
-	getCourses: Function;
-	getTutors: Function;
 	resetFilters: Function;
 	searchTutor: Function;
 	isLoading: boolean;
@@ -47,11 +45,6 @@ class Tutors extends Component<TutorsProps> {
 		this.resetFilters = this.resetFilters.bind(this);
 		this.filterCourses = this.filterCourses.bind(this);
 		this.filterRatings = this.filterRatings.bind(this);
-	}
-
-	componentDidMount() {
-		this.props.getTutors();
-		this.props.getCourses();
 	}
 
 	handleSearch(e: any) {
@@ -162,8 +155,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
-		getTutors: () => dispatch(getTutors()),
-		getCourses: () => dispatch(getCourses()),
 		resetFilters: () => dispatch(resetFilters()),
 		filterTutorsByCourse: (course: string) =>
 			dispatch(filterTutorsByCourse(course)),
