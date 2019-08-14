@@ -1,7 +1,4 @@
-import {
-	GET_TUTOR_INFO,
-	FILTER_REVIEWS_BY_COURSE
-} from "../actions/constants/tutorConstants";
+import { FILTER_REVIEWS_BY_COURSE } from "../actions/constants/tutorConstants";
 import { any } from "prop-types";
 
 const initState = {
@@ -14,12 +11,6 @@ const initState = {
 
 const tutorReducer = (state = initState, action: any) => {
 	switch (action.type) {
-		case GET_TUTOR_INFO:
-			return {
-				...state,
-				tutor: action.payload,
-				loading: false
-			};
 		case FILTER_REVIEWS_BY_COURSE:
 			return {
 				...state,

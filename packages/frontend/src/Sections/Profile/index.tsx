@@ -21,18 +21,16 @@ import NoReviews from "../../Assets/no-reviews.png";
 import FormDropdown from "../../Components/FormDropdown";
 import FormSlider from "../../Components/FormSlider";
 import { connect } from "react-redux";
-import {
-	getTutorInfo,
-	filterReviewsByCourse
-} from "../../actions/tutorActions";
+import { filterReviewsByCourse } from "../../actions/tutorActions";
 
 import { RouteComponentProps } from "react-router-dom";
 
 interface ProfileProps extends RouteComponentProps {
 	tutor: any;
+	test: any;
+	isLoading: boolean;
 	loading: boolean;
 	filterCourse: string;
-	getTutorInfo: Function;
 	filterReviewsByCourse: Function;
 }
 
@@ -68,15 +66,14 @@ class Profile extends Component<ProfileProps> {
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
-		this.props.getTutorInfo(window.location.pathname);
 	}
 
 	render() {
-		console.log("PROPS TUTOR", this.props);
+		console.log("PROFIEL", this.props);
 		return (
 			<div className="profile-section">
 				<NavBar />
-				{this.props.loading ? (
+				{this.props.isLoading ? (
 					<div className="profile-section--wrapper">
 						<div className="profile-section--wrapper-load">
 							<img
@@ -201,17 +198,20 @@ class Profile extends Component<ProfileProps> {
 	}
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, props: any) => {
+	let tutorId = props.match.params.id;
+
 	return {
-		tutor: state.tutor.tutor,
+		// tutor: state.tutor.tutor,
 		filterCourse: state.tutor.filterCourse,
-		loading: state.tutor.loading
+		loading: state.tutor.loading,
+		isLoading: state.home.isLoading,
+		tutor: state.home.tutors.find((t: { _id: any }) => t._id === tutorId)
 	};
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
-		getTutorInfo: (url: string) => dispatch(getTutorInfo(url)),
 		filterReviewsByCourse: (course: string) =>
 			dispatch(filterReviewsByCourse(course))
 	};
