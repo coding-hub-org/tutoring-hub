@@ -16,8 +16,6 @@ import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 // Redux
 import { connect } from "react-redux";
 import {
-	getTutors,
-	getCourses,
 	resetFilters,
 	filterTutorsByCourse,
 	searchTutor,
@@ -124,7 +122,7 @@ const Tutors: React.FC<TutorsProps> = props => {
 	);
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any, ownProps: any) => {
 	return {
 		title: state.home.title,
 		tutors: state.home.tutors,

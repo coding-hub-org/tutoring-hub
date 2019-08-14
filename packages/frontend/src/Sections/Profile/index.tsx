@@ -26,7 +26,9 @@ import {
 	filterReviewsByCourse
 } from "../../actions/tutorActions";
 
-interface ProfileProps {
+import { RouteComponentProps } from "react-router-dom";
+
+interface ProfileProps extends RouteComponentProps {
 	tutor: any;
 	loading: boolean;
 	filterCourse: string;
@@ -70,6 +72,7 @@ class Profile extends Component<ProfileProps> {
 	}
 
 	render() {
+		console.log("PROPS TUTOR", this.props);
 		return (
 			<div className="profile-section">
 				<NavBar />

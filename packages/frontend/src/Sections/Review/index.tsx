@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 
 interface ReviewProps {
 	loading?: boolean;
-	tutor?: any;
+	tutor: any;
 	author?: string;
 	course?: string;
 	content?: number;
@@ -252,9 +252,9 @@ class Review extends React.Component<ReviewProps, ReviewState> {
 		// {
 		// 	console.log("STATE", this.state);
 		// }
-		// {
-		// 	console.log("PROPS", this.props);
-		// }
+		{
+			console.log("PROPS", this.props);
+		}
 		return (
 			<div className={"review-section"}>
 				<NavBar />
@@ -334,7 +334,9 @@ class Review extends React.Component<ReviewProps, ReviewState> {
 }
 
 const matStateToProps = (state: any) => {
-	return {};
+	return {
+		tutor: state.tutor.tutor
+	};
 };
 
 const mapDispatchToProps = (dispatch: Function) => {
