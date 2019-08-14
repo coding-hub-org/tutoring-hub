@@ -38,108 +38,91 @@ interface TutorsProps {
 	tutors: any[];
 }
 
-class Tutors extends Component<TutorsProps> {
-	constructor(props: TutorsProps) {
-		super(props);
-		this.handleSearch = this.handleSearch.bind(this);
-		this.resetFilters = this.resetFilters.bind(this);
-		this.filterCourses = this.filterCourses.bind(this);
-		this.filterRatings = this.filterRatings.bind(this);
-	}
-
-	handleSearch(e: any) {
+const Tutors: React.FC<TutorsProps> = props => {
+	const handleSearch = (e: any) => {
 		let name = e.currentTarget.value;
-		this.props.searchTutor(name);
-	}
+		props.searchTutor(name);
+	};
 
-	resetFilters(e: any) {
+	const resetFilters = (e: any) => {
 		e.preventDefault();
 		//TODO reset HTML for elements
-		this.props.resetFilters();
-	}
+		props.resetFilters();
+	};
 
-	filterCourses(course: string) {
-		this.props.filterTutorsByCourse(course);
-	}
+	const filterCourses = (course: string) => {
+		props.filterTutorsByCourse(course);
+	};
 
-	filterRatings(rating: number) {
-		this.props.filterTutorsByRating(rating);
-	}
+	const filterRatings = (rating: number) => {
+		props.filterTutorsByRating(rating);
+	};
 
-	isFiltering() {
+	const isFiltering = () => {
 		return (
-			this.props.filterCourse !== "" ||
-			this.props.filterRating !== 0 ||
-			this.props.filterName !== ""
+			props.filterCourse !== "" ||
+			props.filterRating !== 0 ||
+			props.filterName !== ""
 		);
-	}
+	};
 
-	render() {
-		return (
-			<>
-				<NavBar
-					searchable={true}
-					handleSearch={this.handleSearch}
-					sticky={true}
-				/>
-				<section id="section-tutors">
-					<div className="wrapper">
-						<div className="section-title">
-							<img src={titleImg} alt="title icon" />
-							<Title title={this.props.title.toUpperCase()} />
-						</div>
-
-						<div className="filters">
-							<div className="filter">
-								<p className="title">Courses</p>
-								<FormDropdown
-									title={"Courses"}
-									options={this.props.courses}
-									onChange={this.filterCourses}
-									value={this.props.filterCourse}
-									uppercase={true}
-								/>
-							</div>
-							<div className="filter">
-								<p className="title">Rating</p>
-								<FormSlider
-									min={0}
-									max={10}
-									step={1}
-									onChange={this.filterRatings}
-									value={this.props.filterRating}
-								/>
-							</div>
-							<div className="filter" id="filter-submit">
-								<FormButton
-									title={"Reset Filters"}
-									action={this.resetFilters}
-								/>
-							</div>
-						</div>
-
-						{this.isFiltering() ? (
-							<TutorCardsFilterable
-								tutors={this.props.tutors}
-								filterCourse={this.props.filterCourse}
-								filterRating={this.props.filterRating}
-								filterName={this.props.filterName}
-							/>
-						) : (
-							<TutorCards tutors={this.props.tutors} />
-						)}
-
-						<div className="review-website-button">
-							<ReviewWebsiteButton />
-						</div>
-
-						{/* <AddTutorBox /> */}
+	return (
+		<>
+			<NavBar searchable={true} handleSearch={handleSearch} sticky={true} />
+			<section id="section-tutors">
+				<div className="wrapper">
+					<div className="section-title">
+						<img src={titleImg} alt="title icon" />
+						<Title title={props.title.toUpperCase()} />
 					</div>
-				</section>
-			</>
-		);
-	}
-}
+
+					<div className="filters">
+						<div className="filter">
+							<p className="title">Courses</p>
+							<FormDropdown
+								title={"Courses"}
+								options={props.courses}
+								onChange={filterCourses}
+								value={props.filterCourse}
+								uppercase={true}
+							/>
+						</div>
+						<div className="filter">
+							<p className="title">Rating</p>
+							<FormSlider
+								min={0}
+								max={10}
+								step={1}
+								onChange={filterRatings}
+								value={props.filterRating}
+							/>
+						</div>
+						<div className="filter" id="filter-submit">
+							<FormButton title={"Reset Filters"} action={resetFilters} />
+						</div>
+					</div>
+
+					{isFiltering() ? (
+						<TutorCardsFilterable
+							tutors={props.tutors}
+							filterCourse={props.filterCourse}
+							filterRating={props.filterRating}
+							filterName={props.filterName}
+						/>
+					) : (
+						<TutorCards tutors={props.tutors} />
+					)}
+
+					<div className="review-website-button">
+						<ReviewWebsiteButton />
+					</div>
+
+					{/* <AddTutorBox /> */}
+				</div>
+			</section>
+		</>
+	);
+};
 
 const mapStateToProps = (state: any) => {
 	return {
