@@ -25,7 +25,6 @@ class App extends Component<AppProps> {
 	}
 
 	render() {
-		console.log("PROPS", this.props);
 		return (
 			<BrowserRouter>
 				<div className="App">
@@ -34,8 +33,16 @@ class App extends Component<AppProps> {
 						<Route exact path="/" render={() => <Tutors />} />
 						{/* <Route path="/tutors/manage" component={ManageTutors} /> */}
 						{/* <Route path="/tutors/add" component={AddTutor} /> */}
-						<Route exact path="/tutors/:id" render={() => <Profile />} />
-						<Route exact path="/tutors/:id/review" render={() => <Review />} />
+						<Route
+							exact
+							path="/tutors/:id"
+							render={routeProps => <Profile {...routeProps} />}
+						/>
+						<Route
+							exact
+							path="/tutors/:id/review"
+							render={routeProps => <Review {...routeProps} />}
+						/>
 					</Switch>
 					<Footer />
 				</div>
