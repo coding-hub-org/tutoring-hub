@@ -2,7 +2,6 @@ import { FILTER_REVIEWS_BY_COURSE } from "../actions/constants/tutorConstants";
 import { any } from "prop-types";
 
 const initState = {
-	tutor: any,
 	filterName: "",
 	filterCourse: "",
 	filterRating: 0,

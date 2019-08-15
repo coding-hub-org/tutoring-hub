@@ -38,7 +38,11 @@ class App extends Component<AppProps> {
 							path="/tutors/:id"
 							render={routeProps => <Profile {...routeProps} />}
 						/>
-						<Route exact path="/tutors/:id/review" render={() => <Review />} />
+						<Route
+							exact
+							path="/tutors/:id/review"
+							render={routeProps => <Review {...routeProps} />}
+						/>
 					</Switch>
 					<Footer />
 				</div>

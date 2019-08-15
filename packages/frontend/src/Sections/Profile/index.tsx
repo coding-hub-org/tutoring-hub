@@ -202,7 +202,6 @@ const mapStateToProps = (state: any, props: any) => {
 	let tutorId = props.match.params.id;
 
 	return {
-		// tutor: state.tutor.tutor,
 		filterCourse: state.tutor.filterCourse,
 		loading: state.tutor.loading,
 		isLoading: state.home.isLoading,
