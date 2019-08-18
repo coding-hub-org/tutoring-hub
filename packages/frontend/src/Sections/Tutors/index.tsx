@@ -10,7 +10,7 @@ import TutorCardsFilterable from "../../Components/TutorCardsFilterable";
 import FormDropdown from "../../Components/FormDropdown";
 import FormSlider from "../../Components/FormSlider";
 import FormButton from "../../Components/FormButton";
-import AddTutorBox from "../../Components/AddTutorBox";
+// import AddTutorBox from "../../Components/AddTutorBox";
 import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
 // Redux
@@ -75,7 +75,7 @@ const Tutors: React.FC<TutorsProps> = props => {
 					</div>
 
 					<div className="filters">
-						<div className="filter">
+						<div className="filter filter--1">
 							<p className="title">Courses</p>
 							<FormDropdown
 								title={"Courses"}
@@ -85,7 +85,7 @@ const Tutors: React.FC<TutorsProps> = props => {
 								uppercase={true}
 							/>
 						</div>
-						<div className="filter">
+						<div className="filter filter--2">
 							<p className="title">Rating</p>
 							<FormSlider
 								min={0}
@@ -95,7 +95,7 @@ const Tutors: React.FC<TutorsProps> = props => {
 								value={props.filterRating}
 							/>
 						</div>
-						<div className="filter" id="filter-submit">
+						<div className="filter filter--3" id="filter-submit">
 							<FormButton title={"Reset Filters"} action={resetFilters} />
 						</div>
 					</div>

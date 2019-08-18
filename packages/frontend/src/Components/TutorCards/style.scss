@@ -1,17 +1,16 @@
 .Tutor-Cards-Component {
-  list-style-type: none;
-  padding: 0;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
-  grid-gap: 2.2rem;
+	list-style-type: none;
+	width: 90%;
+	display: -webkit-flex;
+	margin: 0px 5%;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 @media (max-width: 400px) {
-  .Tutor-Cards-Component {
-    grid-template-columns: 1fr;
-  }
+	.Tutor-Cards-Component {
+		grid-template-columns: 1fr;
+	}
 }
