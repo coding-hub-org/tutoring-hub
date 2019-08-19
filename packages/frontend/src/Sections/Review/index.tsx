@@ -227,8 +227,9 @@ class Review extends React.Component<ReviewProps, ReviewState> {
 			<div className={"review-section"}>
 				<NavBar />
 				<div className={"review-section--wrapper"}>
-					<Title title={"Rate " + this.props.tutor.firstName} />
-
+					<div className="review-title">
+						<Title title={"Rate " + this.props.tutor.firstName} />
+					</div>
 					<ScaleInput
 						parameter={"methodology"}
 						onChange={this.onStatUpdate}
@@ -259,25 +260,28 @@ class Review extends React.Component<ReviewProps, ReviewState> {
 						scaleMin={1}
 						scaleMax={10}
 					/>
-
-					<Subheading title={"About your session"} />
-					<div>
+          <div className="review-section--about">
+					  <Subheading title={"About your session"} />
+          </div>
+					<div className="review-section--book-again">
 						<p>Would you book this tutor again? </p>
 						<YesNoInput
 							choices={["yes", "no"]}
 							onChange={this.onBookAgainUpdate}
 						/>
 					</div>
-
+          
+					<div className="review-section--class-tutored">
 					<Subheading title={"Class Tutored"} />
 					<CourseInput
 						choices={this.props.tutor.courses}
 						onChange={this.onCourseTutoredUpdate}
 					/>
-
+</div>
 					<Subheading title={"Comments"} />
 					<textarea
-						onChange={this.handleComments}
+            onChange={this.handleComments}
+            className="comment-textarea"
 						placeholder={"How was your session? Help this tutor to improve "}
 					/>
 
