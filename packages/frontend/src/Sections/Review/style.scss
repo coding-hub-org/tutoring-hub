@@ -50,6 +50,11 @@
 	cursor: pointer;
 }
 
+.review-title {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
 .review-section .review-section--bookagain {
 	display: flex;
 	align-items: center;
@@ -79,6 +84,24 @@
 
 .review-section--tutored-class > input {
 	margin-right: 10px;
+}
+
+.review-section--about {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.review-section--book-again,
+.review-section--book-again > div{
+  margin-top: 15px;
+}
+
+.review-section--class-tutored > h1 {
+  margin-bottom: 15px;
+}
+
+.comment-textarea {
+  resize: none;
 }
 
 @media (max-width: 750px) {
