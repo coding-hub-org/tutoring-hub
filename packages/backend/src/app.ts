@@ -9,57 +9,81 @@ import fetch from "node-fetch";
 import cors from "cors";
 import indexRoute from "./routes";
 import { ConfigManager } from "./config-manager";
+import { Logger, FileUtils } from "@michaelgatesdev/common";
+
+export const expressApp: express.Application = express();
 
 class App {
-	// ------------------------------------------------------ \\
-	//              Configure express backend
-	// ------------------------------------------------------ \\
+
+	public ROOT_DIR: string = "./";
+	public PUBLIC_DIR: string = `${this.ROOT_DIR}/public`;
+	public SETTINGS_DIR: string = `${this.PUBLIC_DIR}/settings`;
 
 	public expressApp: Application = express();
-	private configManager!: ConfigManager;
 
-	constructor() {}
+	private configManager: ConfigManager;
+
+	constructor() {
+		this.configManager = new ConfigManager();
+	}
 
 	public async initialize(): Promise<void> {
-		// Setup express stuff
-		console.debug("Setting up express server...");
-		this.setupExpress();
-		console.debug("Finished setting up express server.");
 
-		// initialize configuration manager
-		try {
-			this.configManager = new ConfigManager();
-			await this.configManager.initialize();
-			console.log("Initialized the configuration manager");
-		} catch (error) {
-			console.error("Could not initialize the configuration manager");
-			throw error;
-		}
+		// Setup express stuff
+		Logger.debug("Setting up express server...");
+		this.setupExpress();
+		Logger.debug("Finished setting up express server");
+
+
+		// Setup directories
+		Logger.debug("Setting up directories...");
+		await this.createDirectories();
+		Logger.debug("Finished setting up directories");
+
+
+		// setup configuration files
+		Logger.debug("Setting up configurations...");
+		await this.configManager.initialize();
+		Logger.debug("Finished setting up configurations");
 
 		// test Mongoose database connection
 		try {
 			await this.testMongooseConnection();
-			console.log("Successfully connected to the database");
+			Logger.info("Successfully connected to the database");
 		} catch (error) {
-			console.error("Could not connect to the database");
-			throw error;
+			Logger.error("Could not connect to the database");
+			Logger.error(error);
 		}
 
 		// Test Cloudinary connection
-		if (this.configManager.imageConfig.useCloudinary) {
+		if (this.configManager.imagesConfig !== undefined && this.configManager.imagesConfig.useCloudinary) {
 			try {
 				await this.testCloudinaryConnection();
-				console.log("Successfully connected to the Cloudinary CDN");
+				Logger.info("Successfully connected to the Cloudinary CDN");
 			} catch (error) {
-				console.error("Could not connect to the Cloudinary CDN");
-				throw error;
+				Logger.error("Could not connect to the Cloudinary CDN");
+				Logger.error(error);
 			}
 		}
 
-		console.log("Server finished initialization");
+		Logger.info("Server finished initialization");
+	}
+
+	private async createDirectories(): Promise<void> {
+		if (!await FileUtils.checkExists(this.PUBLIC_DIR)) {
+			if (await FileUtils.createDirectory(this.PUBLIC_DIR)) {
+				Logger.info(`Created public directory: ${this.PUBLIC_DIR}`);
+			}
+		}
+		if (!await FileUtils.checkExists(this.SETTINGS_DIR)) {
+			if (await FileUtils.createDirectory(this.SETTINGS_DIR)) {
+				Logger.info(`Created public directory: ${this.SETTINGS_DIR}`);
+			}
+		}
 	}
 
 	public async testMongooseConnection(): Promise<void> {
+		if (this.configManager.databaseConfig === undefined) return;
 		const dbUsername = this.configManager.databaseConfig.username;
 		const dbPassword = this.configManager.databaseConfig.password;
 		const databaseURL = this.configManager.databaseConfig.url
@@ -74,19 +98,20 @@ class App {
 			mongoose.Promise = global.Promise;
 			const db = mongoose.connection;
 			//Bind connection to error event (to get notification of connection errors)
-			db.on("error", console.error.bind(console, "MongoDB connection error:"));
+			db.on("error", Logger.error.bind(console, "MongoDB connection error:"));
 		} catch (error) {
 			throw error;
 		}
 	}
 
 	public async testCloudinaryConnection(): Promise<void> {
+		if (this.configManager.imagesConfig === undefined) return;
 		const url = "https://API_KEY:API_SECRET@api.cloudinary.com/v1_1/CLOUD_NAME/resources/image"
-			.replace("API_KEY", this.configManager.imageConfig.cloudinaryAPIKey)
-			.replace("API_SECRET", this.configManager.imageConfig.cloudinaryAPISecret)
+			.replace("API_KEY", this.configManager.imagesConfig.cloudinaryAPIKey)
+			.replace("API_SECRET", this.configManager.imagesConfig.cloudinaryAPISecret)
 			.replace(
 				"CLOUD_NAME",
-				this.configManager.imageConfig.cloudinaryCloudName
+				this.configManager.imagesConfig.cloudinaryCloudName
 			);
 
 		try {
@@ -98,9 +123,9 @@ class App {
 			}
 
 			cloudinary.config({
-				API_KEY: this.configManager.imageConfig.cloudinaryAPIKey,
-				API_SECRET: this.configManager.imageConfig.cloudinaryAPISecret,
-				CLOUD_NAME: this.configManager.imageConfig.cloudinaryCloudName
+				API_KEY: this.configManager.imagesConfig.cloudinaryAPIKey,
+				API_SECRET: this.configManager.imagesConfig.cloudinaryAPISecret,
+				CLOUD_NAME: this.configManager.imagesConfig.cloudinaryCloudName
 			});
 		} catch (error) {
 			throw error;
@@ -108,22 +133,22 @@ class App {
 	}
 
 	public setupExpress(): void {
-		console.debug("Setting up views");
+		Logger.debug("Setting up views");
 		this.setupViews();
 
-		console.debug("Using dev logger");
+		Logger.debug("Using dev logger");
 		this.expressApp.use(logger("dev"));
 
-		console.debug("Setting up middleware");
+		Logger.debug("Setting up middleware");
 		this.setupMiddleware();
 
-		console.debug("Setting up static directories");
+		Logger.debug("Setting up static directories");
 		this.expressApp.use(express.static(path.join(__dirname, "../public")));
 
-		console.debug("Setting up routes");
+		Logger.debug("Setting up routes");
 		this.expressApp.use("/", indexRoute);
 
-		console.debug("Setting up error handling");
+		Logger.debug("Setting up error handling");
 		this.setupErrorHandling();
 	}
 
@@ -190,6 +215,4 @@ class App {
 	}
 }
 
-const app = new App();
-export default app.expressApp;
-export { app };
+export const app = new App();

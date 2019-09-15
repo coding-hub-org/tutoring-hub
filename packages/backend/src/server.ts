@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import expressApp, { app } from './app';
+import { app } from './app';
 import http from 'http';
 
 /**
@@ -14,13 +14,13 @@ const debug = require('debug')('back-end:server');
  */
 
 const port = normalizePort(process.env.PORT || '3001');
-expressApp.set('port', port);
+app.expressApp.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(expressApp);
+const server = http.createServer(app.expressApp);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -86,7 +86,7 @@ function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
-    : 'port ' + addr.port;
+    : 'port ' + addr!.port;
   debug('Listening on ' + bind);
 }
 
