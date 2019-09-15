@@ -16,8 +16,8 @@ export const expressApp: express.Application = express();
 class App {
 
 	public ROOT_DIR: string = "./";
-	public PUBLIC_DIR: string = `${this.ROOT_DIR}/public`;
-	public SETTINGS_DIR: string = `${this.PUBLIC_DIR}/settings`;
+	public APPLICATION_DIR: string = `${this.ROOT_DIR}/_application`;
+	public SETTINGS_DIR: string = `${this.APPLICATION_DIR}/settings`;
 
 	public expressApp: Application = express();
 
@@ -70,9 +70,9 @@ class App {
 	}
 
 	private async createDirectories(): Promise<void> {
-		if (!await FileUtils.checkExists(this.PUBLIC_DIR)) {
-			if (await FileUtils.createDirectory(this.PUBLIC_DIR)) {
-				Logger.info(`Created public directory: ${this.PUBLIC_DIR}`);
+		if (!await FileUtils.checkExists(this.APPLICATION_DIR)) {
+			if (await FileUtils.createDirectory(this.APPLICATION_DIR)) {
+				Logger.info(`Created public directory: ${this.APPLICATION_DIR}`);
 			}
 		}
 		if (!await FileUtils.checkExists(this.SETTINGS_DIR)) {
