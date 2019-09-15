@@ -11,19 +11,38 @@ import Tutors from "./Sections/Tutors";
 
 import Footer from "./Components/Footer";
 import BackToTopButton from "./Components/BackToTopButton";
+import { connect } from "react-redux";
+import { getTutors, getCourses } from "./actions/homeActions";
+interface AppProps {
+	getTutors: Function;
+	getCourses: Function;
+}
 
-class App extends Component {
+class App extends Component<AppProps> {
+	componentDidMount() {
+		this.props.getTutors();
+		this.props.getCourses();
+	}
+
 	render() {
 		return (
 			<BrowserRouter>
 				<div className="App">
 					<BackToTopButton minScrollAmt={25} />
 					<Switch>
-						<Route exact path="/" component={Tutors} />
+						<Route exact path="/" render={() => <Tutors />} />
 						{/* <Route path="/tutors/manage" component={ManageTutors} /> */}
 						{/* <Route path="/tutors/add" component={AddTutor} /> */}
-						<Route exact path="/tutors/:id" component={Profile} />
-						<Route exact path="/tutors/:id/rate" component={Review} />
+						<Route
+							exact
+							path="/tutors/:id"
+							render={routeProps => <Profile {...routeProps} />}
+						/>
+						<Route
+							exact
+							path="/tutors/:id/review"
+							render={routeProps => <Review {...routeProps} />}
+						/>
 					</Switch>
 					<Footer />
 				</div>
@@ -32,4 +51,14 @@ class App extends Component {
 	}
 }
 
-export default App;
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		getTutors: () => dispatch(getTutors()),
+		getCourses: () => dispatch(getCourses())
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(App);

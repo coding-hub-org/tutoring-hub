@@ -1,39 +1,55 @@
 {
-  "name": "tutoring-hub",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.12",
-    "@types/react": "^16.8.23",
-    "@types/react-dom": "^16.8.4",
-    "node-sass": "^4.12.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-google-login": "^5.0.4",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.8",
-    "typescript": "^3.5.2",
-    "underscore": "^1.9.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "proxy": "http://localhost:3001/",
-  "devDependencies": {
-    "@types/react-router-dom": "^4.3.4",
-    "@types/underscore": "^1.9.2"
-  }
+	"name": "tutoring-hub",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@types/jest": "^24.0.15",
+		"@types/lodash": "^4.14.136",
+		"@types/node": "^12.0.12",
+		"@types/react": "^16.8.23",
+		"@types/react-dom": "^16.8.4",
+		"@types/react-redux": "^7.1.1",
+		"lodash": "^4.17.15",
+		"node-sass": "^4.12.0",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
+		"react-google-login": "^5.0.4",
+		"react-redux": "^7.1.0",
+		"react-router-dom": "^5.0.1",
+		"react-scripts": "^2.1.8",
+		"redux": "^4.0.4",
+		"redux-thunk": "^2.3.0",
+		"typescript": "^3.5.2",
+		"underscore": "^1.9.1"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"tslint": " eslint . --cache --cache-location node_modules/.cache/eslint --ext .js,.jsx,.ts,.tsx",
+		"prettier": "prettier --check prettier.config.json \"./src/**/*.{js,ts,tsx,jsx,json,scss}\"",
+		"precommit": "yarn prettier && yarn tslint"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	],
+	"proxy": "http://localhost:3001/",
+	"devDependencies": {
+		"@types/react-router-dom": "^4.3.4",
+		"@types/underscore": "^1.9.2",
+		"@typescript-eslint/eslint-plugin": "^2.0.0",
+		"@typescript-eslint/parser": "^2.0.0",
+		"eslint-config-prettier": "^6.0.0",
+		"eslint-config-react": "^1.1.7",
+		"eslint-plugin-prettier": "^3.1.0",
+		"prettier": "^1.18.2",
+		"redux-devtools-extension": "^2.13.8"
+	}
 }

@@ -10,184 +10,142 @@ import TutorCardsFilterable from "../../Components/TutorCardsFilterable";
 import FormDropdown from "../../Components/FormDropdown";
 import FormSlider from "../../Components/FormSlider";
 import FormButton from "../../Components/FormButton";
-import AddTutorBox from "../../Components/AddTutorBox";
+// import AddTutorBox from "../../Components/AddTutorBox";
 import ReviewWebsiteButton from "../../Components/ReviewWebsite";
 
-import _ from 'underscore';
+// Redux
+import { connect } from "react-redux";
+import {
+	resetFilters,
+	filterTutorsByCourse,
+	searchTutor,
+	filterTutorsByRating
+} from "../../actions/homeActions";
 
-
-interface Props {
-
-}
-
-interface State {
-	title: string;
-	isLoading: boolean;
-	tutors: any[];
+interface TutorsProps {
 	courses: string[];
 	filterName: string;
 	filterCourse: string;
 	filterRating: number;
+	filterTutorsByCourse: Function;
+	filterTutorsByRating: Function;
+	resetFilters: Function;
+	searchTutor: Function;
+	isLoading: boolean;
+	title: string;
+	tutors: any[];
 }
 
-export default class Tutors extends Component<Props, State> {
+const Tutors: React.FC<TutorsProps> = props => {
+	const handleSearch = (e: any) => {
+		let name = e.currentTarget.value;
+		props.searchTutor(name);
+	};
 
-	constructor(props: Props) {
-		super(props);
-
-		this.state = {
-			title: "All Tutors",
-			isLoading: true,
-			tutors: [],
-			courses: [],
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		};
-
-		this.handleSearch = this.handleSearch.bind(this);
-		this.resetFilters = this.resetFilters.bind(this);
-		this.filterCourses = this.filterCourses.bind(this);
-		this.filterRatings = this.filterRatings.bind(this);
-	}
-
-	componentDidMount() {
-		this.fetchTutors();
-		this.fetchCourses();
-	}
-
-	fetchTutors() {
-		fetch("/api/v1/tutors")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					tutors: _.sortBy(data, "lastName"),
-					isLoading: false
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	fetchCourses() {
-		fetch("/api/v1/courses")
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					courses: _.sortBy(data, function (course) {
-						return course;
-					})
-				});
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
-
-	handleSearch(e: any) {
-		var value = e.currentTarget.value;
-		this.setState({
-			filterName: value
-		});
-	}
-
-	resetFilters(e: any) {
+	const resetFilters = (e: any) => {
 		e.preventDefault();
 		//TODO reset HTML for elements
-		this.setState({
-			filterName: "",
-			filterCourse: "",
-			filterRating: 0
-		});
-	}
+		props.resetFilters();
+	};
 
-	filterCourses(course: string) {
-		this.setState({
-			filterCourse: course === "" ? "" : course
-		});
-	}
+	const filterCourses = (course: string) => {
+		props.filterTutorsByCourse(course);
+	};
 
-	filterRatings(rating: number) {
-		if (rating <= 0) {
-			this.setState({
-				filterRating: 0
-			});
-		} else {
-			this.setState({
-				filterRating: rating
-			});
-		}
-	}
+	const filterRatings = (rating: number) => {
+		props.filterTutorsByRating(rating);
+	};
 
-	isFiltering() {
+	const isFiltering = () => {
 		return (
-			this.state.filterCourse !== "" ||
-			this.state.filterRating !== 0 ||
-			this.state.filterName !== ""
+			props.filterCourse !== "" ||
+			props.filterRating !== 0 ||
+			props.filterName !== ""
 		);
-	}
+	};
 
-	render() {
-		return (
-			<>
-				<NavBar
-					searchable={true}
-					handleSearch={this.handleSearch}
-					sticky={true}
-				/>
-				<section id="section-tutors">
-					<div className="wrapper">
-						<div className="section-title">
-							<img src={titleImg} alt="title icon" />{" "}
-							<Title title={this.state.title.toUpperCase()} />
-						</div>
-
-						<div className="filters">
-							<div className="filter">
-								<p className="title">Courses</p>
-								<FormDropdown
-									title={"Courses"}
-									options={this.state.courses}
-									onChange={this.filterCourses}
-									value={this.state.filterCourse}
-									uppercase={true}
-								/>
-							</div>
-							<div className="filter">
-								<p className="title">Rating</p>
-								<FormSlider
-									min={0}
-									max={10}
-									step={1}
-									onChange={this.filterRatings}
-									value={this.state.filterRating}
-								/>
-							</div>
-							<div className="filter" id="filter-submit">
-								<FormButton title={"Reset Filters"} action={this.resetFilters} />
-							</div>
-						</div>
-
-						{this.isFiltering() ? (
-							<TutorCardsFilterable
-								tutors={this.state.tutors}
-								filterCourse={this.state.filterCourse}
-								filterRating={this.state.filterRating}
-								filterName={this.state.filterName}
-							/>
-						) : (
-								<TutorCards tutors={this.state.tutors} />
-							)}
-
-						<div className="review-website-button">
-							<ReviewWebsiteButton />
-						</div>
-
-						{/* <AddTutorBox /> */}
+	return (
+		<>
+			<NavBar searchable={true} handleSearch={handleSearch} sticky={true} />
+			<section id="section-tutors">
+				<div className="wrapper">
+					<div className="section-title">
+						<img src={titleImg} alt="title icon" />
+						<Title title={props.title.toUpperCase()} />
 					</div>
-				</section>
-			</>
-		);
-	}
-}
+
+					<div className="filters">
+						<div className="filter filter--1">
+							<p className="title">Courses</p>
+							<FormDropdown
+								title={"Courses"}
+								options={props.courses}
+								onChange={filterCourses}
+								value={props.filterCourse}
+								uppercase={true}
+							/>
+						</div>
+						<div className="filter filter--2">
+							<p className="title">Rating</p>
+							<FormSlider
+								min={0}
+								max={10}
+								step={1}
+								onChange={filterRatings}
+								value={props.filterRating}
+							/>
+						</div>
+						<div className="filter filter--3" id="filter-submit">
+							<FormButton title={"Reset Filters"} action={resetFilters} />
+						</div>
+					</div>
+
+					{isFiltering() ? (
+						<TutorCardsFilterable
+							tutors={props.tutors}
+							filterCourse={props.filterCourse}
+							filterRating={props.filterRating}
+							filterName={props.filterName}
+						/>
+					) : (
+						<TutorCards tutors={props.tutors} />
+					)}
+
+					<div className="review-website-button">
+						<ReviewWebsiteButton />
+					</div>
+
+					{/* <AddTutorBox /> */}
+				</div>
+			</section>
+		</>
+	);
+};
+
+const mapStateToProps = (state: any, ownProps: any) => {
+	return {
+		title: state.home.title,
+		tutors: state.home.tutors,
+		isLoading: state.home.isLoading,
+		courses: state.home.courses,
+		filterName: state.home.filterName,
+		filterCourse: state.home.filterCourse,
+		filterRating: state.home.filterRating
+	};
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		resetFilters: () => dispatch(resetFilters()),
+		filterTutorsByCourse: (course: string) =>
+			dispatch(filterTutorsByCourse(course)),
+		filterTutorsByRating: (rating: number) =>
+			dispatch(filterTutorsByRating(rating)),
+		searchTutor: (name: string) => dispatch(searchTutor(name))
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Tutors);

@@ -1,27 +1,18 @@
-import React, { Component } from 'react'
-import './style.scss';
+import React from "react";
+import "./style.scss";
 
-import TutorCardPartial from '../TutorCardPartial';
+import TutorCardPartial from "../TutorCardPartial";
 
-interface Props {
-    tutors: any[];
+interface TutorCardsProps {
+	tutors: any[];
 }
 
-export default class TutorCards extends Component<Props> {
+const TutorCards: React.FC<TutorCardsProps> = ({ tutors }) => {
+	const tutorsList = tutors.map(tutor => (
+		<TutorCardPartial tutor={tutor} key={tutor._id} />
+	));
 
-    constructor(props: Props) {
-        super(props);
-    }
+	return <div className={"Tutor-Cards-Component"}>{tutorsList}</div>;
+};
 
-    render() {
-        const tutors = this.props.tutors.map((tutor) =>
-            <TutorCardPartial tutor={tutor} key={tutor._id} />
-        );
-
-        return (
-            <div className={"Tutor-Cards-Component"}>
-                {tutors}
-            </div>
-        );
-    }
-}
+export default TutorCards;

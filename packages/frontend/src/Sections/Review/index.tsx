@@ -8,16 +8,16 @@ import ScaleInput from "../../Components/ScaleInput";
 import YesNoInput from "../../Components/YesNoInput";
 import Subheading from "../../Components/Subheading";
 import CourseInput from "../../Components/CourseInput";
+import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
+import { response } from "express";
 
-
-interface Props {
-
+interface ReviewProps extends RouteComponentProps<{ id: string }> {
+	isLoading: boolean;
+	tutor: any;
 }
 
-interface State {
-	loading: boolean;
-	tutor?: any;
-
+interface ReviewState {
 	author?: string;
 	course?: string;
 	content?: number;
@@ -26,20 +26,16 @@ interface State {
 	preparation?: number;
 	clarity?: number;
 	knowledge?: number;
-
 	bookAgain?: boolean;
 	comment?: string;
 }
 
-class Review extends React.Component<Props, State> {
-	constructor(props: Props) {
+class Review extends React.Component<ReviewProps, ReviewState> {
+	constructor(props: ReviewProps) {
 		super(props);
 
 		this.state = {
-			loading: true,
-			tutor: undefined,
 			author: "Anonymous",
-
 			course: undefined,
 			content: undefined,
 			methodology: undefined,
@@ -47,32 +43,19 @@ class Review extends React.Component<Props, State> {
 			preparation: undefined,
 			clarity: undefined,
 			knowledge: undefined,
-
 			bookAgain: undefined
 		};
 
 		this.onStatUpdate = this.onStatUpdate.bind(this);
 		this.onBookAgainUpdate = this.onBookAgainUpdate.bind(this);
 		this.onCourseTutoredUpdate = this.onCourseTutoredUpdate.bind(this);
-
 		this.validateForm = this.validateForm.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.submitReview = this.submitReview.bind(this);
 	}
 
 	componentDidMount() {
 		window.scrollTo(0, 0);
-
-		fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""))
-			.then(response => response.json())
-			.then(data => {
-				this.setState({
-					tutor: data,
-					loading: false
-				});
-			})
-			.catch(error => {
-				console.debug(error);
-			});
 	}
 
 	validateForm(callback: any) {
@@ -117,16 +100,31 @@ class Review extends React.Component<Props, State> {
 		callback();
 	}
 
+	async submitReview(updatedTutor: any) {
+		const response = await fetch(
+			`/api/v1/tutors/${this.props.match.params.id}`,
+			{
+				method: "PUT",
+				body: JSON.stringify(updatedTutor),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}
+		);
+		let data = await response.json();
+		return data;
+	}
+
 	handleSubmit = () => {
 		let self = this;
 
-		this.validateForm(function (err: Error) {
+		this.validateForm(function(err: Error) {
 			if (err) {
 				alert(err);
 				return;
 			}
 
-			const data = {
+			const newReview = {
 				author: self.state.author,
 				course: self.state.course,
 				content: self.state.content,
@@ -140,30 +138,16 @@ class Review extends React.Component<Props, State> {
 				}
 			};
 
-			let updatedTutor = self.state.tutor;
-			updatedTutor.reviews.push(data);
+			let reviewsArr = [...self.props.tutor.reviews, newReview];
+			let updatedTutor = { ...self.props.tutor, reviews: reviewsArr };
 
-			self.setState(
-				{
-					tutor: updatedTutor
-				},
-				function () {
-					fetch(`/api/v1${window.location.pathname}`.replace("/rate", ""), {
-						method: "PUT",
-						body: JSON.stringify(self.state.tutor),
-						headers: {
-							"Content-Type": "application/json"
-						}
-					})
-						.then(res => res.json())
-						.then(() => {
-							console.debug("Success");
-							document.getElementById("navbar")!.scrollIntoView();
-							window.location.href = window.location.pathname.replace("/rate", "");
-						})
-						.catch(error => console.error("Error:", error));
-				}
-			);
+			self
+				.submitReview(updatedTutor)
+				.then(() => {
+					console.debug("Success");
+					window.location.assign(`/tutors/${self.props.match.params.id}`);
+				})
+				.catch(error => console.error("Error:", error));
 		});
 	};
 
@@ -235,90 +219,86 @@ class Review extends React.Component<Props, State> {
 	};
 
 	render() {
-		if (this.state.loading) {
-			return (
-				<div className={"tutors-component--loading"}>
-					<img src={loadingIcon} alt="" />
-				</div>
-			);
-		}
-
-		return (
+		return this.props.isLoading ? (
+			<div className={"tutors-component--loading"}>
+				<img src={loadingIcon} alt="" />
+			</div>
+		) : (
 			<div className={"review-section"}>
 				<NavBar />
-
-				{this.state.loading ? (
-					<div className="review-section--wrapper">
-						<div className="review-section--wrapper-load">
-							<img
-								className={"review-section--wrapper__loading"}
-								src={loadingIcon}
-								alt=""
-							/>
-						</div>
+				<div className={"review-section--wrapper"}>
+					<div className="review-title">
+						<Title title={"Rate " + this.props.tutor.firstName} />
 					</div>
-				) : (
-						<div className={"review-section--wrapper"}>
-							<Title title={"Rate " + this.state.tutor.firstName} />
+					<ScaleInput
+						parameter={"methodology"}
+						onChange={this.onStatUpdate}
+						scaleMin={1}
+						scaleMax={10}
+					/>
+					<ScaleInput
+						parameter={"organization"}
+						onChange={this.onStatUpdate}
+						scaleMin={1}
+						scaleMax={10}
+					/>
+					<ScaleInput
+						parameter={"preparation"}
+						onChange={this.onStatUpdate}
+						scaleMin={1}
+						scaleMax={10}
+					/>
+					<ScaleInput
+						parameter={"clarity"}
+						onChange={this.onStatUpdate}
+						scaleMin={1}
+						scaleMax={10}
+					/>
+					<ScaleInput
+						parameter={"knowledge"}
+						onChange={this.onStatUpdate}
+						scaleMin={1}
+						scaleMax={10}
+					/>
+          <div className="review-section--about">
+					  <Subheading title={"About your session"} />
+          </div>
+					<div className="review-section--book-again">
+						<p>Would you book this tutor again? </p>
+						<YesNoInput
+							choices={["yes", "no"]}
+							onChange={this.onBookAgainUpdate}
+						/>
+					</div>
+          
+					<div className="review-section--class-tutored">
+					<Subheading title={"Class Tutored"} />
+					<CourseInput
+						choices={this.props.tutor.courses}
+						onChange={this.onCourseTutoredUpdate}
+					/>
+</div>
+					<Subheading title={"Comments"} />
+					<textarea
+            onChange={this.handleComments}
+            className="comment-textarea"
+						placeholder={"How was your session? Help this tutor to improve "}
+					/>
 
-							<ScaleInput
-								parameter={"methodology"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"organization"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"preparation"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"clarity"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-							<ScaleInput
-								parameter={"knowledge"}
-								onChange={this.onStatUpdate}
-								scaleMin={1}
-								scaleMax={10}
-							/>
-
-							<Subheading title={"About your session"} />
-							<div>
-								<p>Would you book this tutor again? </p>
-								<YesNoInput
-									choices={["yes", "no"]}
-									onChange={this.onBookAgainUpdate}
-								/>
-							</div>
-
-							<Subheading title={"Class Tutored"} />
-							<CourseInput
-								choices={this.state.tutor.courses}
-								onChange={this.onCourseTutoredUpdate}
-							/>
-
-							<Subheading title={"Comments"} />
-							<textarea
-								onChange={this.handleComments}
-								placeholder={"How was your session? Help this tutor to improve "}
-							/>
-
-							<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
-						</div>
-					)}
+					<button onClick={this.handleSubmit}>SUBMIT REVIEW</button>
+				</div>
+				)}
 			</div>
 		);
 	}
 }
 
-export default Review;
+const matStateToProps = (state: any, props: any) => {
+	let tutorId = props.match.params.id;
+	return {
+		isLoading: state.home.isLoading,
+		tutor: state.home.tutors.find((t: { _id: any }) => t._id === tutorId)
+	};
+};
+
+export default connect(matStateToProps)(Review);

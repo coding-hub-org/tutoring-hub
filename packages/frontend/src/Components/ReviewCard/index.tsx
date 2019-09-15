@@ -4,21 +4,16 @@ import ratingStar from "../../Assets/rating-star.svg";
 
 import NoReviews from "../../Assets/no-reviews.png";
 
-import _ from 'underscore';
-
+import _ from "underscore";
 
 interface Props {
 	filterCourse?: string;
 	tutor?: any;
 }
 
-interface State {
-
-}
-
+interface State {}
 
 export default class ReviewCard extends Component<Props, State> {
-
 	constructor(props: Props) {
 		super(props);
 	}
@@ -29,8 +24,8 @@ export default class ReviewCard extends Component<Props, State> {
 			this.props.filterCourse === ""
 				? this.props.tutor.reviews
 				: this.props.tutor.reviews.filter((review: any) => {
-					return review.course === this.props.filterCourse;
-				});
+						return review.course === this.props.filterCourse;
+				  });
 
 		// const rating_filter_reviews = this.props.filter_rating === 0 ?
 		//     course_filter_reviews
@@ -44,7 +39,7 @@ export default class ReviewCard extends Component<Props, State> {
 		const filtered_review = course_filter_reviews;
 		console.log(filtered_review);
 
-		_.sortBy(filtered_review, 'date');
+		_.sortBy(filtered_review, "date");
 		filtered_review.reverse();
 		const reviewList = filtered_review.map((review: any) => {
 			let obj = review.statistics;

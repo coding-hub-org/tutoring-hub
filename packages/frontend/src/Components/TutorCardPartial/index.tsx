@@ -4,96 +4,68 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import starRating from "../../Assets/rating-star.svg";
 import moreImg from "../../Assets/more-img.svg";
+import { getAverageScore } from "../../helpers/tutorsHelper";
 
-interface Props {
+interface TutorCardPartialProps {
 	tutor?: any;
 }
 
-export default class TutorCardPartial extends Component<Props> {
-
-	constructor(props: Props) {
-		super(props);
-	}
-
-	getFullName() {
-		return this.props.tutor.firstName + " " + this.props.tutor.lastName;
-	}
-
-	getAvg = (ratings: any) => {
-		let rating = 0,
-			total,
-			obj;
-
-		if (ratings.length === 0) return -1;
-		ratings.forEach((review: any) => {
-			obj = review.statistics;
-			total =
-				(obj.methodology +
-					obj.organization +
-					obj.preparation +
-					obj.knowledge +
-					obj.clarity) /
-				5;
-			rating += total;
-		});
-
-		return rating / ratings.length;
+const TutorCardPartial: React.FC<TutorCardPartialProps> = props => {
+	const getFullName = () => {
+		return props.tutor.firstName + " " + props.tutor.lastName;
 	};
 
-	render() {
-		// console.log(this.props.tutor);
-		const courses_list = this.props.tutor.courses
-			.slice(0, 7)
-			.map((course: string, index: number) => <li key={index}>{course}</li>);
+	// console.log(this.props.tutor);
+	const coursesList = props.tutor.courses
+		.slice(0, 7)
+		.map((course: string, index: number) => <li key={index}>{course}</li>);
 
-		const tooltip_courses_list =
-			this.props.tutor.courses.length > 7
-				? this.props.tutor.courses
-					.slice(7, this.props.tutor.courses.length)
+	const tooltipCoursesList =
+		props.tutor.courses.length > 7
+			? props.tutor.courses
+					.slice(7, props.tutor.courses.length)
 					.map((course: string, index: number, j: any[]) => (
-						<span key={index}>{index < j.length - 1 ? course + ", " : course}</span>
+						<span key={index}>
+							{index < j.length - 1 ? course + ", " : course}
+						</span>
 					))
-				: null;
+			: null;
 
-		return (
-			<div className={"Tutor-Card-Partial-Component"}>
-				<img
-					src={this.props.tutor.imageUrl}
-					alt={"Image of " + this.getFullName()}
-				/>
+	return (
+		<div className={"Tutor-Card-Partial-Component"}>
+			<img src={props.tutor.imageUrl} alt={"Image of " + getFullName()} />
 
-				<div className={"content"}>
-					<p className="full-name">{this.getFullName()}</p>
-					<div className="bio">
-						{courses_list}
-						{tooltip_courses_list ? (
-							<li className="tooltip">
-								{this.props.tutor.courses.length > 7
-									? "+ " + (this.props.tutor.courses.length - 7).toString()
-									: ""}
-								<div className="tooltip-content">
-									{tooltip_courses_list}
-								</div>
-							</li>
-						) : null}
-					</div>
+			<div className={"content"}>
+				<p className="full-name">{getFullName()}</p>
+				<div className="bio">
+					{coursesList}
+					{tooltipCoursesList ? (
+						<li className="tooltip">
+							{props.tutor.courses.length > 7
+								? "+ " + (props.tutor.courses.length - 7).toString()
+								: ""}
+							<div className="tooltip-content">{tooltipCoursesList}</div>
+						</li>
+					) : null}
+				</div>
 
-					<div className="bottom">
-						<span className="rating">
-							<img src={starRating} alt="star rating" />
-							{this.getAvg(this.props.tutor.reviews) === -1 ? (
-								<span>N/A</span>
-							) : (
-									<span>{this.getAvg(this.props.tutor.reviews).toFixed(2)}</span>
-								)}
-						</span>
-						<span className="more">
-							<img src={moreImg} alt="more icon" />
-							<Link to={`/tutors/${this.props.tutor._id}`}>MORE</Link>
-						</span>
-					</div>
+				<div className="bottom">
+					<span className="rating">
+						<img src={starRating} alt="star rating" />
+						{getAverageScore(props.tutor.reviews) === -1 ? (
+							<span>N/A</span>
+						) : (
+							<span>{getAverageScore(props.tutor.reviews).toFixed(2)}</span>
+						)}
+					</span>
+					<span className="more">
+						<img src={moreImg} alt="more icon" />
+						<Link to={`/tutors/${props.tutor._id}`}>MORE</Link>
+					</span>
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
+
+export default TutorCardPartial;
