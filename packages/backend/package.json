@@ -6,6 +6,8 @@
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
   },
   "dependencies": {
+    "@michaelgatesdev/common": "^1.0.18",
+    "cardboard-config": "^1.0.1",
     "cloudinary": "^1.13.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
